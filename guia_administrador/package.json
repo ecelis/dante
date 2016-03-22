@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "markdown-pdf": "*"
+  },
+  "bin": {
+    "markdown-pdf": "bin/markdown-pdf"
+  }
+}
