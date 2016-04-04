@@ -5,6 +5,10 @@
 .*.sw*
 *.pdf
 *.PDF
+*.doc*
+*.DOC*
+*.html
+*.HTML
 node_modules
 *.pyc
 ENV
