@@ -1,1 +1,0 @@
-LexSys - Guía de Instalación
