@@ -10,13 +10,13 @@ Guia de Instalación
 
 * [Red Hat Enterprise Linux 6 o 7 / CentOS 6 o 7][rhel]
 * [PostgreSQL 9.4][psql] / [Oracle Database][oracle]
-* [MongoDB 2.x][mongodb]
-* [Python 2.x][python]
+* [MongoDB 2.6][mongodb]
+* [Python 2.7][python]
 * [setuptools 19.x.x][setuptools]
 * [pypi 8.x.x][pypi]
 * [Virtualenv][virtualenv]
-* [uWSGI 2.x.x][uwsgi]
-* [NodeJS 4.x][nodejs]
+* [uWSGI 2.0][uwsgi]
+* [NodeJS 4.2][nodejs]
 
 
 LexSys esta soportado para ejecutarse en el sistema operativo Red Hat
@@ -30,7 +30,7 @@ en sistemas operativos de 32 bit no están soportadas.
 
 ### Dependencias
 
-En seguida se listan los paquetes .rpm necesarios para instalar y
+Enseguida se listan los paquetes .rpm necesarios para instalar y
 ejecutar LexSys en RHEL/CentOS 6 y 7, además de las dependencias
 necesarias para cada motor de base de datos a usar, Oracle Database o
 PostgreSQL.
@@ -91,37 +91,36 @@ los archivos se deben descargar en el directorio_ `/tmp`
 #### Repositorios YUM adicionales
 
 Es necesario habilitar los repositorios **'optional'** y **'extra'**
-para utilizar paquetes de EPEL, pues dependen de paquetes que existen en
+para utilizar paquetes de EPEL que dependen de paquetes que existen en
 estos repositorios.
 
 
-**CentOS 6/7**
+##### EPEL CentOS 6/7
 
 
     yum -y install epel-release
 
 
-**RHEL 6/7**
+##### EPEL RHEL 6/7
 
 Agrega el paquete del repositorio correspondiente desde
 https://fedoraproject.org/wiki/EPEL
 
 
-**RHEL 6**
+##### Python 2.7 Software Collection RHEL 6
 
 
     sh -c 'http://people.redhat.com/bkabrda/scl_python27.repo \
       >> /etc/yum.repos.d/scl.repo'
 
 
-**CentOS 6**
+##### Python 2.7 Software Collection CentOS 6
 
 
     yum -y install centos-release-scl
 
 
 ### Instalación Semi-Automática
-
 
 El script `bootstrap.sh` configura una instalación mínima del sistema
 operativo preparandolo para la instalación de los componentes de LexSys.
@@ -134,6 +133,7 @@ directorio del usuario dueño del sistema.
 
 
 Como usuario `lexusr` ejecuta el archivo de instalación de LexSys.
+
 
     curl -o lexinstall_<DB>_<OS>.run \
       http://download.lexsys.net/lexinstall_<DB>_<OS>.run
@@ -153,22 +153,23 @@ LexSys puede ejecutarse como cualquier usuario sin privilegios, sin
 embargo se sugiere crear un usuario `lexusr`.
 
 
-    useradd -m -G wheel lexusr
-    passwd lexusr
-    chmod 755 /home/lexusr
+    useradd -m -G wheel $LEXUSR
+    passwd $LEXUSR
+    chmod 755 $LEXHOME
 
 
 Los archivos de log se almacenan en `/var/log/lexsys` es necesario crear
 este directorio.
 
 
-    mkdir -p /var/log/lexsys
-    chown -R lexusr:lexusr /var/log/lexsys
+    mkdir -p $LOGDIR
+    chown -R $LEXUSR:$LEXUSR $LOGDIR
 
 
 _Los pasos siguientes aplican tanto para instalaciones en un solo
 servidor o donde se quiera separar la Base de Datos de la Aplicación
 Web_
+
 
 1. Actualiza el sistema operativo
 2. Instalación de dependencias según motor de base de datos
@@ -179,18 +180,18 @@ Web_
 
 #### Dependencias PostgreSQL
 
-**RHEL/CentOS 6**
+##### Repositorio YUM PostgreSQL en RHEL/CentOS 6
 
 
     yum -y install \
       http://yum.postgresql.org/9.4/redhat/rhel-6-x86_64/pgdg-redhat94-9.4-1.noarch.rpm
 
 
-**RHEL/CentOS 7**
+##### Repositorio YUM PostgreSQL en RHEL/CentOS 7
 
 
     yum -y install \
-      yum -y install http://yum.postgresql.org/9.4/redhat/rhel-7-x86_64/pgdg-centos94-9.4-2.noarch.rpm
+      http://yum.postgresql.org/9.4/redhat/rhel-7-x86_64/pgdg-centos94-9.4-2.noarch.rpm
 
 
 _Paquetes de PostgreSQL requeridos tanto en el servidor de Base de
@@ -268,14 +269,14 @@ Instala Oracle Database de acuerdo a la _Database Installation Guide_
 1. Instala las dependencias necesarias desde los repositorios de
    RHEL/CentOS
 2. Instala virtualenv y uwsgi
-3. nodejs 4 y los módulos de nodejs necesarios para compilar las
+3. Instala nodejs 4 y los módulos de nodejs necesarios para compilar las
    aplicaciones
 4. Habilita e inicia el servicio MongoDB
 5. Crea un usario administrador de MongoDB y las bases de datos para log
    del API y contenidos del Editor
 
 
-**RHEL/CentOS 6**
+##### Dependencias de LexSys en RHEL/CentOS 6
 
 
     yum -y install tar gzip gcc gcc-c++ git \
@@ -288,11 +289,11 @@ Instala Oracle Database de acuerdo a la _Database Installation Guide_
     wget https://nodejs.org/dist/v4.2.6/node-v4.2.6-linux-x64.tar.gz
     cd /usr/local
     tar --strip-components=1 -xvzf
-      /tmp/https://nodejs.org/dist/v4.2.6/node-v4.2.6-linux-x64.tar.gz
+      /tmp/node-v4.2.6-linux-x64.tar.gz
     npm install --loglevel info -g pm2 bower gulp grunt-cli coffee-script
 
 
-**RHEL/CentOS 7**
+##### Dependencias de LexSys en RHEL/CentOS 7
 
 
     yum -y install tar gzip gcc gcc-c++ git \
@@ -304,26 +305,26 @@ Instala Oracle Database de acuerdo a la _Database Installation Guide_
     wget https://nodejs.org/dist/v4.2.6/node-v4.2.6-linux-x64.tar.gz
     cd /usr/local
     tar --strip-components=1 -xvzf
-      /tmp/https://nodejs.org/dist/v4.2.6/node-v4.2.6-linux-x64.tar.gz
+      /tmp/node-v4.2.6-linux-x64.tar.gz
     npm install --loglevel info -g pm2 bower gulp grunt-cli coffee-script
 
 
 
-**RHEL/CentOS 6**
+##### Habilita MongoDB en RHEL/CentOS 6
 
 
     chkconfig mongod on
     service start mongod
 
 
-**RHEL/CentOS 7**
+##### Habilita MongoDB en RHEL/CentOS 7
 
 
     systemctl enable mongod
     systemctl start mongod
 
 
-**MongoDB**
+##### Configuración de MongoDB
 
 
     mongo
@@ -351,18 +352,18 @@ acceso proporcionadas junto con el software y esta guia.
 Instalación de entorno virtual y dependencias del API.
 
 
-    su - lexusr
-    cd $HOME/wrath
+    su - $LEXUSR
+    cd $LEXHOME/wrath
     rm -rf ENV
-    virtualenv-2.7 ENV
-    $HOME/wrath/ENV/bin/pip-2.7 install -r $HOME/wrath/requirements.txt
+    virtualenv ENV
+    $LEXHOME/wrath/ENV/bin/pip install -r $LEXHOME/wrath/requirements.txt
 
 
 Genera la documentación del API.
 
 
-    su - lexusr
-    cd $HOME/wrath
+    su - $LEXUSR
+    cd $LEXHOME/wrath
     . ENV/bin/activate
     cd doc
     mkdocs build --clean
@@ -371,11 +372,10 @@ Genera la documentación del API.
 #### Configuración API
 
 
-    su - lexusr
+    su - $LEXUSR
     cd ~
-    cp -r /home/lexusr/deployment/uwsgi /etc
-    chown -R lexusr:lexusr /var/log/lexsys
-    cp /home/lexusr/deployment/lexsys.service /lib/systemd/system
+    cp -r $LEXHOME/deployment/uwsgi /etc
+    chown -R $LEXUSR:$LEXUSR /var/log/lexsys
 
 
 Es necesario configurar un ambiente en el directorio `wrath/config`, la
@@ -386,20 +386,20 @@ la instalación de la institucion.
 Generalmennte solo es necesario editar `wrath/config/database.json`.
 
 
-    cp -r $HOME/wrath/config/example $HOME/wrath/config/<AMBIENTE>
+    cp -r $LEXHOME/wrath/config/example $LEXHOME/wrath/config/<AMBIENTE>
 
 
 El paso final en la instalación del API es poblar la base de datos con
 la información inicial para catálogos, procedimientos, sequencias y
 usuarios del sistema. Esto se lleva a cabo utilizando arvhivos de excel
-que se colocan en el directorio `cargas_masivas` en `$HOME` del usuario
+que se colocan en el directorio `cargas_masivas` en `$LEXHOME` del usuario
 dueño de la aplicación, `lexusr` si se usa el usuario sugerido en esta
 guía de instalación.
 
 
-    su - lexusr
-    cd $HOME/wrath
-    ENV/bin/python db_generator.py <AMBIENTE>
+    su - $LEXUSR
+    cd $LEXHOME/wrath
+    ENV/bin/python db_generator.py <nombre_de_ambiente>
 
 
 ### Editor de Contenidos
@@ -411,33 +411,32 @@ guía de instalación.
 4. Inicia el servidor de aplicaciones NodeJS pm2
 
 
-    su - lexusr
-    cd $HOME/EDITOR
+    su - $LEXUSR
+    cd $LEXHOME/EDITOR
     virtualenv ENV
     npm install --loglevel info
     bower install
     vi config.json
-    vi $HOME/deployment/pm2.json
+    vi $LEXHOME/deployment/pm2.json
     grunt assets
-    pm2 start $HOME/deployment/pm2.json
+    pm2 start $LEXHOME/deployment/pm2.json
     pm2 status
 
 
 ### Portal de Servicios
 
-1. Crea un entorno virtual de python
-2. Instala los módulos de nodejs y bower
-3. Edita `src/js/api/http.js` y cambia el valor de `BASE_URL` para que
+1. Instala los módulos de nodejs y bower
+2. Edita `config-<nombre_de_ambiente>.js` de acuerdo a tu ambiente de instalación
 apunte a la instalación del API
-4. Compila la aplicación
-5. Inicia e servidor de aplicaciones NodeJS pm2
+3. Compila la aplicación
 
 
-    su - lexusr
-    cd ${HOME}/sloth
+    su - $LEXUSR
+    cd $LEXHOME/sloth
     npm install --loglevel info
     bower install
-    grunt assets
+    vi config-<nombre_de_ambiente>.js
+    grunt assets --env <nombre_de_ambiente>
 
 
 ### Escritorio de Trabajo
@@ -447,20 +446,26 @@ apunte a la instalación del API
 3. Compila la aplicación
 
 
-    su - lexusr
-    cd $HOME/wpride
+    su - $LEXUSR
+    cd $LEXHOME/wpride
     npm install --loglevel info
     vi src/config.json
-    gulp build --env production
+    gulp build --env production --target <nombre_de_ambiente>
 
 
 ### Proxy HTTP
 
-LexSys requiere una versión de nginx que incluye el plugin
-nginx_headers_more que RHEL/CentOS 6 y 7 no incluyen en sus repositorios
-YUM.
+Los diferentes módulos de LexSys son expuestos vía HTTP, el _único_
+servidor web que se ha probado y se sugiere para despligues de
+producción es Nginx.
 
-La Instalación y configuración de Nginx debe hacerse como usuario `root`.
+LexSys requiere una versión de Nginx con el plugin nginx_headers_more
+que el paquete nginx de RHEL/CentOS 6 y 7 disponible en sus repositorios
+YUM no incluye.
+
+Puedes instalar un paquete RPM con el plugin ya compilado para
+RHEL/CentOS 6 y 7.
+
 
 **RHEL/CentOS 6**
 
@@ -756,6 +761,7 @@ Referencias
 * https://access.redhat.com/documentation/en-US/Red_Hat_Software_Collections/2/html/2.0_Release_Notes/chap-RHSCL.html
 
 ---
+
 [rhel]: https://access.redhat.com/documentation/en/red-hat-enterprise-linux/
 [psql]: http://www.postgresql.org/docs/9.4/static/index.html
 [mongodb]: https://docs.mongodb.org/v2.6/

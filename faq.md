@@ -16,10 +16,29 @@ Instala python27 ejecutando el comando
     scl install python27
 
 
+Agrega el script que habilita python 2.7 en `~/.bash_profile`
+
+
+    echo '. /opt/rh/python27/enable' >> ~/.bash_profile
+
+
 ### Que es uWSGI?
 
 uWSGI es un servidor de aplicaciones python que implementa la Web
 Server Gateway Interface
+
+
+API
+---
+
+
+Como inicio el API en modo manual o de desarrollo?
+
+
+    cd ~/wrath
+    ENV/bin/python dev_server.py <nombre_de_ambiente>
+
+
 
 
 Editor de Contenidos
@@ -41,6 +60,22 @@ Cannot read property 'meta' of undefined`.?
 #### Respuesta
 
 El editor no encuentra el API, revisar la URL del API en `config.json`
+
+
+Portal de Servicios
+-------------------
+
+
+
+
+
+Escritorio de Trabajo
+---------------------
+
+
+
+
+
 
 
 ---
