@@ -37,6 +37,15 @@ PostgreSQL.
 
 #### RHEL 6
 
+En Red Hat Enterprise Linux 6 asegurate de habilitar los
+repositorios Optional y Software Collections para instalar Python 2.7 y
+MongoDB 2.6
+
+
+    subscription-manager repos --enable rhel-server-rhscl-6-rpms
+    subscription-manager repos --enable rhel-6-server-optional-rpms
+
+
 * tar
 * gzip
 * make
@@ -46,11 +55,20 @@ PostgreSQL.
 * openssl-devel
 * pcre-devel
 * zlib-devel
-* mongodb
-* mongodb-server
-* mongodb-devel
+* rh-mongodb26
+* rh-mongodb26-mongodb-server
+* rh-mongodb26-mongodb-runtime
+* rh-mongodb26-mongodb-devel
 
 #### RHEL 7
+
+En Red Hat Enterprise Linux 7 asegurate de habilitar los
+repositorios Optional y Software Collections para instalar MongoDB 2.6
+
+
+    subscription-manager repos --enable rhel-server-rhscl-7-rpms
+    subscription-manager repos --enable rhel-7-server-optional-rpms
+
 
 * tar
 * gzip
@@ -65,7 +83,7 @@ PostgreSQL.
 * python-devel
 * python-virtualenv
 * python-virtualenvwrapper
-* mongodb
+* rh-mongodb26
 * mongodb-server
 * mongodb-devel
 

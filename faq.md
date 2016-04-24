@@ -1,6 +1,22 @@
 Preguntas Frecuentes
 ====================
 
+Oracle
+------
+
+### Conectar con sqlplus
+
+
+    sqlplus <user>/<pass>@<host>[:1521]/<SID>
+
+En Unix puede ser necesario agergar la ruta de las bibliotecas de
+Oracle a `LD_LIBRARY_PATH` cambia la versión por la que corresponda.
+
+
+    export LD_LIBRARY_PATH=/lib/oracle/11.2/lib
+
+
+
 Python
 ------
 
