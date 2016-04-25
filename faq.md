@@ -17,6 +17,13 @@ Oracle a `LD_LIBRARY_PATH` cambia la versión por la que corresponda.
 
 
 
+### Exportar volcado de base de datos
+
+
+    expdp <user>/<pass>@<SID> schemas=<schema> directory=<dump_path>
+      dumpfile=<dump_file> logfile=<log_file>
+
+
 Python
 ------
 
@@ -47,8 +54,7 @@ Server Gateway Interface
 API
 ---
 
-
-Como inicio el API en modo manual o de desarrollo?
+### Como inicio el API en modo manual o de desarrollo?
 
 
     cd ~/wrath
@@ -95,6 +101,6 @@ Escritorio de Trabajo
 
 
 ---
-Como convierto Formatos y Pantallas a PDF?
+### Como convierto Formatos y Pantallas a PDF?
 
 
