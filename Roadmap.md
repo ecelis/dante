@@ -2,7 +2,7 @@ LexSys Roadmap
 ==============
 
 El número de versión se compone de 3 partes,
-__versión__.__proyecto__.__revisión__, p.ej.: 2.3.160401
+_versión_._proyecto_._revisión_, p.ej.: 2.3.160401
 
 
 El número de revisión es la fecha de liberación en formato YYMMDD.
