@@ -2,7 +2,8 @@ LexSys Roadmap
 ==============
 
 El número de versión se compone de 3 partes,
-_versión_._proyecto_._revisión_, p.ej.: 2.3.160401
+_versión_._proyecto_._revisión_, p.ej.: 2.3.160401, sería la versión 2,
+del proyecto Campeche liberado el día 01 de Abril de 2016.
 
 
 El número de revisión es la fecha de liberación en formato YYMMDD.
