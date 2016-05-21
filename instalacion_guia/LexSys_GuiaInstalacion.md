@@ -163,6 +163,7 @@ Como usuario `lexusr` ejecuta el archivo de instalación de LexSys.
 
 #### Preparativos para la instalación
 
+
 **Para la instalación es necesario que los servidores puedan acceder a
 la Internet, este requisito es solo necesario durante la instalación o
 actualización del sistema**
@@ -241,14 +242,14 @@ Datos como en el servidor de aplicaciones._
 6. Crea el usuario de PostgreSQL y la Base de Datos
 
 
-    yum -y install postgresql94-server postgresql94-contrib
-    /usr/pgsql-9.4/bin/postgresql94-setup initdb
-    systemctl enable postgresql-9.4.service
-    systemctl start postgresql-9.4.service
-    echo 'export PATH=/usr/pgsql-9.4/bin:$PATH' \
-      >> /home/lexusr/.bashrc
-    su -c 'createuser -lsP lexusr' - postgres
-    su -c 'createdb -O lexusr lexsys' - postgres
+	    yum -y install postgresql94-server postgresql94-contrib
+	    /usr/pgsql-9.4/bin/postgresql94-setup initdb
+	    systemctl enable postgresql-9.4.service
+	    systemctl start postgresql-9.4.service
+	    echo 'export PATH=/usr/pgsql-9.4/bin:$PATH' \
+	      >> /home/lexusr/.bashrc
+	    su -c 'createuser -lsP lexusr' - postgres
+	    su -c 'createdb -O lexusr lexsys' - postgres
 
 
 Los archivos de configuración de PostgreSQL se encuentran en el
@@ -263,7 +264,7 @@ datos viven en el mismo equipo una línea como la siguiente es
 suficiente:
 
 
-    host    all             all             127.0.0.1/32            md5
+        host    all             all             127.0.0.1/32            md5
 
 
 Para el caso de servidor de base de datos en un equipo dedicado se debe
@@ -281,6 +282,52 @@ comentada y PostgreSQL solo escucha en `localhost`.
 Instala Oracle Database de acuerdo a la _Database Installation Guide_
    http://docs.oracle.com/database/121/LADBI/toc.htm
 
+
+
+        --DDL para generar el esquema y usuario:
+         
+        --Los datafiles se crearan en el path default a menos que se indique el path dedicado...
+        CREATE TABLESPACE LEXSYS_DAT DATAFILE 'LEXSYS_DATA.DBF' SIZE 200M
+	        AUTOEXTEND ON NEXT 50M MAXSIZE UNLIMITED LOGGING 
+	        EXTENT MANAGEMENT LOCAL AUTOALLOCATE BLOCKSIZE 8K
+	        SEGMENT SPACE MANAGEMENT AUTO FLASHBACK ON;
+
+        CREATE TABLESPACE LEXSYS_INX DATAFILE 'LEXSYS_INX.DBF' SIZE 100M
+	        AUTOEXTEND ON NEXT 50M MAXSIZE UNLIMITED LOGGING
+	        EXTENT MANAGEMENT LOCAL AUTOALLOCATE BLOCKSIZE 8K
+	        SEGMENT SPACE MANAGEMENT AUTO FLASHBACK ON;
+         
+        CREATE USER LEXUSR IDENTIFIED BY nsjp01 DEFAULT TABLESPACE "LEXSYS_DAT"
+	        QUOTA UNLIMITED ON "LEXSYS_DAT";
+         
+        GRANT "CONNECT" TO LEXUSR;
+        GRANT RESOURCE TO LEXUSR;
+         
+        ALTER USER LEXUSR QUOTA UNLIMITED ON "LEXSYS_INX";
+        
+        COMMIT;
+        
+        --Tablespaces por schema
+        SELECT OWNER, TABLESPACE_NAME, SUM(BYTES) /1048576 AS MBYTES
+        FROM DBA_SEGMENTS
+        GROUP BY OWNER, TABLESPACE_NAME
+        ORDER BY OWNER, TABLESPACE_NAME;
+
+        --Datafiles por Tablespaces:
+        Select file_name, BYTES, blocks, autoextensible,
+               nvl(increment_by, 0) increment_by, maxbytes, maxblocks, status,
+               maxblocks maxextend, file_id
+        from   sys.dba_data_files
+        where  TABLESPACE_NAME = 'LEXSYS_DAT';
+         
+        Select file_name, BYTES, blocks, autoextensible,
+               nvl(increment_by, 0) increment_by, maxbytes, maxblocks, status,
+               maxblocks maxextend, file_id
+        from   sys.dba_data_files
+        where  TABLESPACE_NAME = 'LEXSYS_INX';
+         
+         
+         
 
 ### Instalacion de Módulos LexSys
 
@@ -390,10 +437,137 @@ Genera la documentación del API.
 #### Configuración API
 
 
-    su - $LEXUSR
-    cd ~
-    cp -r $LEXHOME/deployment/uwsgi /etc
-    chown -R $LEXUSR:$LEXUSR /var/log/lexsys
+##### Configuración de Carga Masiva
+
+
+`cm.json` configura las rutas para la carga masiva de datos.
+
+
+`dir`: Ruta de los archivos Excel, estos deben estar dentro de un
+subdirectorio debajo de esta ruta con nombre que coincida con la fecha
+de la carga en format YYYYMMD. `ej.: 20160420000`
+
+
+`sheet_config`: Ruta relativa al directorio de instalación del API que
+indica el archivo `.json` que contiene el mapeo de las hojas de Excel a
+las tablas y columnas de la base de datos de LexSys.
+
+
+        {
+	        "dir": "/home/lexusr/cm/<ambiente>",
+	        "sheet_config": "config/sheet_config.json"
+        }
+
+
+##### Configuración de la Base de Datos
+
+
+
+`database.json` configura la conexión con la base de datos y rutas de
+archivos Excel con catálogos estáticos exclusivos para cada instalación.
+
+
+        {
+	        "engine": "<postgresql|oracle|sqlite>",
+	        "server": "<db_host>",
+	        "port": <db_tcp_port>,
+	        "user": "<bd_user>",
+	        "password": "<db_password>",
+	        "id": "<db_name>",
+	        "catalogs_sheet_config": "config/sheet_config.json",
+	        "exec_scripts_config": "gluttony/<postgresql|oracle|sqlite>/scripts.json",
+	        "catalogs": [
+		        {
+			        "path": "config/catalogs.xlsx",
+			        "sheets": [
+				        "entity_types",
+				        "person_types",
+				        "proceeding_types",
+				        "transition_types",
+				        "proceeding_status",
+				        "resources",
+				        "domains",
+				        "domain_resources",
+				        "penal_codes"
+			        ]
+		        },
+		        {
+			        "path": "config/dev_data.xlsx",
+			        "sheets": [
+				        "case_fields",
+				        "law_types",
+				        "law_entry_types",
+				        "apps",
+				        "app_installs",
+				        "app_domains"
+			        ]
+		        },
+		        {
+			        "path": "config/static_catalogs.xlsx",
+			        "sheets": [
+				        "catalogs_index",
+				        "system_catalogs"
+			        ]
+		        },
+		        {
+			        "path": "config/<ambiente>_catalogs.xlsx",
+			        "sheets": [
+				        "catalogs_index",
+				        "system_catalogs"
+			        ]
+		        },
+		        {
+			        "path": "/home/lexusr/cm/operation.xlsx",
+			        "sheets": [
+				        "towns",
+				        "territorial_trees",
+				        "institutions",
+				        "operators",
+				        "proceedings",
+				        "transitions",
+				        "legacy_formats",
+				        "territorial_levels",
+				        "territorial_units",
+				        "territorial_mappings",
+				        "titles",
+				        "users",
+				        "offices",
+				        "territorial_offices",
+				        "positions",
+				        "roles_wr",
+				        "title_roles",
+				        "role_proceedings",
+				        "tags",
+				        "proceeding_tags"
+			        ]
+		        },
+		        {
+			        "path": "/home/lexusr/cm/crimes.xlsx",
+			        "sheets": [
+				        "laws",
+				        "law_entry_levels",
+				        "law_entries",
+				        "law_entry_references"
+			        ]
+		        },
+		        {
+			        "path": "/home/lexusr/cm/series.xlsx",
+			        "sheets": [
+				        "series_types"
+			        ]
+		        }
+	        ]
+        }
+
+
+
+Copia Los archivos de configuración de uWSGI a `/etc`
+
+
+        su - $LEXUSR
+        cd ~
+        cp -r $LEXHOME/deployment/uwsgi /etc
+        chown -R $LEXUSR:$LEXUSR /var/log/lexsys
 
 
 Es necesario configurar un ambiente en el directorio `wrath/config`, la
@@ -429,16 +603,16 @@ guía de instalación.
 4. Inicia el servidor de aplicaciones NodeJS pm2
 
 
-    su - $LEXUSR
-    cd $LEXHOME/EDITOR
-    virtualenv ENV
-    npm install --loglevel info
-    bower install
-    vi config.json
-    vi $LEXHOME/deployment/pm2.json
-    grunt assets
-    pm2 start $LEXHOME/deployment/pm2.json
-    pm2 status
+	    su - $LEXUSR
+	    cd $LEXHOME/EDITOR
+	    virtualenv ENV
+	    npm install --loglevel info
+	    bower install
+	    vi config.json
+	    vi $LEXHOME/deployment/pm2.json
+	    grunt assets
+	    pm2 start $LEXHOME/deployment/pm2.json
+	    pm2 status
 
 
 ### Portal de Servicios
@@ -449,12 +623,12 @@ apunte a la instalación del API
 3. Compila la aplicación
 
 
-    su - $LEXUSR
-    cd $LEXHOME/sloth
-    npm install --loglevel info
-    bower install
-    vi config-<nombre_de_ambiente>.js
-    grunt assets --env <nombre_de_ambiente>
+	    su - $LEXUSR
+	    cd $LEXHOME/sloth
+	    npm install --loglevel info
+	    bower install
+	    vi config-<nombre_de_ambiente>.js
+	    grunt assets --env <nombre_de_ambiente>
 
 
 ### Escritorio de Trabajo
@@ -464,11 +638,11 @@ apunte a la instalación del API
 3. Compila la aplicación
 
 
-    su - $LEXUSR
-    cd $LEXHOME/wpride
-    npm install --loglevel info
-    vi src/config.json
-    gulp build --env production --target <nombre_de_ambiente>
+	    su - $LEXUSR
+	    cd $LEXHOME/wpride
+	    npm install --loglevel info
+	    vi src/config.json
+	    gulp build --env production --target <nombre_de_ambiente>
 
 
 ### Proxy HTTP
@@ -681,27 +855,6 @@ Respaldos
     TODO
 
 
-**Crear Table Space y Usuario**
-
-
-    --Los datafiles se crearan en el path default a menos que se indique el path dedicado...
-    CREATE TABLESPACE EDOMEX_DAT DATAFILE '+DGDATARAC1/EDOMEX_DATA.DBF' SIZE 2000M
-    AUTOEXTEND ON NEXT 50M MAXSIZE UNLIMITED LOGGING EXTENT MANAGEMENT LOCAL AUTOALLOCATE BLOCKSIZE 8K SEGMENT SPACE MANAGEMENT AUTO FLASHBACK ON;
-
-    CREATE TABLESPACE EDOMEX_INX DATAFILE '+DGDATARAC1/EDOMEX_INX.DBF' SIZE 1000M
-    AUTOEXTEND ON NEXT 50M MAXSIZE UNLIMITED LOGGING EXTENT MANAGEMENT LOCAL AUTOALLOCATE BLOCKSIZE 8K SEGMENT SPACE MANAGEMENT AUTO FLASHBACK ON;
-
-
-    CREATE USER EDOMEX_USR IDENTIFIED BY VALUES '7EBF9537F4CA8950' DEFAULT TABLESPACE "EDOMEX_DAT" QUOTA UNLIMITED ON "EDOMEX_DAT";
-
-    GRANT "CONNECT" TO EDOMEX_USR;
-
-    ALTER USER EDOMEX_USR QUOTA UNLIMITED ON "EDOMEX_INX";
-
-
-**Privilegios**
-
-
     -Nombre del directorio en la DB (debe existir el path físico con permisos de lectura/escritura a nivel OS para el owner de la DB)
 
     --Permisos de lectura/escritura sobre el directorio a nivel DB para el usuario owner del schema.
@@ -709,17 +862,17 @@ Respaldos
     --El nombre del directorio deberá ser adecuado al path a utilizer para actividades de export/import...
     grant READ, WRITE on DIRECTORY DATA_PUMP_DIR to EDOMEX_USR;	
 
-    grant DATAPUMP_EXP_FULL_DATABASE to EDOMEX_USR;
-    grant DATAPUMP_IMP_FULL_DATABASE to EDOMEX_USR;
-    grant CREATE JOB to EDOMEX_USR;
-    grant SCHEDULER_ADMIN to EDOMEX_USR;
-    grant SELECT on DBA_SCHEDULER_JOB_RUN_DETAILS to EDOMEX_USR;
-    grant SELECT on DBA_SCHEDULER_RUNNING_JOBS to EDOMEX_USR;
-    grant SELECT on DBA_SCHEDULER_JOBS to EDOMEX_USR;
-    grant SELECT on DBA_OBJECTS to EDOMEX_USR;
-    grant CONNECT to EDOMEX_USR;
-    grant RESOURCE to EDOMEX_USR;
-    grant CREATE VIEW to EDOMEX_USR;
+    grant DATAPUMP_EXP_FULL_DATABASE to LEXUSR;
+    grant DATAPUMP_IMP_FULL_DATABASE to LEXUSR;
+    grant CREATE JOB to LEXUSR;
+    grant SCHEDULER_ADMIN to LEXUSR;
+    grant SELECT on DBA_SCHEDULER_JOB_RUN_DETAILS to LEXUSR;
+    grant SELECT on DBA_SCHEDULER_RUNNING_JOBS to LEXUSR;
+    grant SELECT on DBA_SCHEDULER_JOBS to LEXUSR;
+    grant SELECT on DBA_OBJECTS to LEXUSR;
+    grant CONNECT to LEXUSR;
+    grant RESOURCE to LEXUSR;
+    grant CREATE VIEW to LEXUSR;
 
     --Parametro JOB_QUEUE_PROCESSES seteado en al menos 5
 
@@ -729,11 +882,11 @@ Respaldos
 **Import Volcado de la Base de Datos**
 
 
-    impdp EDOMEX_USR@DB_NAME schemas=EDOMEX_USR directory=DATA_PUMP_DIR dumpfile=dumpfileEDOMEX_USR.dmp logfile=impdp_dumpfileEDOMEX_USR.log
+    impdp LEXUSR@DB_NAME schemas=LEXUSR directory=DATA_PUMP_DIR dumpfile=dumpfileLEXUSR.dmp logfile=impdp_dumpfileLEXUSR.log
 
     --Si los schemas y tablespaces difieren entre origen y destino, es necesario emplear remap_schema y remap_tablespace:
 
-    --impdp SYS@DB_NAME schemas=EDOMEX_USR directory=DATA_PUMP_DIR dumpfile=dumpfileEDOMEX_USR.dmp logfile=impdp_dumpfileEDOMEX_USR.log REMAP_TABLESPACE=source_tablespaceData:target_tablespaceData REMAP_TABLESPACE=source_tablespaceIndex:target_tablespaceIndex remap_schema=source_schema:USERNAME_USR(target_schema)
+    --impdp SYS@DB_NAME schemas=LEXUSR directory=DATA_PUMP_DIR dumpfile=dumpfileLEXUSR.dmp logfile=impdp_dumpfileLEXUSR.log REMAP_TABLESPACE=source_tablespaceData:target_tablespaceData REMAP_TABLESPACE=source_tablespaceIndex:target_tablespaceIndex remap_schema=source_schema:USERNAME_USR(target_schema)
 
 
 #### PostgreSQL

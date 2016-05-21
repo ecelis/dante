@@ -1,23 +1,65 @@
-Preguntas Frecuentes
-====================
+Frequently Asked Questions
+==========================
+
+
+Nginx
+-----
+
+
+Agrega la siguiente línea en `/etc/yum.repos.d/epel.repo` y `/etc/yum.repos.d/nginx.repo`
+
+
+    exclude=nginx
+
+Docker
+------
+
+
+Como inicio un contenedor ya existente, pero que se detuvo por
+cualquier motivo?
+
+
+    docker start <uuid|name>
+
+
+    docker start -ai <uuid|name>
+
 
 Oracle
 ------
 
-### Conectar con sqlplus
+### Conect to data base comman line interface (sqlplus)
 
 
     sqlplus <user>/<pass>@<host>[:1521]/<SID>
 
-En Unix puede ser necesario agergar la ruta de las bibliotecas de
-Oracle a `LD_LIBRARY_PATH` cambia la versión por la que corresponda.
+
+Examples:
 
 
+    ## Conect as DB administrator
+    sqlplus / as sysdba
+
+
+    ## Connect as lexsys' schema user on default port to LEXDB oracle
+    ## instance
+    sqlplus lexusr/s3cr3t@127.0.0.1/LEXDB
+
+
+
+In Unix systems the system library path must be set to include Oracle's
+install path in order to run `sqlplus`.
+
+
+Example:
+
+
+    ## Must be run as root or with sudo
     export LD_LIBRARY_PATH=/lib/oracle/11.2/lib
 
 
 
-### Exportar volcado de base de datos
+### Database dump
 
 
     expdp <user>/<pass>@<SID> schemas=<schema> directory=<dump_path>
@@ -97,6 +139,14 @@ Escritorio de Trabajo
 
 
 
+MongoDB
+-------
+
+
+### Como consulto los eventos del API en MongoDB?
+
+
+        db.getCollection('<ambiente>').find({}).sort({datetime:-1})
 
 
 

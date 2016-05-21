@@ -1,14 +1,25 @@
 # dante
 
-La documentación de LexSys se escribe y mantiene actualizada en formato
-markdown para facilitar su edición y la generación de los documentos en
-formatos PDF, DOCX y HTML.
-
-Para procesar los documentos se requieren `textlive` y `pandoc`, en
-CentOS 7 estas dependencias se instalan con `yum`.
+LexSys docs are writen in markdown format in order to make editing easy
+in any plain text editor and the processing into DOCX, HTML and PDF
+output formats.
 
 
-    yum -y install texlive-* pandoc*
+`textlive` and `pandoc` are required to process the markdown sources,
+in CentOS/RHEL 7 you can install the required pacakges by running:
 
 
+        yum -y install texlive-* pandoc*
 
+
+To build the docs into `HTML`, `DOCX` y `PDF` formats, run:
+
+
+    	./build.sh
+	
+	
+Dante Alighieri (c. 1265 – 1321), was a major Italian poet of
+the Late Middle Ages. His Divine Comedy, originally called Comedìa and
+later christened Divina by Boccaccio, is widely considered the greatest
+literary work composed in the Italian language and a masterpiece of
+world literature.
