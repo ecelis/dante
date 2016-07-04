@@ -1,0 +1,4 @@
+site_name: LexSys Docs
+
+pages:
+  - FAQ: faq.md

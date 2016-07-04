@@ -2,8 +2,8 @@
 
 CWD=$(pwd)
 OUTDIR=$CWD/out
-FORMATS="docx html pdf"
-DOCS="faq.md escritorio_manual/index.md editor_manual/editor.md portal_manual/portal.md instalacion_guia/LexSys_GuiaInstalacion.md"
+FORMATS="odt pdf"
+DOCS='preguntas_frecuentes escritorio_manual editor_manual portal_manual instalacion_guia'
 
 if [ -d $OUTDIR ]; then
   rm -rf $OUTDIR
@@ -11,34 +11,16 @@ fi
 mkdir $OUTDIR
 
 function process_document {
-  pandoc $1.md --toc -f markdown -s -o $OUTDIR/$1.$2
+  echo -e "Building $2.$3\n"
+  pandoc $1.md --toc -f markdown -s -o $OUTDIR/$2.$3
 }
 
-## FAQ
-for format in $FORMATS; do
-  process_document faq $format
-done
-
-## Desk
-cd $CWD/escritorio_manual
-for format in $FORMATS; do
-  process_document index $format
-done
-
-## Editor
-cd $CWD/editor_manual
-for format in $FORMATS; do
-  process_document editor $format
-done
-
-## Portal
-cd $CWD/portal_manual
-for format in $FORMATS; do
-  process_document portal $format
-done
-
-## Instalación
-cd $CWD/instalacion_guia
-for format in $FORMATS; do
-  process_document LexSys_GuiaInstalacion $format
+for d in $DOCS; do
+  cd $CWD/$d
+  rm -rf site
+  mkdocs build
+  cd $CWD/$d/docs
+  for format in $FORMATS; do
+    process_document index lexsys_$d $format
+  done
 done
