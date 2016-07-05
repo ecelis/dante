@@ -1,4 +1,10 @@
 site_name: LexSys Docs
 
 pages:
-  - FAQ: faq.md
+- Home: index.md
+- Escritorio: desk.md
+- Portal: portal.md
+- Editor: editor.md
+- Instalación: instalacion.md
+- FAQ: faq.md
+theme: readthedocs
