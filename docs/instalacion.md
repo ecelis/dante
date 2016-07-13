@@ -1,9 +1,17 @@
-LexSys
-======
+# LexSys
 
 
-Guia de Instalación
--------------------
+## Guia de Instalación
+
+### Convenciones usadas en este documento
+
+Las siguientes convenciones tipográficas ocurren en este texto:
+
+|     |     |
+| --- | --- |
+| \<ALGO\>    |     |
+| [OPCIONAL]    |     |
+| $LEXHOME    |     |
 
 
 ### Requisitos del Sistema
@@ -19,10 +27,8 @@ Guia de Instalación
 * [NodeJS 4.2][nodejs]
 
 
-LexSys esta soportado para ejecutarse en el sistema operativo Red Hat
-Enterprise Linux versiones 6 o 7 o clones de este. CentOS es una
-distribución de GNU/Linux derivada de las fuentes de Red Hat
-Enterprise Linux (RHEL) donde LexSys ha sido probado.
+LexSys esta soportado en sistemas operativos Red Hat
+Enterprise Linux versiones 6 y 7 y CentOS 6 y 7.
 
 LexSys se desarrolla y prueba en sistemas de 64 bit, las instalaciones
 en sistemas operativos de 32 bit no están soportadas.
@@ -42,7 +48,7 @@ repositorios Optional y Software Collections para instalar Python 2.7 y
 MongoDB 2.6
 
 
-    subscription-manager repos --enable rhel-server-rhscl-6-rpms
+	subscription-manager repos --enable rhel-server-rhscl-6-rpms
     subscription-manager repos --enable rhel-6-server-optional-rpms
 
 
@@ -60,13 +66,14 @@ MongoDB 2.6
 * rh-mongodb26-mongodb-runtime
 * rh-mongodb26-mongodb-devel
 
+
 #### RHEL 7
 
 En Red Hat Enterprise Linux 7 asegurate de habilitar los
-repositorios Optional y Software Collections para instalar MongoDB 2.6
+repositorios **Optional** y **Software Collections** para instalar MongoDB 2.6
 
 
-    subscription-manager repos --enable rhel-server-rhscl-7-rpms
+	subscription-manager repos --enable rhel-server-rhscl-7-rpms
     subscription-manager repos --enable rhel-7-server-optional-rpms
 
 
@@ -87,17 +94,22 @@ repositorios Optional y Software Collections para instalar MongoDB 2.6
 * mongodb-server
 * mongodb-devel
 
+
 #### Oracle
+
 
 * libaio
 * oracle-instantclient12.1-basic
 * oracle-instantclient12.1-devel
 
+
 _Oracle Instant Client debe descargarse directamente del sitio web
 http://www.oracle.com/technetwork/database/features/instant-client/index.html
-los archivos se deben descargar en el directorio_ `/tmp`
+los archivos se deben descargar en el directorio_ `$TEMPDIR`
+
 
 #### PostgreSQL
+
 
 * libpqxx
 * libpqxx-devel
@@ -106,11 +118,11 @@ los archivos se deben descargar en el directorio_ `/tmp`
 * postgresql94-devel
 
 
+
 #### Repositorios YUM adicionales
 
 Es necesario habilitar los repositorios **'optional'** y **'extra'**
-para utilizar paquetes de EPEL que dependen de paquetes que existen en
-estos repositorios.
+para utilizar paquetes de **EPEL** que dependen de paquetes en estos repositorios.
 
 
 ##### EPEL CentOS 6/7
@@ -164,7 +176,7 @@ Como usuario `lexusr` ejecuta el archivo de instalación de LexSys.
 #### Preparativos para la instalación
 
 
-**Para la instalación es necesario que los servidores puedan acceder a
+/!\ **Para la instalación es necesario que los servidores puedan acceder a
 la Internet, este requisito es solo necesario durante la instalación o
 actualización del sistema**
 
@@ -177,7 +189,7 @@ embargo se sugiere crear un usuario `lexusr`.
     chmod 755 $LEXHOME
 
 
-Los archivos de log se almacenan en `/var/log/lexsys` es necesario crear
+Los archivos de log se almacenan en `$LEXHOME/log/lexsys` es necesario crear
 este directorio.
 
 
@@ -285,10 +297,9 @@ Instala Oracle Database de acuerdo a la _Database Installation Guide_
 
 
         --DDL para generar el esquema y usuario:
-         
         --Los datafiles se crearan en el path default a menos que se indique el path dedicado...
         CREATE TABLESPACE LEXSYS_DAT DATAFILE 'LEXSYS_DATA.DBF' SIZE 200M
-	        AUTOEXTEND ON NEXT 50M MAXSIZE UNLIMITED LOGGING 
+	        AUTOEXTEND ON NEXT 50M MAXSIZE UNLIMITED LOGGING
 	        EXTENT MANAGEMENT LOCAL AUTOALLOCATE BLOCKSIZE 8K
 	        SEGMENT SPACE MANAGEMENT AUTO FLASHBACK ON;
 
@@ -296,45 +307,26 @@ Instala Oracle Database de acuerdo a la _Database Installation Guide_
 	        AUTOEXTEND ON NEXT 50M MAXSIZE UNLIMITED LOGGING
 	        EXTENT MANAGEMENT LOCAL AUTOALLOCATE BLOCKSIZE 8K
 	        SEGMENT SPACE MANAGEMENT AUTO FLASHBACK ON;
-         
-        CREATE USER LEXUSR IDENTIFIED BY nsjp01 DEFAULT TABLESPACE "LEXSYS_DAT"
-	        QUOTA UNLIMITED ON "LEXSYS_DAT";
-         
-        GRANT "CONNECT" TO LEXUSR;
-        GRANT RESOURCE TO LEXUSR;
-         
-        ALTER USER LEXUSR QUOTA UNLIMITED ON "LEXSYS_INX";
-        
-        COMMIT;
-        
-        --Tablespaces por schema
-        SELECT OWNER, TABLESPACE_NAME, SUM(BYTES) /1048576 AS MBYTES
-        FROM DBA_SEGMENTS
-        GROUP BY OWNER, TABLESPACE_NAME
-        ORDER BY OWNER, TABLESPACE_NAME;
 
-        --Datafiles por Tablespaces:
-        Select file_name, BYTES, blocks, autoextensible,
-               nvl(increment_by, 0) increment_by, maxbytes, maxblocks, status,
-               maxblocks maxextend, file_id
-        from   sys.dba_data_files
-        where  TABLESPACE_NAME = 'LEXSYS_DAT';
-         
-        Select file_name, BYTES, blocks, autoextensible,
-               nvl(increment_by, 0) increment_by, maxbytes, maxblocks, status,
-               maxblocks maxextend, file_id
-        from   sys.dba_data_files
-        where  TABLESPACE_NAME = 'LEXSYS_INX';
-         
-         
-         
+        CREATE USER <DBUSER> IDENTIFIED BY <DBPASS> DEFAULT TABLESPACE "LEXSYS_DAT"
+	        QUOTA UNLIMITED ON "LEXSYS_DAT";
+
+        GRANT "CONNECT" TO <DBUSER>;
+        GRANT RESOURCE TO <DBUSER>;
+
+        ALTER USER <DBUSER> QUOTA UNLIMITED ON "LEXSYS_INX";
+
+        COMMIT;
+
+
+
 
 ### Instalacion de Módulos LexSys
 
 1. Instala las dependencias necesarias desde los repositorios de
    RHEL/CentOS
-2. Instala virtualenv y uwsgi
-3. Instala nodejs 4 y los módulos de nodejs necesarios para compilar las
+  2. Instala virtualenv y uwsgi
+  3. Instala nodejs 4 y los módulos de nodejs necesarios para compilar las
    aplicaciones
 4. Habilita e inicia el servicio MongoDB
 5. Crea un usario administrador de MongoDB y las bases de datos para log
@@ -697,7 +689,7 @@ Habilita e inicia el servicio nginx
     systemctl start nginx
 
 
-#### Instalacion distribuida
+### Instalacion distribuida
 
 
 Editar el archivo distributed.json
@@ -714,8 +706,8 @@ vez que han sido enviados a instancias remotas del API.
 
 
         "api_xyz": { ## Nombre del API remota
-          "local": { 
-            "app_key": "UUID de el API", 
+          "local": {
+            "app_key": "UUID de el API",
             "approved_ip": "IP Permitida",
             "operators":[ ## Areglo de operadores conocidos por esa aPI
               "XYZ.DP",
@@ -732,16 +724,16 @@ vez que han sido enviados a instancias remotas del API.
 
 
     {
-      "enabled": true, 
+      "enabled": true,
       "delete_processed": false,
       "timeout": 8,
       "apis":
       {
         "api_ssp": {
-          "local": { 
-            "app_key": "ey918669-797d-4488-97ed-a99c6fdce203", 
+          "local": {
+            "app_key": "ey918669-797d-4488-97ed-a99c6fdce203",
             "approved_ip": "localhost",
-            "operators":[ 
+            "operators":[
               "SSP.PP",
               "SSP.PR",
               "SSP.MC",
@@ -758,10 +750,10 @@ vez que han sido enviados a instancias remotas del API.
           }
         },
         "api_xyz": {
-          "local": { 
-            "app_key": "ctyui113-6b71-480f-8799-e1180caewasd", 
+          "local": {
+            "app_key": "ctyui113-6b71-480f-8799-e1180caewasd",
             "approved_ip": "localhost",
-            "operators":[ 
+            "operators":[
               "XYZ.DP",
               "XYZ.AJ"
             ]
@@ -776,7 +768,7 @@ vez que han sido enviados a instancias remotas del API.
     }
 
 
-**Ejecución de eventos programada**
+#### Ejecución de eventos programada
 
     crontab -e
     * * * * * /usr/bin/curl -X POST http://<apiurl>/time_events \
@@ -784,11 +776,10 @@ vez que han sido enviados a instancias remotas del API.
       >> /var/log/lexsys/pooling.log 2>&1
 
 
-Seguridad
----------
+### Seguridad
 
 
-### HTTPS
+#### HTTPS
 
 
 HTTPS también HTTP sobre TLS, HTTP sobre SSL o HTTP Seguro es un
@@ -808,7 +799,7 @@ de su propio certificado de firma en los navegadores web de la
 organización.
 
 
-### Configuración de Nginx
+##### Configuración de Nginx
 
 
     mkdir /etc/nginx/ssl
@@ -840,17 +831,12 @@ Ejemplo de configuración HTTPS en Nginx
     }
 
 
-Respaldos
----------
-
-### Respaldo de Bases de Datos
+### Respaldos
 
 
-#### Oracle Database
+#### Respaldo de Bases de Datos
 
-
-**Respaldo**
-
+##### Volcado de Oracle Database
 
     TODO
 
@@ -860,7 +846,7 @@ Respaldos
     --Permisos de lectura/escritura sobre el directorio a nivel DB para el usuario owner del schema.
 
     --El nombre del directorio deberá ser adecuado al path a utilizer para actividades de export/import...
-    grant READ, WRITE on DIRECTORY DATA_PUMP_DIR to EDOMEX_USR;	
+    grant READ, WRITE on DIRECTORY DATA_PUMP_DIR to EDOMEX_USR;
 
     grant DATAPUMP_EXP_FULL_DATABASE to LEXUSR;
     grant DATAPUMP_IMP_FULL_DATABASE to LEXUSR;
@@ -879,7 +865,7 @@ Respaldos
     show parameter JOB_QUEUE_PROCESSES
 
 
-**Import Volcado de la Base de Datos**
+##### Importar volcado de Oracle Database
 
 
     impdp LEXUSR@DB_NAME schemas=LEXUSR directory=DATA_PUMP_DIR dumpfile=dumpfileLEXUSR.dmp logfile=impdp_dumpfileLEXUSR.log
@@ -889,7 +875,7 @@ Respaldos
     --impdp SYS@DB_NAME schemas=LEXUSR directory=DATA_PUMP_DIR dumpfile=dumpfileLEXUSR.dmp logfile=impdp_dumpfileLEXUSR.log REMAP_TABLESPACE=source_tablespaceData:target_tablespaceData REMAP_TABLESPACE=source_tablespaceIndex:target_tablespaceIndex remap_schema=source_schema:USERNAME_USR(target_schema)
 
 
-#### PostgreSQL
+##### Volcado de PostgreSQL
 
 
 Para hacer un respaldo binario y comprimido de la base de datos ejecuta:
@@ -898,13 +884,15 @@ Para hacer un respaldo binario y comprimido de la base de datos ejecuta:
     pg_dump -h <host> -U <usuario> -W -Fc <base_de_datos> > <respaldo.bak>
 
 
+##### Importar volcado de PostgreSQL
+
 Para restaurar el respaldo creado con `pg_dump`
 
 
     pg_restore -d <base_de_datos> <respaldo.bak>
 
 
-#### MongoDB
+##### Volcado de MongoDB
 
 Para respaldar la base de datos mongoDB se ejecuta `mongodump` con el
 nombre de la base de datos y el directorio destino para el respaldo.
@@ -912,6 +900,8 @@ nombre de la base de datos y el directorio destino para el respaldo.
     mongodump -h <host> -u <usuario> -p <password> \
       --db <base_de_datos> --out <ruta_respaldo>
 
+
+##### Importar volcado de MongoDB
 
 Los respaldos de mongoDB generados con `mongodump` se pueden
 restaurar en otra instanacia de mongoDB o en una base de datos
@@ -923,8 +913,7 @@ respaldo y la ruta donde se encuentra el respaldo.
       --db <base_de_datos> <ruta_respaldo>
 
 
-Referencias
------------
+### Referencias
 
 * [HTTP sobre TLS](https://tools.ietf.org/html/rfc2818)
 * [TLS 1.2](https://tools.ietf.org/html/rfc5246)
@@ -942,4 +931,3 @@ Referencias
 [nodejs]: https://nodejs.org/en/docs/
 [nginx]: http://nginx.org/en/docs/
 [oracle]: http://www.oracle.com
-

@@ -1,5 +1,14 @@
 # Preguntas Frecuentes
 
+
+### API 
+
+
+#### Que causa el error _BAD REQUEST - Timestamp header required with UTC datetime in ISO 8601 format_?
+
+TODO
+
+
 ### Docker
 
 #### Como inicio un contenedor ya existente?
@@ -23,17 +32,26 @@ o
     use admin
     db.createUser({ user:"admin", pwd:"<s3cr3t>", roles:[{rol:"userAdminAnyDatabase", db:"admin"}] });
     <CTRL+D>
-    
-    
+
+
 #### Como creo un usuario de MongoDB?
-    
-    
+
+
 	mongo
     use <new_collection>
     db.createUser({ user:"<newuser>", pwd:"<s3cr3t>", roles:[{rol:"readWrite", db:"<new_collection>"}] });
     <CTRL+D>
     
     
+#### Como asigno otros roles a un usuario existente?
+
+
+	use <colección>
+    db.grantRolesToUser(
+    "<usuario>", [{ role: "readWrite", db: "<base_de_datos>" }])
+
+
+
 #### Como creo un usuario para una coleción?
 
 
