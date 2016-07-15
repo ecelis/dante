@@ -27,30 +27,26 @@ Las siguientes convenciones tipográficas ocurren en este texto:
 * [NodeJS 4.2][nodejs]
 
 
-LexSys esta soportado en sistemas operativos Red Hat
+### Notas
+
+* LexSys esta soportado en sistemas operativos Red Hat
 Enterprise Linux versiones 6 y 7 y CentOS 6 y 7.
 
-LexSys se desarrolla y prueba en sistemas de 64 bit, las instalaciones
+* LexSys se desarrolla y prueba en sistemas de 64 bit, las instalaciones
 en sistemas operativos de 32 bit no están soportadas.
 
+* Para instalaciones en Red Hat Enterprise Linux 6 y 7 es indispensable contar
+con una subscripción vigente de Red Hat para cada sistema instalado. Sin una
+subscripción es imposible habilitar los repositorios **Software Collections** e
+instalar los paquetes requeridos y actualizacones del sistema.
 
 ### Dependencias
 
-Enseguida se listan los paquetes .rpm necesarios para instalar y
-ejecutar LexSys en RHEL/CentOS 6 y 7, además de las dependencias
-necesarias para cada motor de base de datos a usar, Oracle Database o
-PostgreSQL.
+Enseguida se listan los paquetes .rpm necesarios para instalar y ejecutar LexSys
+en RHEL/CentOS 6 y 7, además de las dependencias necesarias para cada motor de
+base de datos a usar, Oracle Database o PostgreSQL.
 
 #### RHEL 6
-
-En Red Hat Enterprise Linux 6 asegurate de habilitar los
-repositorios Optional y Software Collections para instalar Python 2.7 y
-MongoDB 2.6
-
-
-	subscription-manager repos --enable rhel-server-rhscl-6-rpms
-    subscription-manager repos --enable rhel-6-server-optional-rpms
-
 
 * tar
 * gzip
@@ -68,14 +64,6 @@ MongoDB 2.6
 
 
 #### RHEL 7
-
-En Red Hat Enterprise Linux 7 asegurate de habilitar los
-repositorios **Optional** y **Software Collections** para instalar MongoDB 2.6
-
-
-	subscription-manager repos --enable rhel-server-rhscl-7-rpms
-    subscription-manager repos --enable rhel-7-server-optional-rpms
-
 
 * tar
 * gzip
@@ -97,7 +85,6 @@ repositorios **Optional** y **Software Collections** para instalar MongoDB 2.6
 
 #### Oracle
 
-
 * libaio
 * oracle-instantclient12.1-basic
 * oracle-instantclient12.1-devel
@@ -110,7 +97,6 @@ los archivos se deben descargar en el directorio_ `$TEMPDIR`
 
 #### PostgreSQL
 
-
 * libpqxx
 * libpqxx-devel
 * postgresql94
@@ -118,18 +104,16 @@ los archivos se deben descargar en el directorio_ `$TEMPDIR`
 * postgresql94-devel
 
 
+#### MongoDB
+
+* TODO
+
+
 
 #### Repositorios YUM adicionales
 
-Es necesario habilitar los repositorios **'optional'** y **'extra'**
-para utilizar paquetes de **EPEL** que dependen de paquetes en estos repositorios.
-
-
-##### EPEL CentOS 6/7
-
-
-    yum -y install epel-release
-
+Es necesario habilitar los repositorios **'Optional'**, **'Extra'**, **Software
+Collections** y **EPEL** para instalar todas las dependencias requeridas.
 
 ##### EPEL RHEL 6/7
 
@@ -137,48 +121,61 @@ Agrega el paquete del repositorio correspondiente desde
 https://fedoraproject.org/wiki/EPEL
 
 
-##### Python 2.7 Software Collection RHEL 6
+##### Habilita Optional y Software Collections en RHEL 6
 
 
-    sh -c 'http://people.redhat.com/bkabrda/scl_python27.repo \
-      >> /etc/yum.repos.d/scl.repo'
+		subscription-manager repos --enable rhel-server-rhscl-6-rpms
+		subscription-manager repos --enable rhel-6-server-optional-rpms
 
 
-##### Python 2.7 Software Collection CentOS 6
+##### Habilita Optional y Software Collections en RHEL 7
 
 
-    yum -y install centos-release-scl
+		subscription-manager repos --enable rhel-server-rhscl-7-rpms
+		subscription-manager repos --enable rhel-7-server-optional-rpms
+
+
+##### Python 2.7 Software Collection CentOS 6/7
+
+
+		    yum -y install centos-release-scl
+
+
+##### EPEL CentOS 6/7
+
+
+		    yum -y install epel-release
 
 
 ### Instalación Semi-Automática
 
 El script `bootstrap.sh` configura una instalación mínima del sistema
 operativo preparandolo para la instalación de los componentes de LexSys.
-`lexinstall_<DB>_<OS>.run` descomprime los componentes de LexSys en el
-directorio del usuario dueño del sistema.
+`lexinstall_<BASE_DE_DATOS>_<SISTEMA_OPERATIVO>.run` descomprime los componentes
+de LexSys en el directorio del usuario dueño del sistema.
 
 
     curl -o bootstrap.sh http://download.lexsys.net/bootstrap.sh
+		chmod +x bootstrap.sh
     ./bootstrap.sh
 
 
 Como usuario `lexusr` ejecuta el archivo de instalación de LexSys.
 
 
-    curl -o lexinstall_<DB>_<OS>.run \
-      http://download.lexsys.net/lexinstall_<DB>_<OS>.run
-    ./lexinstall_<DB>_<OS>.run
+		curl -o lexinstall_<BASE_DE_DATOS>_<SISTEMA_OPERATIVO>.run \
+			http://download.lexsys.net/lexinstall_<BASE_DE_DATOS>_<SISTEMA_OPERATIVO>.run
+			chmod +x lexinstall_<BASE_DE_DATOS>_<SISTEMA_OPERATIVO>.run
+			./lexinstall_<BASE_DE_DATOS>_<SISTEMA_OPERATIVO>.run
 
 
 ### Instalación Manual
 
-
 #### Preparativos para la instalación
 
-
-/!\ **Para la instalación es necesario que los servidores puedan acceder a
+Para la instalación es necesario que los servidores puedan acceder a
 la Internet, este requisito es solo necesario durante la instalación o
-actualización del sistema**
+actualización del sistema
 
 LexSys puede ejecutarse como cualquier usuario sin privilegios, sin
 embargo se sugiere crear un usuario `lexusr`.
@@ -206,7 +203,8 @@ Web_
 2. Instalación de dependencias según motor de base de datos
 
 
-    yum -y update
+
+		yum -y update
 
 
 #### Dependencias PostgreSQL
@@ -241,7 +239,7 @@ Datos como en el servidor de aplicaciones._
     rpm -Uvh /tmp/oracle-instantclient12.1-devel-12.1.0.2.0-1.x86_64.rpm
 
 
-### Servidor de Base de Datos
+###  Bases de Datos
 
 #### Servidor PostgreSQL
 
@@ -289,6 +287,7 @@ debe escuchar por conexiones. Normalmente esta línea esta
 comentada y PostgreSQL solo escucha en `localhost`.
 
 
+
 #### Servidor Oracle Database
 
 Instala Oracle Database de acuerdo a la _Database Installation Guide_
@@ -296,8 +295,8 @@ Instala Oracle Database de acuerdo a la _Database Installation Guide_
 
 
 
-        --DDL para generar el esquema y usuario:
-        --Los datafiles se crearan en el path default a menos que se indique el path dedicado...
+        -- DDL para generar el esquema y usuario. Los datafiles se crearan en el
+				-- path default a menos que se indique el path dedicado...
         CREATE TABLESPACE LEXSYS_DAT DATAFILE 'LEXSYS_DATA.DBF' SIZE 200M
 	        AUTOEXTEND ON NEXT 50M MAXSIZE UNLIMITED LOGGING
 	        EXTENT MANAGEMENT LOCAL AUTOALLOCATE BLOCKSIZE 8K
@@ -318,6 +317,42 @@ Instala Oracle Database de acuerdo a la _Database Installation Guide_
 
         COMMIT;
 
+
+#### MongoDB
+
+
+Se sugiere utilizar discos SSD en RAID1.
+
+
+Deshabilita noatime en el sistema de archivos donde viven los archivos de
+MongoDB.
+
+
+		LABEL=/var	/var	xfs		noatime,defaults 	0 1
+
+
+Los límites para proces (**ulimit -u**) y descriptores de archivo
+(**ulimit -n**) deben estar configurados con valores superiores a 20,000.
+
+
+		ulimit -n 65365
+		ulimit -u 65365
+
+
+Para que el valor sea default al inicio.
+
+
+		sys
+
+
+
+Asegurate que la cofiguración de **readahead** para los dispositivos que
+almacenan las bases de datos sean valores bajos. 32 (16kb) usualmente funciona
+bien.
+
+
+		blockdev --report
+		blockdev --setra 32 /dev/vol-Group-03
 
 
 
@@ -386,13 +421,13 @@ Instala Oracle Database de acuerdo a la _Database Installation Guide_
 
     mongo
     use admin
-    db.createUser({ user:"admin", pwd:"adminpassword",
+    db.createUser({ user:"<MONGO_ADMIN>", pwd:"<ADMIN_PASS>",
       roles: ["userAdminAnyDatabase"] });
     use lexeditor
-    db.createUser({user:"lexusr",pwd:"editorpassword",
+    db.createUser({user:"lexusr",pwd:"<EDITOR_PASS>",
       roles:["readWrite"]});
-    use api_log
-    db.createUser({user:"lexusr",pwd:"apilogpassword",
+    use lexsys_log
+    db.createUser({user:"lexusr",pwd:"<LOG_PASS>",
       roles:["readWrite"]});
     exit
 
@@ -427,6 +462,10 @@ Genera la documentación del API.
 
 
 #### Configuración API
+
+En el directiorio `wrath/config` están los archivos globales de configuración
+y los subdirectorios contienen archivos de configuración exclusivos de
+cada entorno que se desee ejecutar del API.
 
 
 ##### Configuración de Carga Masiva
@@ -502,7 +541,7 @@ archivos Excel con catálogos estáticos exclusivos para cada instalación.
 			        ]
 		        },
 		        {
-			        "path": "config/<ambiente>_catalogs.xlsx",
+			        "path": "config/<ambiente>\_catalogs.xlsx",
 			        "sheets": [
 				        "catalogs_index",
 				        "system_catalogs"
@@ -654,13 +693,15 @@ RHEL/CentOS 6 y 7.
 **RHEL/CentOS 6**
 
 
-    yum -y install https://download.lexsys.net/el6/nginx-1.8.0-TIC.1.el6.centos.ngx.x86_64.rpm
+    yum -y install \
+			https://download.lexsys.net/el6/nginx-1.8.0-TIC.1.el6.centos.ngx.x86_64.rpm
 
 
 **RHEL/CentOS 7**
 
 
-    yum -y install https://download.lexsys.net/el7/nginx-1.8.0-TIC.1.el7.centos.ngx.x86_64.rpm
+    yum -y install \
+			https://download.lexsys.net/el7/nginx-1.8.0-TIC.1.el7.centos.ngx.x86_64.rpm
 
 
 Configura Nginx
@@ -720,6 +761,7 @@ vez que han sido enviados a instancias remotas del API.
             "app_secret": "Hash del app_key"
           }
 
+
 **Ejemplo completo**
 
 
@@ -731,8 +773,8 @@ vez que han sido enviados a instancias remotas del API.
       {
         "api_ssp": {
           "local": {
-            "app_key": "ey918669-797d-4488-97ed-a99c6fdce203",
-            "approved_ip": "localhost",
+            "app_key": "<APP_KEY>",
+            "approved_ip": "<IP_AUTORIZADA>",
             "operators":[
               "SSP.PP",
               "SSP.PR",
@@ -744,24 +786,24 @@ vez que han sido enviados a instancias remotas del API.
             ]
           },
           "remote":{
-            "api_url": "http://162.40.6.40:6061",
-            "app_key": "tx35615f-8677-419b-ae47-5f83f94gtqer",
-            "app_secret": "1234560e314df2219b2a3d1a29bec3fab0333ca6a9e67dc59e469da7b7890123"
+            "api_url": "http://<API_URL>",
+            "app_key": "<APP_KEY>",
+            "app_secret": "<APP_SECRET>"
           }
         },
         "api_xyz": {
           "local": {
-            "app_key": "ctyui113-6b71-480f-8799-e1180caewasd",
-            "approved_ip": "localhost",
+            "app_key": "<APP_KEY>",
+            "approved_ip": "<IP_AUTORIZADA>",
             "operators":[
               "XYZ.DP",
               "XYZ.AJ"
             ]
           },
           "remote":{
-            "api_url": "http://192.66.6.00",
-            "app_key": "12345567-8677-419b-ae47-5f83f9890421",
-            "app_secret": "ewqtyu0e314df2219b2a3d1a29bec3fab0333ca6a9e67dc59e469da7bfgvcesq"
+            "api_url": "http://<API_URL>",
+            "app_key": "<APP_KEY>",
+            "app_secret": "<APP_SECRET>"
           }
         }
       }
@@ -838,16 +880,15 @@ Ejemplo de configuración HTTPS en Nginx
 
 ##### Volcado de Oracle Database
 
-    TODO
+Nombre del directorio en la DB (debe existir el path físico con permisos de
+lectura/escritura a nivel OS para el owner de la DB), permisos de
+lectura/escritura sobre el directorio a nivel DB para el usuario owner del
+schema.
+El nombre del directorio deberá ser adecuado al path a utilizer para actividades
+de export/import.
 
 
-    -Nombre del directorio en la DB (debe existir el path físico con permisos de lectura/escritura a nivel OS para el owner de la DB)
-
-    --Permisos de lectura/escritura sobre el directorio a nivel DB para el usuario owner del schema.
-
-    --El nombre del directorio deberá ser adecuado al path a utilizer para actividades de export/import...
-    grant READ, WRITE on DIRECTORY DATA_PUMP_DIR to EDOMEX_USR;
-
+    grant READ, WRITE on DIRECTORY DATA_PUMP_DIR to LEXUSR;
     grant DATAPUMP_EXP_FULL_DATABASE to LEXUSR;
     grant DATAPUMP_IMP_FULL_DATABASE to LEXUSR;
     grant CREATE JOB to LEXUSR;
@@ -860,25 +901,42 @@ Ejemplo de configuración HTTPS en Nginx
     grant RESOURCE to LEXUSR;
     grant CREATE VIEW to LEXUSR;
 
-    --Parametro JOB_QUEUE_PROCESSES seteado en al menos 5
+
+Parametro JOB_QUEUE_PROCESSES seteado en al menos 5
+
 
     show parameter JOB_QUEUE_PROCESSES
+
+
+Ejecuta `expdp` para crear el volcado del esquema de base de datos.
+
+
+	expdp <DBUSER>/<DBPASS>@<DBHOST>/<SID> DIRECTORY=<DATA_PUMP_DIR> \
+    FILE=<SID-`date +%F-%H%M`.dmp>
 
 
 ##### Importar volcado de Oracle Database
 
 
-    impdp LEXUSR@DB_NAME schemas=LEXUSR directory=DATA_PUMP_DIR dumpfile=dumpfileLEXUSR.dmp logfile=impdp_dumpfileLEXUSR.log
+    impdp <DBUSER>/<DBPASS>@<DBHOST>/<SID> \
+			schemas=<LEXDB> directory=<DATA_PUMP_DIR> \
+			dumpfile=<dumpfileLEXUSR.dmp> logfile=<impdp_dumpfileLEXUSR.log>
 
-    --Si los schemas y tablespaces difieren entre origen y destino, es necesario emplear remap_schema y remap_tablespace:
 
-    --impdp SYS@DB_NAME schemas=LEXUSR directory=DATA_PUMP_DIR dumpfile=dumpfileLEXUSR.dmp logfile=impdp_dumpfileLEXUSR.log REMAP_TABLESPACE=source_tablespaceData:target_tablespaceData REMAP_TABLESPACE=source_tablespaceIndex:target_tablespaceIndex remap_schema=source_schema:USERNAME_USR(target_schema)
+Si los schemas y tablespaces difieren entre origen y destino, es necesario
+emplear **remap_schema** y **remap_tablespace**
+
+
+	impdp SYS@DB_NAME schemas=LEXUSR directory=DATA_PUMP_DIR \
+    dumpfile=dumpfileLEXUSR.dmp logfile=impdp_dumpfileLEXUSR.log \
+    REMAP_TABLESPACE=source_tablespaceData:target_tablespaceData \
+    REMAP_TABLESPACE=source_tablespaceIndex:target_tablespaceIndex \
+    remap_schema=source_schema:USERNAME_USR(target_schema)
 
 
 ##### Volcado de PostgreSQL
 
-
-Para hacer un respaldo binario y comprimido de la base de datos ejecuta:
+Para hacer un respaldo binario y comprimido de la base de datos ejecuta
 
 
     pg_dump -h <host> -U <usuario> -W -Fc <base_de_datos> > <respaldo.bak>

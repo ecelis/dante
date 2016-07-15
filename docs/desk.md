@@ -1,7 +1,4 @@
-
-
 # Manual de usuario LEXSYS
---------------------------------------
 
 El presente manual ha sido desarrollado de manera generica para adaptarse a cualquier cliente, sin embargo para cada cliente algunas
 pantallas, procedimientos, iconos, nombres, etc. pueden cambiar, para el caso los procedimientos se generará un anexo donde se podrá contar con
@@ -19,7 +16,7 @@ generación de formatos impresos que resultan del proceso de gestión de justici
 
 Aunque el ET es una interfaz completamente intuitiva, veremos una detallada explicación del uso y manejo de esta interfaz.
 
-### Introducción 
+### Introducción
 ------------
 
 El Sistema Informático de Gestión para las instituciones que participan en el Procedimiento Penal sistematiza los procesos de gestión del Nuevo
@@ -33,7 +30,7 @@ traduciéndose en una mayor rápidez y eficacia en las comunicaciones, recursos 
 
 El Escritorio de Trabajo (ET) del sistema pone a disposición del Usuario operativo (sobre una aplicación web), un amplio conjunto de herramientas que le permiten realizar tareas de captura, asignación de casos, consulta, seguimiento del caso, remisión de documentos, entre otras opciones.
 
-### Breve descripción de la Funcionalidad. 
+### Breve descripción de la Funcionalidad.
 --------------------------------------
 
 El Sistema Informático de Gestión sistematiza los procesos de gestión del Nuevo Sistema de Justicia Penal Acusatorio en el Estado
@@ -186,7 +183,7 @@ Panel de Alertas
     Imagen 10 (Panel de Alertas)
 
 
-#### Barra de búsqueda de Alertas. 
+#### Barra de búsqueda de Alertas.
 --------------------------------------
 
 La busqueda de Alertas es util para localizar una Alerta en especifico, usando los siguientes parametros
@@ -230,7 +227,7 @@ Una vez que hemos remitido un documento nos aparecerá una Alerta con esta ultim
 compartido y la posibilidad de descargarlo
 
 
-#### Búsqueda de casos 
+#### Búsqueda de casos
 -----------------
 
 Continuando con los Elementos del Escritorio de Trabajo:
@@ -313,7 +310,7 @@ Cuando seleccionamos el botón "exolorar" el resultado esperado es la apertura d
     Imagen 18 (Botón Explorar)
 
 
-#### Botón Salir 
+#### Botón Salir
 -----------
 
 No hay mucho que decir al respecto para realizar un cierre de sesión correcto es importante seguir las siguientes instrucciones: dar click
@@ -413,7 +410,7 @@ del nuevo caso, podemos visualizar los iconos de trabajo en la siguiente imagen:
 
 ​11) Documentos: Es una bandeja donde están los Documentos recibidos y enviados.
 
-## Datos Generales/Identificación del caso 
+## Datos Generales/Identificación del caso
 ---------------------------------------
 
 De primera instancia la Identificación del caso es la primera pantalla que vemos propiamente ya interactuando con la herramienta y el nuevo
@@ -503,7 +500,7 @@ mandatorios)
        Apellido Materno
        Sexo
        Fecha de Nacimiento
-       Edad 
+       Edad
        Lugar de Nacimiento
        Nacionalidad
        RFC
@@ -515,7 +512,7 @@ La siguiente imagen nos muestra como se ve esta pantalla:
 
     Imagen 32 (Datos de identidad)
 
-### Datos de situación 
+### Datos de situación
 ------------------
 
 El apartado presente permite ingresar la situación económica, alfabetica, laboral y civil del actor presente, para ello se capturan
@@ -550,7 +547,7 @@ Exsiten además los siguientes campos que el usuario captura manualmente
     + Adicciones
     + Relación con los involucrados
 
-### Datos de identificación 
+### Datos de identificación
 -----------------------
 
 El apartado que acontinuación se describe, nos permite ingresar los datos de identificación que el actor frente a la autoridad presenta.
@@ -603,7 +600,7 @@ Igual que en el resto de los actores, en el caso del imputado es necesario conoc
     o   Apellido Materno
     o   Sexo
     o   Fecha de Nacimiento
-    o   Edad 
+    o   Edad
     o   Lugar de Nacimiento
     o   Nacionalidad
     o   RFC
@@ -615,7 +612,7 @@ En la siguiente imagen podemos confirmar los datos que nos solicitan:
 
     Imagen 37 (Imagen datos de identidad del imputado)
 
-### Datos de situación 
+### Datos de situación
 --------------------------------------
 
 
@@ -666,7 +663,7 @@ En la siguiente imagen se muestra como se distribuyen en pantalla los campos men
 
     Imagen 39 (Datos de identificación)
 
-### Datos de localización 
+### Datos de localización
 --------------------------------------
 
 Dentro del sistema encontraremos los datos de localización del imputado mismos que deben capturarse debido a su importancia de integrarse al
@@ -1029,7 +1026,7 @@ La siguiente imagen muestra el fórmulario
 
 Al final debemos dar guardar para salvar los cambios.
 
-## Datos Vehículos 
+## Datos Vehículos
 ---------------
 
 Al agregar un nuevo elemento es necesario presionar el símbolo "+" como en la siguiente figura:
@@ -1102,7 +1099,7 @@ La siguiente imagen muestra el el formulario completa:
 
     Imagen 58 (Datos de vehículos)
 
-## Datos títulares 
+## Datos títulares
 ---------------
 
 Es un módulo que se alimenta de la aplicación y despliegan todos los títulares que no son otra cosa que las autoridades involucradas en el
@@ -1214,7 +1211,7 @@ formato ya con la información en el panel del lado derecho del módulo de segui
 
     Imagen 67 (Seguimiento formato)
 
-### Edición del documento 
+### Edición del documento
 --------------------------------------
 
 En este punto es posible editar el documento antes de guardar, para ello se puede apoyar en la barra de edición del documento, como en cualquier
