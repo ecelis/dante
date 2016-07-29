@@ -1,8 +1,8 @@
-# dante
+# LexSys Docs
 
-LexSys docs are writen in markdown format in order to make editing easy
-in any plain text editor and the processing into DOCX, HTML and PDF
-output formats.
+Documentation is writen in markdown format in order to make editing easy
+in any plain text editor and also easy processing output into DOCX, HTML 
+and PDF output formats.
 
 
 `textlive` and `pandoc` are required to process the markdown sources,
@@ -18,6 +18,9 @@ To build the docs into `HTML`, `DOCX` y `PDF` formats, run:
     	./build.sh
 	
 	
+
+## A cultural note
+
 Dante Alighieri (c. 1265 – 1321), was a major Italian poet of
 the Late Middle Ages. His Divine Comedy, originally called Comedìa and
 later christened Divina by Boccaccio, is widely considered the greatest

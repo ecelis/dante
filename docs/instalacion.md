@@ -1,17 +1,57 @@
 # LexSys
 
-
 ## Guia de Instalación
+Revisión 2
+Ernesto Celis <ernesto@tic.uno>
 
-### Convenciones usadas en este documento
 
-Las siguientes convenciones tipográficas ocurren en este texto:
+### Convenciones usadas en el documento
 
-|     |     |
-| --- | --- |
-| \<ALGO\>    |     |
-| [OPCIONAL]    |     |
-| $LEXHOME    |     |
+Las siguientes convenciones tipográficas ocurren durante este texto:
+
+**negritas** indican palabras o frases que se encuentran en el sistema, nombre de aplicaciones, cajas de diálogo, etc.
+
+**_negritas itálicas_** notas importantes para el lector.
+
+_itálicas_ indican variables reemplazables por el usuario, texto en itálicas **_NO para copiar y Pegar_**, también indican la salida de ejemplo de algunos comandos.
+
+`código` indica texto que el usuario debe teclear o copiar y pegar.
+
+Las siguientes variables de entorno son utilizadas en el texto y los valores sugeridos que además están pre-configurados en los scripts de instalación. Esto valores se pueden modificar en tiempo de ejecución de los scripts o en una instalación manual.
+
+
+_$LEXUSR_ el usuario del sistema operativo con el que se ejecuta LexSys. **lexusr**
+
+_$LEXHOME_ directorio base de instalación de LexSys. **/home/$LEXUSR**
+
+_$LEXDB_ motor de base de datos puede ser **oracle** o **postgresql**
+
+_$LEXAPI_ ruta de instalación del API. **$LEXHOME/wrath**.
+
+_$LEXEDITOR_ ruta de instalación del Editor de Contenidos **$LEXHOME/EDITOR**
+
+_$LEXDESK_ ruta de instalación del Escritorio de Trabajo **$LEXHOME/wrpide**
+
+_$LEXPORTAL_ ruta de instalación del Portal de Servicios **$LEXPORTAL/sloth**
+
+_$OS_ sistema operativo de la instalación. Solo los sistemas operativos Red Hat
+Enterprise Linux versiones 6 y 7 y CentOS 6 y 7 están soportados.
+
+_$TMPDIR_ directorio para archivos temporales **/tmp**
+
+
+### Notas para el lector
+
+* LexSys se desarrolla y prueba en sistemas de 64 bit, las instalaciones
+en sistemas operativos de 32 bit no están soportadas.
+
+* Para instalaciones en Red Hat Enterprise Linux 6 y 7 es indispensable contar
+con una subscripción vigente de Red Hat para cada sistema instalado. Sin una
+subscripción es imposible habilitar los repositorios **Software Collections** e
+instalar los paquetes requeridos y actualizacones del sistema.
+
+* SELinux se configura como `permissive`
+
 
 
 ### Requisitos del Sistema
@@ -27,18 +67,6 @@ Las siguientes convenciones tipográficas ocurren en este texto:
 * [NodeJS 4.2][nodejs]
 
 
-### Notas
-
-* LexSys esta soportado en sistemas operativos Red Hat
-Enterprise Linux versiones 6 y 7 y CentOS 6 y 7.
-
-* LexSys se desarrolla y prueba en sistemas de 64 bit, las instalaciones
-en sistemas operativos de 32 bit no están soportadas.
-
-* Para instalaciones en Red Hat Enterprise Linux 6 y 7 es indispensable contar
-con una subscripción vigente de Red Hat para cada sistema instalado. Sin una
-subscripción es imposible habilitar los repositorios **Software Collections** e
-instalar los paquetes requeridos y actualizacones del sistema.
 
 ### Dependencias
 
@@ -56,11 +84,14 @@ base de datos a usar, Oracle Database o PostgreSQL.
 * git
 * openssl-devel
 * pcre-devel
+* rsync
 * zlib-devel
 * rh-mongodb26
 * rh-mongodb26-mongodb-server
 * rh-mongodb26-mongodb-runtime
 * rh-mongodb26-mongodb-devel
+* wget
+* unzip
 
 
 #### RHEL 7
@@ -73,6 +104,7 @@ base de datos a usar, Oracle Database o PostgreSQL.
 * git
 * openssl-devel
 * pcre-devel
+* rsync
 * zlib-devel
 * python-pip
 * python-devel
@@ -81,6 +113,8 @@ base de datos a usar, Oracle Database o PostgreSQL.
 * rh-mongodb26
 * mongodb-server
 * mongodb-devel
+* wget
+* unzip
 
 
 #### Oracle
@@ -90,9 +124,9 @@ base de datos a usar, Oracle Database o PostgreSQL.
 * oracle-instantclient12.1-devel
 
 
-_Oracle Instant Client debe descargarse directamente del sitio web
+Oracle Instant Client debe descargarse directamente del sitio web
 http://www.oracle.com/technetwork/database/features/instant-client/index.html
-los archivos se deben descargar en el directorio_ `$TEMPDIR`
+los archivos se deben descargar en el directorio _$TEMPDIR_
 
 
 #### PostgreSQL
@@ -115,20 +149,20 @@ los archivos se deben descargar en el directorio_ `$TEMPDIR`
 Es necesario habilitar los repositorios **'Optional'**, **'Extra'**, **Software
 Collections** y **EPEL** para instalar todas las dependencias requeridas.
 
-##### EPEL RHEL 6/7
+##### Repositorio EPEL RHEL 6/7
 
 Agrega el paquete del repositorio correspondiente desde
 https://fedoraproject.org/wiki/EPEL
 
 
-##### Habilita Optional y Software Collections en RHEL 6
+##### Repositorios Optional y Software Collections en RHEL 6
 
 
 		subscription-manager repos --enable rhel-server-rhscl-6-rpms
 		subscription-manager repos --enable rhel-6-server-optional-rpms
 
 
-##### Habilita Optional y Software Collections en RHEL 7
+##### Repositorios Optional y Software Collections en RHEL 7
 
 
 		subscription-manager repos --enable rhel-server-rhscl-7-rpms
@@ -150,23 +184,23 @@ https://fedoraproject.org/wiki/EPEL
 ### Instalación Semi-Automática
 
 El script `bootstrap.sh` configura una instalación mínima del sistema
-operativo preparandolo para la instalación de los componentes de LexSys.
-`lexinstall_<BASE_DE_DATOS>_<SISTEMA_OPERATIVO>.run` descomprime los componentes
-de LexSys en el directorio del usuario dueño del sistema.
+operativo preparándolo para la instalación de los componentes de LexSys.
+_$LEXUSR-$OS-$LEXDB.run_ descomprime los componentes de LexSys en el
+directorio del usuario dueño del sistema.
 
 
-    curl -o bootstrap.sh http://download.lexsys.net/bootstrap.sh
-		chmod +x bootstrap.sh
+	curl -o bootstrap.sh http://descarga.lexsys.net/bootstrap.sh
+	chmod +x bootstrap.sh
     ./bootstrap.sh
 
 
-Como usuario `lexusr` ejecuta el archivo de instalación de LexSys.
+Como _$LEXUSR_ ejecuta el archivo de instalación de LexSys.
 
 
-		curl -o lexinstall_<BASE_DE_DATOS>_<SISTEMA_OPERATIVO>.run \
-			http://download.lexsys.net/lexinstall_<BASE_DE_DATOS>_<SISTEMA_OPERATIVO>.run
-			chmod +x lexinstall_<BASE_DE_DATOS>_<SISTEMA_OPERATIVO>.run
-			./lexinstall_<BASE_DE_DATOS>_<SISTEMA_OPERATIVO>.run
+	curl -o _$LEXUSR-$OS-$LEXDB.run_ \
+    	http://descarga.lexsys.net/_$LEXUSR-$OS-$LEXDB.run_
+        chmod +x _$LEXUSR-$OS-$LEXDB.run_
+        ./_$LEXUSR-$OS-$LEXDB.run_
 
 
 ### Instalación Manual
@@ -177,8 +211,7 @@ Para la instalación es necesario que los servidores puedan acceder a
 la Internet, este requisito es solo necesario durante la instalación o
 actualización del sistema
 
-LexSys puede ejecutarse como cualquier usuario sin privilegios, sin
-embargo se sugiere crear un usuario `lexusr`.
+LexSys puede ejecutarse como cualquier usuario sin privilegios.
 
 
     useradd -m -G wheel $LEXUSR
@@ -186,18 +219,17 @@ embargo se sugiere crear un usuario `lexusr`.
     chmod 755 $LEXHOME
 
 
-Los archivos de log se almacenan en `$LEXHOME/log/lexsys` es necesario crear
+Los archivos de log se almacenan en _$LEXHOME/log_ es necesario crear
 este directorio.
 
 
-    mkdir -p $LOGDIR
-    chown -R $LEXUSR:$LEXUSR $LOGDIR
+    mkdir -p $LEXHOME/log
+    chown -R $LEXUSR:$LEXUSR $LEXHOME/log
 
 
-_Los pasos siguientes aplican tanto para instalaciones en un solo
+Los pasos siguientes aplican tanto para instalaciones en un solo
 servidor o donde se quiera separar la Base de Datos de la Aplicación
-Web_
-
+Web.
 
 1. Actualiza el sistema operativo
 2. Instalación de dependencias según motor de base de datos
@@ -223,8 +255,7 @@ Web_
       http://yum.postgresql.org/9.4/redhat/rhel-7-x86_64/pgdg-centos94-9.4-2.noarch.rpm
 
 
-_Paquetes de PostgreSQL requeridos tanto en el servidor de Base de
-Datos como en el servidor de aplicaciones._
+Paquetes de PostgreSQL requeridos tanto en el servidor de Base de Datos como en el servidor de aplicaciones.
 
 
     yum -y install libpqxx libpqxx-devel \
@@ -246,9 +277,8 @@ Datos como en el servidor de aplicaciones._
 1. Instala los paquetes de PostgreSQL
 2. Inicializa PostgreSQL
 3. Habilita PostgreSQL para iniciar con el sistema operativo
-4. Habilita el firewall para permitir conexiones a PostgrSQL, en el
-   caso de instalación en servidor de Base de Datos independiente
-5. Configura entorno del usuario lexusr
+4. Habilita el firewall para permitir conexiones a PostgrSQL, en el caso de instalación en servidor de Base de Datos independiente.
+5. Configura entorno del usuario lexusr.
 6. Crea el usuario de PostgreSQL y la Base de Datos
 
 
@@ -263,11 +293,11 @@ Datos como en el servidor de aplicaciones._
 
 
 Los archivos de configuración de PostgreSQL se encuentran en el
-directorio `data` del servidor. Normalmente en la ruta
-`/var/lib/pgsql/9.4/data`.
+directorio **data**, normalmente en la ruta
+**/var/lib/pgsql/9.4/data**.
 
 La autenticación de los clientes de PostgreSQL se controla en el
-archivo de configuración `pg_hba.conf`, este archivo esta bien
+archivo de configuración **pg_hba.conf**, este archivo esta bien
 comentado y explica las diversas formas para configurar la
 autenticación. En instalaciones donde la aplicación y la base de
 datos viven en el mismo equipo una línea como la siguiente es
@@ -281,10 +311,10 @@ Para el caso de servidor de base de datos en un equipo dedicado se debe
 agregar el segmento de red o la(s) IP del servidor de aplicaciones.
 
 Por último, en una instalación con servidor dedicado a base de
-datos, es necesario editar el archivo `postgresql.conf` y modificar
-el valor de `listen_addresses` con la IP donde el servidor
+datos, es necesario editar el archivo **postgresql.conf** y modificar
+el valor de **listen_addresses** con la IP donde el servidor
 debe escuchar por conexiones. Normalmente esta línea esta
-comentada y PostgreSQL solo escucha en `localhost`.
+comentada y PostgreSQL solo escucha en **localhost**.
 
 
 
@@ -318,7 +348,7 @@ Instala Oracle Database de acuerdo a la _Database Installation Guide_
         COMMIT;
 
 
-#### MongoDB
+#### Servidor MongoDB
 
 
 Se sugiere utilizar discos SSD en RAID1.
@@ -332,17 +362,13 @@ MongoDB.
 
 
 Los límites para proces (**ulimit -u**) y descriptores de archivo
-(**ulimit -n**) deben estar configurados con valores superiores a 20,000.
+(**ulimit -n**) deben estar configurados con valores superiores a 20,000. Edita `/etc/security/limits.conf`
 
 
-		ulimit -n 65365
-		ulimit -u 65365
-
-
-Para que el valor sea default al inicio.
-
-
-		sys
+	*    soft    nproc 65000
+     *    hard    nproc 65365
+     *    soft    nofile 65000
+     *    soft    nofile 65365
 
 
 
@@ -353,6 +379,23 @@ bien.
 
 		blockdev --report
 		blockdev --setra 32 /dev/vol-Group-03
+
+
+Habilita e inicia el servicio MongoDB.
+
+**CentOS/RHEL 6**
+
+
+	chkconfig rh-mongodb26-mongod on
+    service rh-mongodb26-mongod start
+
+
+
+**CentOS/RHEL 7**
+
+
+	systemctl enable rh-mongodb26-mongod
+    systemctl start rh-mongodb26-mongod
 
 
 
@@ -977,6 +1020,7 @@ respaldo y la ruta donde se encuentra el respaldo.
 * [TLS 1.2](https://tools.ietf.org/html/rfc5246)
 * [SHA-1 Hash Algorithm Migration for SSL & Code Signing Certificates](http://www.symantec.com/page.jsp?id=sha2-transition)
 * https://access.redhat.com/documentation/en-US/Red_Hat_Software_Collections/2/html/2.0_Release_Notes/chap-RHSCL.html
+* https://docs.mongodb.com/manual/release-notes/2.6/
 
 ---
 

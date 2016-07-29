@@ -4,7 +4,7 @@
 ### API 
 
 
-#### Que causa el error _BAD REQUEST - Timestamp header required with UTC datetime in ISO 8601 format_?
+#### BAD REQUEST - Timestamp header required with UTC datetime in ISO 8601 format?
 
 TODO
 
@@ -97,19 +97,39 @@ Agrega la siguiente línea en `/etc/yum.repos.d/epel.repo` y `/etc/yum.repos.d/n
     sqlplus lexusr/s3cr3t@127.0.0.1/LEXDB
 
 
-#### `sqlplus` me regresa el error `/usr/lib/oracle/12.1/client64/bin/sqlplus: error while loading shared libraries: libsqlplus.so: cannot open shared object file: No such file or director` que hago?
+#### sqlplus: /usr/lib/oracle/12.1/client64/bin/sqlplus: error while loading shared libraries: libsqlplus.so: cannot open shared object file: No such file or director
 
 
 	echo 'export ORACLE_HOME=/lib/oracle/11.2' >> ~/.bashrc
 	echo 'export LD_LIBRARY_PATH=$ORACLE_HOME/lib' >> ~/.bashrc
 
 
-s
+
 #### Como hago un volcado de la base de datos?
 
 
     expdp <user>/<pass>@<SID> schemas=<schema> directory=<dump_path>
       dumpfile=<dump_file> logfile=<log_file>
+
+
+
+#### ORA-12162: TNS:net service name is incorrectly specified
+
+
+	export ORACLE_SID=<INSTANCIA>
+    export ORACLE_HOME=/u01/app/oracle/product/11.2.0/xe
+    export PATH=$ORACLE_HOME/bin:$PATH
+    
+    
+#### ORA-01078: failure in processing system parameters. LRM-00109: could not open parameter file
+
+Copiar init.ora a init\<INSTANCIA>.ora
+
+
+	cp
+
+
+
 
 
 ### PostgreSQL
