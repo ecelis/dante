@@ -16,8 +16,8 @@ To build the docs into `HTML`, `DOCX` y `PDF` formats, run:
 
 
     	./build.sh
-	
-	
+
+
 
 ## A cultural note
 
@@ -26,3 +26,4 @@ the Late Middle Ages. His Divine Comedy, originally called Comedìa and
 later christened Divina by Boccaccio, is widely considered the greatest
 literary work composed in the Italian language and a masterpiece of
 world literature.
+

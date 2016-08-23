@@ -129,6 +129,12 @@ Copiar init.ora a init\<INSTANCIA>.ora
 	cp
 
 
+#### Como saber el tablespace del esquema?
+
+
+	 select owner, table_name, tablespace_name
+     from dba_tables
+     where table_name='<SOME_TABLE>'
 
 
 
@@ -147,6 +153,14 @@ Copiar init.ora a init\<INSTANCIA>.ora
 
 
 	createdb -O <owner>        
+
+
+#### Como busco por coincidencia parcial ignorando mayúsculas o minúsculas?
+
+
+	select case_id, summary from cases
+    where summary ilike any (array ['prueba%','Prueba%']); 
+
 
 
 ### Python

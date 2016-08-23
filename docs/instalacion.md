@@ -292,6 +292,14 @@ Paquetes de PostgreSQL requeridos tanto en el servidor de Base de Datos como en 
 	    su -c 'createdb -O lexusr lexsys' - postgres
 
 
+**P/PGSQL**
+
+
+    CREATE DATABASE lexsys WITH TEMPLATE=template0 ENCODING 'UTF8'
+      OWNER lexusr;
+
+
+
 Los archivos de configuración de PostgreSQL se encuentran en el
 directorio **data**, normalmente en la ruta
 **/var/lib/pgsql/9.4/data**.
@@ -506,9 +514,13 @@ Genera la documentación del API.
 
 #### Configuración API
 
-En el directiorio `wrath/config` están los archivos globales de configuración
-y los subdirectorios contienen archivos de configuración exclusivos de
-cada entorno que se desee ejecutar del API.
+En el directorio **wrath/config** están los archivos globales de configuración
+y los sub-directorios contienen archivos de configuración exclusivos para
+cada entorno que se desee ejecutar del API. Es posible ejecutar más de una instancia del API con el mismo código creando nuevos directorios en **wrath/config**.
+
+
+
+
 
 
 ##### Configuración de Carga Masiva
@@ -945,7 +957,7 @@ de export/import.
     grant CREATE VIEW to LEXUSR;
 
 
-Parametro JOB_QUEUE_PROCESSES seteado en al menos 5
+Parametro JOB_QUEUE_PROCESSES configurado en al menos 5
 
 
     show parameter JOB_QUEUE_PROCESSES
@@ -954,8 +966,8 @@ Parametro JOB_QUEUE_PROCESSES seteado en al menos 5
 Ejecuta `expdp` para crear el volcado del esquema de base de datos.
 
 
-	expdp <DBUSER>/<DBPASS>@<DBHOST>/<SID> DIRECTORY=<DATA_PUMP_DIR> \
-    FILE=<SID-`date +%F-%H%M`.dmp>
+	expdp <DBUSER>/<DBPASS>@<DBHOST>/<SID> DIRECTORY=DATA_PUMP_DIR \
+    FILE=$ORACLE_SID-`date +%F-%H-%M`.dmp
 
 
 ##### Importar volcado de Oracle Database
@@ -970,11 +982,11 @@ Si los schemas y tablespaces difieren entre origen y destino, es necesario
 emplear **remap_schema** y **remap_tablespace**
 
 
-	impdp SYS@DB_NAME schemas=LEXUSR directory=DATA_PUMP_DIR \
+	impdp SYSTEM/<PASSWORD>@<DBHOST>/<SID> schemas=LEXUSR directory=DATA_PUMP_DIR \
     dumpfile=dumpfileLEXUSR.dmp logfile=impdp_dumpfileLEXUSR.log \
-    REMAP_TABLESPACE=source_tablespaceData:target_tablespaceData \
-    REMAP_TABLESPACE=source_tablespaceIndex:target_tablespaceIndex \
-    remap_schema=source_schema:USERNAME_USR(target_schema)
+    REMAP_TABLESPACE=source_tablespace:target_tablespace \
+    REMAP_TABLESPACE=source_tablespace:target_tablespace \
+    remap_schema=source_schema:target_schema
 
 
 ##### Volcado de PostgreSQL
