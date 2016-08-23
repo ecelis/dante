@@ -1,0 +1,37 @@
+yum -y install \ \
+unzip \
+binutils-2.20.51.0.2-5.11.el6 \
+compat-libcap1-1.10-1 \
+compat-libstdc++-33-3.2.3-69.el6 \
+compat-libstdc++-33-3.2.3-69.el6 \
+gcc-4.4.4-13.el6 \
+gcc-c++-4.4.4-13.el6 \
+glibc-2.12-1.7.el6 \
+glibc-2.12-1.7.el6 \
+glibc-devel-2.12-1.7.el6 \
+glibc-devel-2.12-1.7.el6 \
+ksh \
+libgcc-4.4.4-13.el6 \
+libgcc-4.4.4-13.el6 \
+libstdc++-4.4.4-13.el6 \
+libstdc++-4.4.4-13.el6 \
+libstdc++-devel-4.4.4-13.el6 \
+libstdc++-devel-4.4.4-13.el6 \
+libaio-0.3.107-10.el6 \
+libaio-0.3.107-10.el6 \
+libaio-devel-0.3.107-10.el6 \
+libaio-devel-0.3.107-10.el6 \
+libXext-1.1 \
+libXext-1.1 \
+libXtst-1.0.99.2 \
+libXtst-1.0.99.2 \
+libX11-1.3 \
+libX11-1.3 \
+libXau-1.0.5 \
+libXau-1.0.5 \
+libxcb-1.5 \
+libxcb-1.5 \
+libXi-1.3 \
+libXi-1.3 \
+make-3.81-19.el6 \
+sysstat-9.0.4-11.el6
