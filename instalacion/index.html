@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <title>Instalación - LexSys Docs</title>
+  
+
+  <link rel="shortcut icon" href="../img/favicon.ico">
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Instalación";
+    var mkdocs_page_input_path = "instalacion.md";
+    var mkdocs_page_url = "/instalacion/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script>
+  <script src="../js/theme.js"></script> 
+
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> LexSys Docs</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <ul class="current">
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="..">Home</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../desk/">Escritorio</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../portal/">Portal</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../editor/">Editor</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Instalación</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#lexsys">LexSys</a></li>
+                
+                    <li><a class="toctree-l4" href="#guia-de-instalacion">Guia de Instalación</a></li>
+                
+            
+            </ul>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../faq/">FAQ</a>
+        
+    </li>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">LexSys Docs</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Instalación</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="lexsys">LexSys</h1>
+<h2 id="guia-de-instalacion">Guia de Instalación</h2>
+<p>Revisión 2
+Ernesto Celis <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#101;&#114;&#110;&#101;&#115;&#116;&#111;&#64;&#116;&#105;&#99;&#46;&#117;&#110;&#111;">&#101;&#114;&#110;&#101;&#115;&#116;&#111;&#64;&#116;&#105;&#99;&#46;&#117;&#110;&#111;</a></p>
+<h3 id="convenciones-usadas-en-el-documento">Convenciones usadas en el documento</h3>
+<p>Las siguientes convenciones tipográficas ocurren durante este texto:</p>
+<p><strong>negritas</strong> indican palabras o frases que se encuentran en el sistema, nombre de aplicaciones, cajas de diálogo, etc.</p>
+<p><strong><em>negritas itálicas</em></strong> notas importantes para el lector.</p>
+<p><em>itálicas</em> indican variables reemplazables por el usuario, texto en itálicas <strong><em>NO para copiar y Pegar</em></strong>, también indican la salida de ejemplo de algunos comandos.</p>
+<p><code>código</code> indica texto que el usuario debe teclear o copiar y pegar.</p>
+<p>Las siguientes variables de entorno son utilizadas en el texto y los valores sugeridos que además están pre-configurados en los scripts de instalación. Esto valores se pueden modificar en tiempo de ejecución de los scripts o en una instalación manual.</p>
+<p><strong>$LEXUSR</strong> el usuario del sistema operativo con el que se ejecuta LexSys. <strong>lexusr</strong></p>
+<p><strong>$LEXHOME</strong> directorio base de instalación de LexSys. <strong>/home/$LEXUSR</strong></p>
+<p><strong>$LEXDB</strong> motor de base de datos puede ser <strong>oracle</strong> o <strong>postgresql</strong></p>
+<p><strong>$LEXAPI</strong> ruta de instalación del API. <strong>$LEXHOME/wrath</strong>.</p>
+<p><strong>$LEXEDITOR</strong> ruta de instalación del Editor de Contenidos <strong>$LEXHOME/EDITOR</strong></p>
+<p><strong>$LEXDESK</strong> ruta de instalación del Escritorio de Trabajo <strong>$LEXHOME/wrpide</strong></p>
+<p><strong>$LEXPORTAL</strong> ruta de instalación del Portal de Servicios <strong>$LEXPORTAL/sloth</strong></p>
+<p><strong>$OS__VERSION</strong> sistema operativo de la instalación. Solo los sistemas operativos Red Hat
+Enterprise Linux versiones 6 y 7 y CentOS 6 y 7 están soportados.</p>
+<p><strong>$TMPDIR</strong> directorio para archivos temporales <strong>/tmp</strong></p>
+<h3 id="notas-para-el-administrador">Notas para el administrador</h3>
+<ul>
+<li>
+<p>LexSys se desarrolla y prueba en sistemas de 64 bit, las instalaciones
+en sistemas operativos de 32 bit no están soportadas.</p>
+</li>
+<li>
+<p>Para instalaciones en Red Hat Enterprise Linux 6 y 7 es indispensable contar
+con una subscripción vigente de Red Hat para cada sistema instalado. Sin una
+subscripción es imposible habilitar los repositorios <strong>Software Collections</strong> e
+instalar los paquetes requeridos y actualizacones del sistema.</p>
+</li>
+<li>
+<p>SELinux se configura como <code>permissive</code></p>
+</li>
+</ul>
+<h3 id="requisitos-del-sistema">Requisitos del Sistema</h3>
+<ul>
+<li><a href="https://access.redhat.com/documentation/en/red-hat-enterprise-linux/">Red Hat Enterprise Linux 6 o 7 / CentOS 6 o 7</a></li>
+<li><a href="http://www.postgresql.org/docs/9.4/static/index.html">PostgreSQL 9.4</a> / <a href="http://www.oracle.com">Oracle Database</a></li>
+<li><a href="https://docs.mongodb.org/v2.6/">MongoDB 2.6</a></li>
+<li><a href="https://python.org/">Python 2.7</a></li>
+<li>[setuptools 19.x.x][setuptools]</li>
+<li>[pypi 8.x.x][pypi]</li>
+<li><a href="https://virtualenv.pypa.io/en/latest/">Virtualenv</a></li>
+<li><a href="http://uwsgi-docs.readthedocs.org/en/latest/">uWSGI 2.0</a></li>
+<li><a href="https://nodejs.org/en/docs/">NodeJS 4.2</a></li>
+</ul>
+<h3 id="dependencias">Dependencias</h3>
+<p>Enseguida se listan los paquetes .rpm necesarios para instalar y ejecutar LexSys
+en RHEL/CentOS 6 y 7, además de las dependencias necesarias para cada motor de
+base de datos a usar, Oracle Database o PostgreSQL.</p>
+<h4 id="rhel-6">RHEL 6</h4>
+<ul>
+<li>tar</li>
+<li>gzip</li>
+<li>make</li>
+<li>gcc</li>
+<li>gcc-c++</li>
+<li>git</li>
+<li>openssl-devel</li>
+<li>pcre-devel</li>
+<li>rsync</li>
+<li>zlib-devel</li>
+<li>rh-mongodb26</li>
+<li>rh-mongodb26-mongodb-server</li>
+<li>rh-mongodb26-mongodb-runtime</li>
+<li>rh-mongodb26-mongodb-devel</li>
+<li>wget</li>
+<li>unzip</li>
+</ul>
+<h4 id="rhel-7">RHEL 7</h4>
+<ul>
+<li>tar</li>
+<li>gzip</li>
+<li>make</li>
+<li>gcc</li>
+<li>gcc-c++</li>
+<li>git</li>
+<li>openssl-devel</li>
+<li>pcre-devel</li>
+<li>rsync</li>
+<li>zlib-devel</li>
+<li>python-pip</li>
+<li>python-devel</li>
+<li>python-virtualenv</li>
+<li>python-virtualenvwrapper</li>
+<li>rh-mongodb26</li>
+<li>mongodb-server</li>
+<li>mongodb-devel</li>
+<li>wget</li>
+<li>unzip</li>
+</ul>
+<h4 id="oracle">Oracle</h4>
+<ul>
+<li>libaio</li>
+<li>oracle-instantclient12.1-basic</li>
+<li>oracle-instantclient12.1-devel</li>
+</ul>
+<p>Oracle Instant Client debe descargarse directamente del sitio web
+http://www.oracle.com/technetwork/database/features/instant-client/index.html
+los archivos se deben descargar en el directorio <em>$TEMPDIR</em></p>
+<h4 id="postgresql">PostgreSQL</h4>
+<ul>
+<li>libpqxx</li>
+<li>libpqxx-devel</li>
+<li>postgresql94</li>
+<li>postgresql94-contrib</li>
+<li>postgresql94-devel</li>
+</ul>
+<h4 id="mongodb">MongoDB</h4>
+<ul>
+<li>TODO</li>
+</ul>
+<h4 id="repositorios-yum-adicionales">Repositorios YUM adicionales</h4>
+<p>Es necesario habilitar los repositorios <strong>'Optional'</strong>, <strong>'Extra'</strong>, <strong>Software
+Collections</strong> y <strong>EPEL</strong> para instalar todas las dependencias requeridas.</p>
+<h5 id="repositorio-epel-rhel-67">Repositorio EPEL RHEL 6/7</h5>
+<p>Agrega el paquete del repositorio correspondiente desde
+https://fedoraproject.org/wiki/EPEL</p>
+<h5 id="repositorios-optional-y-software-collections-en-rhel-6">Repositorios Optional y Software Collections en RHEL 6</h5>
+<pre><code>    subscription-manager repos --enable rhel-server-rhscl-6-rpms
+    subscription-manager repos --enable rhel-6-server-optional-rpms
+</code></pre>
+<h5 id="repositorios-optional-y-software-collections-en-rhel-7">Repositorios Optional y Software Collections en RHEL 7</h5>
+<pre><code>    subscription-manager repos --enable rhel-server-rhscl-7-rpms
+    subscription-manager repos --enable rhel-7-server-optional-rpms
+</code></pre>
+<h5 id="python-27-software-collection-centos-67">Python 2.7 Software Collection CentOS 6/7</h5>
+<pre><code>        yum -y install centos-release-scl
+</code></pre>
+<h5 id="epel-centos-67">EPEL CentOS 6/7</h5>
+<pre><code>        yum -y install epel-release
+</code></pre>
+<h3 id="instalacion-semi-automatica">Instalación Semi-Automática</h3>
+<p>El script <code>bootstrap.sh</code> configura una instalación mínima del sistema
+operativo preparándolo para la instalación de los componentes de LexSys.
+<em>$LEXUSR-$OS-$LEXDB.run</em> descomprime los componentes de LexSys en el
+directorio del usuario dueño del sistema.</p>
+<pre><code>curl -o bootstrap.sh https://descarga.lexsys.net/bootstrap.sh
+chmod +x bootstrap.sh
+</code></pre>
+<p>./bootstrap.sh</p>
+<p>Como usuario <strong>$LEXUSR</strong> ejecuta el archivo de instalación de LexSys.</p>
+<pre><code>curl -o _$LEXUSR-$OS-$LEXDB.run_ \
+    https://descarga.lexsys.net/_$LEXUSR-$OS-$LEXDB.run_
+    chmod +x _$LEXUSR-$OS-$LEXDB.run_
+    ./_$LEXUSR-$OS-$LEXDB.run_
+</code></pre>
+<h3 id="instalacion-manual">Instalación Manual</h3>
+<h4 id="preparativos-para-la-instalacion">Preparativos para la instalación</h4>
+<p>Para la instalación es necesario que los servidores puedan acceder a
+la Internet, este requisito es solo necesario durante la instalación o
+actualización del sistema</p>
+<p>LexSys puede ejecutarse como cualquier usuario sin privilegios.</p>
+<pre><code>useradd -m -G wheel $LEXUSR
+passwd $LEXUSR
+chmod 755 $LEXHOME
+</code></pre>
+<p>Los archivos de log se almacenan en <em>$LEXHOME/log</em> es necesario crear
+este directorio.</p>
+<pre><code>mkdir -p $LEXHOME/log
+chown -R $LEXUSR:$LEXUSR $LEXHOME/log
+</code></pre>
+<p>Los pasos siguientes aplican tanto para instalaciones en un solo
+servidor o donde se quiera separar la Base de Datos de la Aplicación
+Web.</p>
+<ol>
+<li>Actualiza el sistema operativo</li>
+<li>Instalación de dependencias según motor de base de datos<pre><code>yum -y update
+</code></pre>
+</li>
+</ol>
+<h4 id="dependencias-postgresql">Dependencias PostgreSQL</h4>
+<h5 id="repositorio-yum-postgresql-en-rhelcentos-6">Repositorio YUM PostgreSQL en RHEL/CentOS 6</h5>
+<pre><code>yum -y install \
+  http://yum.postgresql.org/9.4/redhat/rhel-6-x86_64/pgdg-redhat94-9.4-1.noarch.rpm
+</code></pre>
+<h5 id="repositorio-yum-postgresql-en-rhelcentos-7">Repositorio YUM PostgreSQL en RHEL/CentOS 7</h5>
+<pre><code>yum -y install \
+  http://yum.postgresql.org/9.4/redhat/rhel-7-x86_64/pgdg-centos94-9.4-2.noarch.rpm
+</code></pre>
+<p>Paquetes de PostgreSQL requeridos tanto en el servidor de Base de Datos como en el servidor de aplicaciones.</p>
+<pre><code>yum -y install libpqxx libpqxx-devel \
+  postgresql94 postgresql94-contrib postgresql94-devel
+</code></pre>
+<h4 id="dependencias-oracle-database">Dependencias Oracle Database</h4>
+<pre><code>yum -y install libaio
+rpm -Uvh /tmp/oracle-instantclient12.1-basic-12.1.0.2.0-1.x86_64.rpm
+rpm -Uvh /tmp/oracle-instantclient12.1-devel-12.1.0.2.0-1.x86_64.rpm
+</code></pre>
+<h3 id="bases-de-datos">Bases de Datos</h3>
+<h4 id="servidor-postgresql">Servidor PostgreSQL</h4>
+<ol>
+<li>Instala los paquetes de PostgreSQL</li>
+<li>Inicializa PostgreSQL</li>
+<li>Habilita PostgreSQL para iniciar con el sistema operativo</li>
+<li>Habilita el firewall para permitir conexiones a PostgrSQL, en el caso de instalación en servidor de Base de Datos independiente.</li>
+<li>Configura entorno del usuario lexusr.</li>
+<li>Crea el usuario de PostgreSQL y la Base de Datos<pre><code>yum -y install postgresql94-server postgresql94-contrib
+/usr/pgsql-9.4/bin/postgresql94-setup initdb
+systemctl enable postgresql-9.4.service
+systemctl start postgresql-9.4.service
+echo 'export PATH=/usr/pgsql-9.4/bin:$PATH' \
+  &gt;&gt; /home/lexusr/.bashrc
+su -c 'createuser -lsP lexusr' - postgres
+su -c 'createdb -O lexusr lexsys' - postgres
+</code></pre>
+</li>
+</ol>
+<p><strong>P/PGSQL</strong></p>
+<pre><code>CREATE DATABASE lexsys WITH TEMPLATE=template0 ENCODING 'UTF8'
+  OWNER lexusr;
+</code></pre>
+<p>Los archivos de configuración de PostgreSQL se encuentran en el
+directorio <strong>data</strong>, normalmente en la ruta
+<strong>/var/lib/pgsql/9.4/data</strong>.</p>
+<p>La autenticación de los clientes de PostgreSQL se controla en el
+archivo de configuración <strong>pg_hba.conf</strong>, este archivo esta bien
+comentado y explica las diversas formas para configurar la
+autenticación. En instalaciones donde la aplicación y la base de
+datos viven en el mismo equipo una línea como la siguiente es
+suficiente:</p>
+<pre><code>    host    all             all             127.0.0.1/32            md5
+</code></pre>
+<p>Para el caso de servidor de base de datos en un equipo dedicado se debe
+agregar el segmento de red o la(s) IP del servidor de aplicaciones.</p>
+<p>Por último, en una instalación con servidor dedicado a base de
+datos, es necesario editar el archivo <strong>postgresql.conf</strong> y modificar
+el valor de <strong>listen_addresses</strong> con la IP donde el servidor
+debe escuchar por conexiones. Normalmente esta línea esta
+comentada y PostgreSQL solo escucha en <strong>localhost</strong>.</p>
+<h4 id="servidor-oracle-database">Servidor Oracle Database</h4>
+<p>Instala Oracle Database de acuerdo a la <em>Database Installation Guide</em>
+   http://docs.oracle.com/database/121/LADBI/toc.htm</p>
+<pre><code>    -- DDL para generar el esquema y usuario. Los datafiles se crearan en el
+            -- path default a menos que se indique el path dedicado...
+    CREATE TABLESPACE LEXSYS_DAT DATAFILE 'LEXSYS_DATA.DBF' SIZE 200M
+        AUTOEXTEND ON NEXT 50M MAXSIZE UNLIMITED LOGGING
+        EXTENT MANAGEMENT LOCAL AUTOALLOCATE BLOCKSIZE 8K
+        SEGMENT SPACE MANAGEMENT AUTO FLASHBACK ON;
+
+    CREATE TABLESPACE LEXSYS_INX DATAFILE 'LEXSYS_INX.DBF' SIZE 100M
+        AUTOEXTEND ON NEXT 50M MAXSIZE UNLIMITED LOGGING
+        EXTENT MANAGEMENT LOCAL AUTOALLOCATE BLOCKSIZE 8K
+        SEGMENT SPACE MANAGEMENT AUTO FLASHBACK ON;
+
+    CREATE USER &lt;DBUSER&gt; IDENTIFIED BY &lt;DBPASS&gt; DEFAULT TABLESPACE "LEXSYS_DAT"
+        QUOTA UNLIMITED ON "LEXSYS_DAT";
+
+    GRANT "CONNECT" TO &lt;DBUSER&gt;;
+    GRANT RESOURCE TO &lt;DBUSER&gt;;
+
+    ALTER USER &lt;DBUSER&gt; QUOTA UNLIMITED ON "LEXSYS_INX";
+
+    COMMIT;
+</code></pre>
+<h4 id="servidor-mongodb">Servidor MongoDB</h4>
+<p>Se sugiere utilizar discos SSD en RAID1.</p>
+<p>Deshabilita <strong>noatime</strong> en el sistema de archivos donde viven los archivos de
+MongoDB.</p>
+<pre><code>    LABEL=/var  /var    xfs     noatime,defaults    0 1
+</code></pre>
+<p>Los límites para proces (<strong>ulimit -u</strong>) y descriptores de archivo
+(<strong>ulimit -n</strong>) deben estar configurados con valores superiores a 20,000. Edita <code>/etc/security/limits.conf</code></p>
+<pre><code>*    soft    nproc 65000
+</code></pre>
+<ul>
+<li>hard    nproc 65365</li>
+<li>soft    nofile 65000</li>
+<li>soft    nofile 65365</li>
+</ul>
+<p>Asegurate que la cofiguración de <strong>readahead</strong> para los dispositivos que
+almacenan las bases de datos sean valores bajos. 32 (16kb) usualmente funciona
+bien.</p>
+<pre><code>    blockdev --report
+    blockdev --setra 32 /dev/vol-Group-03
+</code></pre>
+<p>Habilita e inicia el servicio MongoDB.</p>
+<p><strong>CentOS/RHEL 6</strong></p>
+<pre><code>chkconfig rh-mongodb26-mongod on
+service rh-mongodb26-mongod start
+</code></pre>
+<p><strong>CentOS/RHEL 7</strong></p>
+<pre><code>systemctl enable rh-mongodb26-mongod
+systemctl start rh-mongodb26-mongod
+</code></pre>
+<h3 id="instalacion-de-modulos-lexsys">Instalacion de Módulos LexSys</h3>
+<ol>
+<li>Instala las dependencias necesarias desde los repositorios de
+   RHEL/CentOS</li>
+<li>Instala virtualenv y uwsgi</li>
+<li>Instala nodejs 4 y los módulos de nodejs necesarios para compilar las
+   aplicaciones</li>
+<li>Habilita e inicia el servicio MongoDB</li>
+<li>Crea un usario administrador de MongoDB y las bases de datos para log
+   del API y contenidos del Editor</li>
+</ol>
+<h5 id="dependencias-de-lexsys-en-rhelcentos-6">Dependencias de LexSys en RHEL/CentOS 6</h5>
+<pre><code>yum -y install tar gzip gcc gcc-c++ git \
+  openssl-devel pcre-devel zlib-devel \
+  python27 python27-python-devel \
+  mongodb mongodb-server mongodb-devel
+easy_install-2.7 -U setuptools pip
+pip2.7 install uwsgi virtualenv
+cd /tmp
+wget https://nodejs.org/dist/v4.2.6/node-v4.2.6-linux-x64.tar.gz
+cd /usr/local
+tar --strip-components=1 -xvzf
+  /tmp/node-v4.2.6-linux-x64.tar.gz
+npm install --loglevel info -g pm2 bower gulp grunt-cli coffee-script
+</code></pre>
+<h5 id="dependencias-de-lexsys-en-rhelcentos-7">Dependencias de LexSys en RHEL/CentOS 7</h5>
+<pre><code>yum -y install tar gzip gcc gcc-c++ git \
+  openssl-devel pcre-devel zlib-devel \
+  python-pip python-devel python-virtualenv \
+  mongodb mongodb-server mongodb-devel
+pip install virtualenv uwsgi
+cd /tmp
+wget https://nodejs.org/dist/v4.2.6/node-v4.2.6-linux-x64.tar.gz
+cd /usr/local
+tar --strip-components=1 -xvzf
+  /tmp/node-v4.2.6-linux-x64.tar.gz
+npm install --loglevel info -g pm2 bower gulp grunt-cli coffee-script
+</code></pre>
+<h5 id="habilita-mongodb-en-rhelcentos-6">Habilita MongoDB en RHEL/CentOS 6</h5>
+<pre><code>chkconfig mongod on
+service start mongod
+</code></pre>
+<h5 id="habilita-mongodb-en-rhelcentos-7">Habilita MongoDB en RHEL/CentOS 7</h5>
+<pre><code>systemctl enable mongod
+systemctl start mongod
+</code></pre>
+<h5 id="configuracion-de-mongodb">Configuración de MongoDB</h5>
+<pre><code>mongo
+use admin
+db.createUser({ user:"&lt;MONGO_ADMIN&gt;", pwd:"&lt;ADMIN_PASS&gt;",
+  roles: ["userAdminAnyDatabase"] });
+use lexeditor
+db.createUser({user:"lexusr",pwd:"&lt;EDITOR_PASS&gt;",
+  roles:["readWrite"]});
+use lexsys_log
+db.createUser({user:"lexusr",pwd:"&lt;LOG_PASS&gt;",
+  roles:["readWrite"]});
+exit
+</code></pre>
+<h4 id="codigo-fuente-lexsys">Código Fuente LexSys</h4>
+<p>El código fuente de las versiones publicadas de LexSys se puede
+descargar en http://descarga.lexsys.net usando las credenciales de
+acceso proporcionadas junto con el software y esta guia.</p>
+<h4 id="instalacion-api">Instalación API</h4>
+<p>Instalación de entorno virtual y dependencias del API.</p>
+<pre><code>su - $LEXUSR
+cd $LEXHOME/wrath
+rm -rf ENV
+virtualenv ENV
+$LEXHOME/wrath/ENV/bin/pip install -r $LEXHOME/wrath/requirements.txt
+</code></pre>
+<p>Genera la documentación del API.</p>
+<pre><code>su - $LEXUSR
+cd $LEXHOME/wrath
+. ENV/bin/activate
+cd doc
+mkdocs build --clean
+</code></pre>
+<h4 id="configuracion-api">Configuración API</h4>
+<p>En el directorio <strong>wrath/config</strong> están los archivos globales de configuración
+y los sub-directorios contienen archivos de configuración exclusivos para
+cada entorno que se desee ejecutar del API. Es posible ejecutar más de
+una instancia del API con el mismo código creando nuevos directorios en
+<strong>wrath/config</strong>.</p>
+<h5 id="configuracion-de-carga-masiva">Configuración de Carga Masiva</h5>
+<p><code>cm.json</code> configura las rutas para la carga masiva de datos.</p>
+<p><code>dir</code>: Ruta de los archivos Excel, estos deben estar dentro de un
+subdirectorio debajo de esta ruta con nombre que coincida con la fecha
+de la carga en format YYYYMMD. <code>ej.: 20160420000</code></p>
+<p><code>sheet_config</code>: Ruta relativa al directorio de instalación del API que
+indica el archivo <code>.json</code> que contiene el mapeo de las hojas de Excel a
+las tablas y columnas de la base de datos de LexSys.</p>
+<pre><code>    {
+        "dir": "/home/lexusr/cm/&lt;ambiente&gt;",
+        "sheet_config": "config/sheet_config.json"
+    }
+</code></pre>
+<h5 id="configuracion-de-la-base-de-datos">Configuración de la Base de Datos</h5>
+<p><code>database.json</code> configura la conexión con la base de datos y rutas de
+archivos Excel con catálogos estáticos exclusivos para cada instalación.</p>
+<pre><code>    {
+        "engine": "&lt;postgresql|oracle|sqlite&gt;",
+        "server": "&lt;db_host&gt;",
+        "port": &lt;db_tcp_port&gt;,
+        "user": "&lt;bd_user&gt;",
+        "password": "&lt;db_password&gt;",
+        "id": "&lt;db_name&gt;",
+        "catalogs_sheet_config": "config/sheet_config.json",
+        "exec_scripts_config": "gluttony/&lt;postgresql|oracle|sqlite&gt;/scripts.json",
+        "catalogs": [
+            {
+                "path": "config/catalogs.xlsx",
+                "sheets": [
+                    "entity_types",
+                    "person_types",
+                    "proceeding_types",
+                    "transition_types",
+                    "proceeding_status",
+                    "resources",
+                    "domains",
+                    "domain_resources",
+                    "penal_codes"
+                ]
+            },
+            {
+                "path": "config/dev_data.xlsx",
+                "sheets": [
+                    "case_fields",
+                    "law_types",
+                    "law_entry_types",
+                    "apps",
+                    "app_installs",
+                    "app_domains"
+                ]
+            },
+            {
+                "path": "config/static_catalogs.xlsx",
+                "sheets": [
+                    "catalogs_index",
+                    "system_catalogs"
+                ]
+            },
+            {
+                "path": "config/&lt;ambiente&gt;\_catalogs.xlsx",
+                "sheets": [
+                    "catalogs_index",
+                    "system_catalogs"
+                ]
+            },
+            {
+                "path": "/home/lexusr/cm/operation.xlsx",
+                "sheets": [
+                    "towns",
+                    "territorial_trees",
+                    "institutions",
+                    "operators",
+                    "proceedings",
+                    "transitions",
+                    "legacy_formats",
+                    "territorial_levels",
+                    "territorial_units",
+                    "territorial_mappings",
+                    "titles",
+                    "users",
+                    "offices",
+                    "territorial_offices",
+                    "positions",
+                    "roles_wr",
+                    "title_roles",
+                    "role_proceedings",
+                    "tags",
+                    "proceeding_tags"
+                ]
+            },
+            {
+                "path": "/home/lexusr/cm/crimes.xlsx",
+                "sheets": [
+                    "laws",
+                    "law_entry_levels",
+                    "law_entries",
+                    "law_entry_references"
+                ]
+            },
+            {
+                "path": "/home/lexusr/cm/series.xlsx",
+                "sheets": [
+                    "series_types"
+                ]
+            }
+        ]
+    }
+</code></pre>
+<p>Copia Los archivos de configuración de uWSGI a <code>/etc</code></p>
+<pre><code>    su - $LEXUSR
+    cd ~
+    cp -r $LEXHOME/deployment/uwsgi /etc
+    chown -R $LEXUSR:$LEXUSR /var/log/lexsys
+</code></pre>
+<p>Es necesario configurar un ambiente en el directorio <code>wrath/config</code>, la
+instalación incluye un directorio <code>lexbuild</code> que se puede copiar y
+modificar los archivos de configuración incluidos para que se ajusten a
+la instalación de la institucion.</p>
+<p>Generalmennte solo es necesario editar <code>wrath/config/database.json</code>.</p>
+<pre><code>cp -r $LEXHOME/wrath/config/example $LEXHOME/wrath/config/&lt;AMBIENTE&gt;
+</code></pre>
+<p>El paso final en la instalación del API es poblar la base de datos con
+la información inicial para catálogos, procedimientos, sequencias y
+usuarios del sistema. Esto se lleva a cabo utilizando arvhivos de excel
+que se colocan en el directorio <code>cargas_masivas</code> en <code>$LEXHOME</code> del usuario
+dueño de la aplicación, <code>lexusr</code> si se usa el usuario sugerido en esta
+guía de instalación.</p>
+<pre><code>su - $LEXUSR
+cd $LEXHOME/wrath
+ENV/bin/python db_generator.py &lt;nombre_de_ambiente&gt;
+</code></pre>
+<h3 id="editor-de-contenidos">Editor de Contenidos</h3>
+<ol>
+<li>Crea un entorno virtual de python</li>
+<li>Instala los módulos de nodejs y bower</li>
+<li>Edita <code>config.json</code></li>
+<li>Compila la aplicación</li>
+<li>Inicia el servidor de aplicaciones NodeJS pm2<pre><code>su - $LEXUSR
+cd $LEXHOME/EDITOR
+virtualenv ENV
+npm install --loglevel info
+bower install
+vi config.json
+vi $LEXHOME/deployment/pm2.json
+grunt assets
+pm2 start $LEXHOME/deployment/pm2.json
+pm2 status
+</code></pre>
+</li>
+</ol>
+<h4 id="configuracion-editor-de-contenidos">Configuración Editor de Contenidos</h4>
+<p>Una copia del código del Editor de Contenidos puede servir 1 o más
+instancias escuchando en diferentes puertos TCP. El puerto
+predeterminado es 3001, este y otros parámetros se configuran en el
+archivo <strong>config.json</strong>.</p>
+<pre><code>{
+ "entornos": {
+    "&lt;entorno&gt;": {
+      "app": {
+        "puerto": 3000,
+        "ip": "localhost",
+        "API_URL": "&lt;https://wrath.url&gt;",
+        "privateSubfolder": "&lt;entorno&gt;",
+        "pythonPath": "/home/lexusr/EDITOR/ENV/bin/python"
+      },
+      "DB": {
+        "uri": "mongodb://&lt;usuario_mongo&gt;:&lt;password&gt;@&lt;host&gt;[:27017]/base_de_datos"
+      }
+    }
+  }
+}
+</code></pre>
+<ul>
+<li>
+<p><strong><entorno></strong> es una etiqueta que identifica el entorno que se
+  iniciará, también debe existir un directorio llamado <strong>entorno</strong> en la
+ruta <strong>$LEXEDITOR/views/plantillas</strong>, en este directorio se encuentran
+las plantillas HTML que se incluyen a los formatos PDF generados por el
+sistema.</p>
+</li>
+<li>
+<p><strong>puerto</strong> PM2 el servidor de aplicaciones JavaScript escucha en este
+  puerto.</p>
+</li>
+<li>
+<p><strong>API__URL</strong> URL del API</p>
+</li>
+<li>
+<p><strong>DB uri</strong> Cadena de conexión para MongoDB</p>
+</li>
+</ul>
+<h4 id="configuracion-pm2">Configuración PM2</h4>
+<p>PM2 es el servidor de aplicaciones JavaScript que mueve al Editor de
+Contenidos. PM2 es capáz de servir 1 o más instancias del editor se
+configura normalmente en el archivo <strong>$LEXHOME/deployment/pm2.json</strong></p>
+<pre><code>{
+  "apps": [
+    {
+      "name": "campeche",
+      "cwd": "/home/lexusr/EDITOR",
+      "args": [
+        "campeche"
+      ],
+      "script": "app.coffee",
+      "exec_interpreter": "coffee",
+      "out_file": "/home/lexusr/log/pm2-out.log",
+      "error_file": "/home/lexusr/log/pm2-error.log"
+    }
+  ]
+}
+</code></pre>
+<h3 id="portal-de-servicios">Portal de Servicios</h3>
+<ol>
+<li>Instala los módulos de nodejs y bower</li>
+<li>Edita <code>config-&lt;nombre_de_ambiente&gt;.js</code> de acuerdo a tu ambiente de instalación
+apunte a la instalación del API</li>
+<li>Compila la aplicación<pre><code>su - $LEXUSR
+cd $LEXHOME/sloth
+npm install --loglevel info
+bower install
+vi config-&lt;nombre_de_ambiente&gt;.js
+grunt assets --env &lt;nombre_de_ambiente&gt;
+</code></pre>
+</li>
+</ol>
+<h3 id="escritorio-de-trabajo">Escritorio de Trabajo</h3>
+<ol>
+<li>Instala los módulos de nodejs y bower</li>
+<li>Edita <code>src/config.json</code></li>
+<li>Compila la aplicación<pre><code>su - $LEXUSR
+cd $LEXHOME/wpride
+npm install --loglevel info
+vi src/config.json
+gulp build --env production --target &lt;nombre_de_ambiente&gt;
+</code></pre>
+</li>
+</ol>
+<h3 id="proxy-http">Proxy HTTP</h3>
+<p>Los diferentes módulos de LexSys son expuestos vía HTTP, el <em>único</em>
+servidor web que se ha probado y se sugiere para despligues de
+producción es Nginx.</p>
+<p>LexSys requiere una versión de Nginx con el plugin nginx_headers_more
+que el paquete nginx de RHEL/CentOS 6 y 7 disponible en sus repositorios
+YUM no incluye.</p>
+<p>Puedes instalar un paquete RPM con el plugin ya compilado para
+RHEL/CentOS 6 y 7.</p>
+<p><strong>RHEL/CentOS 6</strong></p>
+<pre><code>yum -y install \
+        https://download.lexsys.net/el6/nginx-1.8.0-TIC.1.el6.centos.ngx.x86_64.rpm
+</code></pre>
+<p><strong>RHEL/CentOS 7</strong></p>
+<pre><code>yum -y install \
+        https://download.lexsys.net/el7/nginx-1.8.0-TIC.1.el7.centos.ngx.x86_64.rpm
+</code></pre>
+<p>Configura Nginx</p>
+<pre><code>su -
+cp -r ~/deployment/nginx.conf /etc/nginx
+vi /etc/nginx/nginx.conf
+</code></pre>
+<p>Habilita e inicia el servicio nginx</p>
+<p><strong>RHEL/CentOS 6</strong></p>
+<pre><code>su -
+chkconfig nginx on
+service start nginx
+</code></pre>
+<p><strong>RHEL/CentOS 7</strong></p>
+<pre><code>su -
+systemctl enable nginx
+systemctl start nginx
+</code></pre>
+<h3 id="instalacion-distribuida">Instalacion distribuida</h3>
+<p>Editar el archivo distributed.json</p>
+<p><strong>enabled</strong>: true | false Habilita la configuración distribuida</p>
+<p><strong>delete_processed_</strong>: true | false Borra los casos de la instancia una
+vez que han sido enviados a instancias remotas del API.</p>
+<p><strong>timeout</strong>: segundos Tiempo de caducidad de TODO ?</p>
+<p><strong>apis</strong>: Conjunto de APIs distribuidas que son conocidas</p>
+<pre><code>    "api_xyz": { ## Nombre del API remota
+      "local": {
+        "app_key": "UUID de el API",
+        "approved_ip": "IP Permitida",
+        "operators":[ ## Areglo de operadores conocidos por esa aPI
+          "XYZ.DP",
+          "XYZ.AJ"
+        ]
+      },
+      "remote":{
+        "api_url": "URL del API remota",
+        "app_key": "UUID aceptada por el API",
+        "app_secret": "Hash del app_key"
+      }
+</code></pre>
+<p><strong>Ejemplo completo</strong></p>
+<pre><code>{
+  "enabled": true,
+  "delete_processed": false,
+  "timeout": 8,
+  "apis":
+  {
+    "api_ssp": {
+      "local": {
+        "app_key": "&lt;APP_KEY&gt;",
+        "approved_ip": "&lt;IP_AUTORIZADA&gt;",
+        "operators":[
+          "SSP.PP",
+          "SSP.PR",
+          "SSP.MC",
+          "SSP.CD",
+          "SSP.CR",
+          "SSP.SM",
+          "FGE.MP"
+        ]
+      },
+      "remote":{
+        "api_url": "http://&lt;API_URL&gt;",
+        "app_key": "&lt;APP_KEY&gt;",
+        "app_secret": "&lt;APP_SECRET&gt;"
+      }
+    },
+    "api_xyz": {
+      "local": {
+        "app_key": "&lt;APP_KEY&gt;",
+        "approved_ip": "&lt;IP_AUTORIZADA&gt;",
+        "operators":[
+          "XYZ.DP",
+          "XYZ.AJ"
+        ]
+      },
+      "remote":{
+        "api_url": "http://&lt;API_URL&gt;",
+        "app_key": "&lt;APP_KEY&gt;",
+        "app_secret": "&lt;APP_SECRET&gt;"
+      }
+    }
+  }
+}
+</code></pre>
+<h4 id="ejecucion-de-eventos-programada">Ejecución de eventos programada</h4>
+<pre><code>crontab -e
+* * * * * /usr/bin/curl -X POST http://&lt;apiurl&gt;/time_events \
+  --header "Content-Type:application/json" --data "{}" \
+  &gt;&gt; /var/log/lexsys/pooling.log 2&gt;&amp;1
+</code></pre>
+<h3 id="seguridad">Seguridad</h3>
+<h4 id="https">HTTPS</h4>
+<p>HTTPS también HTTP sobre TLS, HTTP sobre SSL o HTTP Seguro es un
+protocolo para comunicación segura ampliamente usado en aplicaciones
+web. HTTPS consiste de comunicación encriptada por TLS o su
+predecesesor SSL, se usa para proteger la autenticación de usuarios en
+la aplicación web y el intercambio de datos entre el navegador web y el
+API de la aplicación.</p>
+<p>LexSys usa Nginx como proxy http, para que aceptar conexiones HTTPS el
+administrador debe crear un certificado de llave pública para Nginx.
+<strong>Este certificado debe estar firmado por una autoridad de certificación
+confiable para que el navegador web lo acepte sin presentar
+adevertencias al usuario</strong>. Organizaciones privadas pueden también ser
+su propia autoridad certificadora, pero deben ocuparse de agregar copias
+de su propio certificado de firma en los navegadores web de la
+organización.</p>
+<h5 id="configuracion-de-nginx">Configuración de Nginx</h5>
+<pre><code>mkdir /etc/nginx/ssl
+cd /etc/nginx/ssl
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout \
+  /etc/nginx/ssl/nginx.key -out /etc/nginx/ssl/nginx.crt
+</code></pre>
+<p>Ejemplo de configuración HTTPS en Nginx</p>
+<pre><code>server {
+    listen 80 default_server;
+    listen [::]:80 default_server ipv6only=on;
+
+    listen 443 ssl;
+
+    root /usr/share/nginx/html;
+    index index.html index.htm;
+
+    server_name your_domain.com;
+    rewrite     ^   https://$server_name$request_uri? permanent;
+    ssl_certificate /etc/nginx/ssl/nginx.crt;
+    ssl_certificate_key /etc/nginx/ssl/nginx.key;
+
+    location / {
+            try_files $uri $uri/ =404;
+    }
+}
+</code></pre>
+<h3 id="respaldos">Respaldos</h3>
+<h4 id="respaldo-de-bases-de-datos">Respaldo de Bases de Datos</h4>
+<h5 id="volcado-de-oracle-database">Volcado de Oracle Database</h5>
+<p>Nombre del directorio en la DB (debe existir el path físico con permisos de
+lectura/escritura a nivel OS para el owner de la DB), permisos de
+lectura/escritura sobre el directorio a nivel DB para el usuario owner del
+schema.
+El nombre del directorio deberá ser adecuado al path a utilizer para actividades
+de export/import.</p>
+<pre><code>grant READ, WRITE on DIRECTORY DATA_PUMP_DIR to LEXUSR;
+grant DATAPUMP_EXP_FULL_DATABASE to LEXUSR;
+grant DATAPUMP_IMP_FULL_DATABASE to LEXUSR;
+grant CREATE JOB to LEXUSR;
+grant SCHEDULER_ADMIN to LEXUSR;
+grant SELECT on DBA_SCHEDULER_JOB_RUN_DETAILS to LEXUSR;
+grant SELECT on DBA_SCHEDULER_RUNNING_JOBS to LEXUSR;
+grant SELECT on DBA_SCHEDULER_JOBS to LEXUSR;
+grant SELECT on DBA_OBJECTS to LEXUSR;
+grant CONNECT to LEXUSR;
+grant RESOURCE to LEXUSR;
+grant CREATE VIEW to LEXUSR;
+</code></pre>
+<p>Parametro JOB_QUEUE_PROCESSES configurado en al menos 5</p>
+<pre><code>show parameter JOB_QUEUE_PROCESSES
+</code></pre>
+<p>Ejecuta <code>expdp</code> para crear el volcado del esquema de base de datos.</p>
+<pre><code>expdp &lt;DBUSER&gt;/&lt;DBPASS&gt;@&lt;DBHOST&gt;/&lt;SID&gt; DIRECTORY=DATA_PUMP_DIR \
+FILE=$ORACLE_SID-`date +%F-%H-%M`.dmp
+</code></pre>
+<h5 id="importar-volcado-de-oracle-database">Importar volcado de Oracle Database</h5>
+<pre><code>impdp &lt;DBUSER&gt;/&lt;DBPASS&gt;@&lt;DBHOST&gt;/&lt;SID&gt; \
+        schemas=&lt;LEXDB&gt; directory=&lt;DATA_PUMP_DIR&gt; \
+        dumpfile=&lt;dumpfileLEXUSR.dmp&gt; logfile=&lt;impdp_dumpfileLEXUSR.log&gt;
+</code></pre>
+<p>Si los schemas y tablespaces difieren entre origen y destino, es necesario
+emplear <strong>remap_schema</strong> y <strong>remap_tablespace</strong></p>
+<pre><code>impdp SYSTEM/&lt;PASSWORD&gt;@&lt;DBHOST&gt;/&lt;SID&gt; schemas=LEXUSR directory=DATA_PUMP_DIR \
+dumpfile=dumpfileLEXUSR.dmp logfile=impdp_dumpfileLEXUSR.log \
+REMAP_TABLESPACE=source_tablespace:target_tablespace \
+REMAP_TABLESPACE=source_tablespace:target_tablespace \
+remap_schema=source_schema:target_schema
+</code></pre>
+<h5 id="volcado-de-postgresql">Volcado de PostgreSQL</h5>
+<p>Para hacer un respaldo binario y comprimido de la base de datos ejecuta</p>
+<pre><code>pg_dump -h &lt;host&gt; -U &lt;usuario&gt; -W -Fc &lt;base_de_datos&gt; &gt; &lt;respaldo.bak&gt;
+</code></pre>
+<h5 id="importar-volcado-de-postgresql">Importar volcado de PostgreSQL</h5>
+<p>Para restaurar el respaldo creado con <code>pg_dump</code></p>
+<pre><code>pg_restore -d &lt;base_de_datos&gt; &lt;respaldo.bak&gt;
+</code></pre>
+<h5 id="volcado-de-mongodb">Volcado de MongoDB</h5>
+<p>Para respaldar la base de datos mongoDB se ejecuta <code>mongodump</code> con el
+nombre de la base de datos y el directorio destino para el respaldo.</p>
+<pre><code>mongodump -h &lt;host&gt; -u &lt;usuario&gt; -p &lt;password&gt; \
+  --db &lt;base_de_datos&gt; --out &lt;ruta_respaldo&gt;
+</code></pre>
+<h5 id="importar-volcado-de-mongodb">Importar volcado de MongoDB</h5>
+<p>Los respaldos de mongoDB generados con <code>mongodump</code> se pueden
+restaurar en otra instanacia de mongoDB o en una base de datos
+diferente ejecutando el comando <code>mongorestore</code> que toma parametros de
+base de datos donde restaurar las colecciones de documentos en el
+respaldo y la ruta donde se encuentra el respaldo.</p>
+<pre><code>mongorestore --host &lt;host&gt; --username &lt;usuario&gt; --pawwsord &lt;password&gt; \
+  --db &lt;base_de_datos&gt; &lt;ruta_respaldo&gt;
+</code></pre>
+<h3 id="referencias">Referencias</h3>
+<ul>
+<li><a href="https://tools.ietf.org/html/rfc2818">HTTP sobre TLS</a></li>
+<li><a href="https://tools.ietf.org/html/rfc5246">TLS 1.2</a></li>
+<li><a href="http://www.symantec.com/page.jsp?id=sha2-transition">SHA-1 Hash Algorithm Migration for SSL &amp; Code Signing Certificates</a></li>
+<li>https://access.redhat.com/documentation/en-US/Red_Hat_Software_Collections/2/html/2.0_Release_Notes/chap-RHSCL.html</li>
+<li>https://docs.mongodb.com/manual/release-notes/2.6/</li>
+</ul>
+<hr />
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../faq/" class="btn btn-neutral float-right" title="FAQ">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../editor/" class="btn btn-neutral" title="Editor"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../editor/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../faq/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+
+</body>
+</html>

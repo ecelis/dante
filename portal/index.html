@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <title>Portal - LexSys Docs</title>
+  
+
+  <link rel="shortcut icon" href="../img/favicon.ico">
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Portal";
+    var mkdocs_page_input_path = "portal.md";
+    var mkdocs_page_url = "/portal/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script>
+  <script src="../js/theme.js"></script> 
+
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> LexSys Docs</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <ul class="current">
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="..">Home</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../desk/">Escritorio</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Portal</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#manual-de-administrador-lexsys">Manual de Administrador LEXSYS</a></li>
+                
+                    <li><a class="toctree-l4" href="#objetivo">Objetivo</a></li>
+                
+                    <li><a class="toctree-l4" href="#introduccion">Introducción</a></li>
+                
+                    <li><a class="toctree-l4" href="#breve-descripcion-de-la-funcionalidad">Breve descripción de la Funcionalidad.</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#manual">Manual:</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#administrador-portal-de-servicios">Administrador Portal de Servicios</a></li>
+                
+                    <li><a class="toctree-l4" href="#modo-de-acceso-al-portal-de-servicios-ps">Modo de acceso al Portal de Servicios (PS)</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#administracion-general-de-estructura_1">Administración General de Estructura</a></li>
+                
+                    <li><a class="toctree-l4" href="#administracion-de-puestos-y-plazas">Administración de puestos y plazas</a></li>
+                
+                    <li><a class="toctree-l4" href="#agregar-un-nuevo-puesto">Agregar un Nuevo Puesto</a></li>
+                
+                    <li><a class="toctree-l4" href="#editar-el-puesto">Editar el puesto</a></li>
+                
+                    <li><a class="toctree-l4" href="#despliega-los-puestos-subalternos-de-manera-jerarquica-organigrama">Despliega los puestos subalternos de manera jerárquica (organigrama)</a></li>
+                
+                    <li><a class="toctree-l4" href="#eliminar-puesto">Eliminar puesto</a></li>
+                
+                    <li><a class="toctree-l4" href="#agregar-plaza">Agregar plaza</a></li>
+                
+                    <li><a class="toctree-l4" href="#editar-la-plaza">Editar la plaza</a></li>
+                
+                    <li><a class="toctree-l4" href="#eliminar-plaza">Eliminar plaza.</a></li>
+                
+                    <li><a class="toctree-l4" href="#administracion-de-horarios">Administración de Horarios</a></li>
+                
+                    <li><a class="toctree-l4" href="#creando-un-nuevo-horario">Creando un nuevo horario</a></li>
+                
+                    <li><a class="toctree-l4" href="#editando-un-horario">Editando un Horario</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#administracion-de-dominios">Administración de dominios</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#administracion-general-de-roles_1">Administración general de roles</a></li>
+                
+                    <li><a class="toctree-l4" href="#operacion-de-roles">Operación de roles</a></li>
+                
+                    <li><a class="toctree-l4" href="#nuevo-rol">Nuevo Rol</a></li>
+                
+                    <li><a class="toctree-l4" href="#editando-el-rol">Editando el Rol</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#administrador-general-de-usuarios">Administrador General de Usuarios</a></li>
+                
+                    <li><a class="toctree-l4" href="#creando-un-usuario">Creando un Usuario</a></li>
+                
+                    <li><a class="toctree-l4" href="#editando-un-usuario">Editando un Usuario</a></li>
+                
+                    <li><a class="toctree-l4" href="#eliminando-un-usuario">Eliminando un Usuario</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#indicadores_1">Indicadores</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#reportes_1">Reportes.</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#consola_1">Consola</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#administracion-de-salas">Administración de salas.</a></li>
+                
+                    <li><a class="toctree-l4" href="#el-panel-izquierdo-audiencias">El Panel Izquierdo (audiencias)</a></li>
+                
+            
+            </ul>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../editor/">Editor</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../instalacion/">Instalación</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../faq/">FAQ</a>
+        
+    </li>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">LexSys Docs</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Portal</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="manual-de-administrador-lexsys">Manual de Administrador LEXSYS</h1>
+<hr />
+<p>El presente manual ha sido desarrollado de manera generica para adaptarse a cualquier usuario, sin embargo para cada cliente algunas pantallas, procedimientos, iconos, nombres, etc.  pueden cambiar, para el caso los procedimientos se generará un anexo donde se podrá contar con el detalle de cada uno de estos procedimientos con sus formularios y formatos.</p>
+<h2 id="objetivo">Objetivo</h2>
+<p>A continuación se presenta una guía de Administrador del Portal de Servicios (PS) donde aprenderemos a usar cada una de las características mencionadas con anterioridad.</p>
+<p>El presente documento ha sido elaborado para guiar a los administradores operativos del Sistema de Gestión en el manejo de la plataforma informática, específicamente lo que respecta al denominado Portal de Servicios (PS), donde se llevan a cabo las labores de administración de Usuarios, Estructuras, Roles y Operaciones.</p>
+<p>Aunque el PS es una interfaz completamente intuitiva, veremos una detallada explicación del uso y manejo de esta interfaz.</p>
+<h2 id="introduccion">Introducción</h2>
+<p>El Sistema Informático de Gestión para las instituciones que participan en el Procedimiento Penal sistematiza los procesos de gestión del Nuevo Sistema de Justicia Penal Acusatorio.</p>
+<p>Las múltiples funcionalidades del Sistema Informático de Gestión brindan el apoyo, seguimiento y control necesario a los procesos en donde interviene la Institución donde se implementa el Sistema de Gestión Informático, apoyando su interconectividad con otros operadores de instituciones que forman parte del proceso penal, desde la noticia criminal, durante la investigación, persecución y juicio, hasta la ejecución de sentencias y el tratamiento previo a la liberación, conservando de principio a fin la participación y gestión de la defensa, traduciéndose en una mayor rápidez y eficacia en las comunicaciones, recursos procesales y ejecución de sentencias.</p>
+<p>El Portal de Servicios (PS) del sistema pone a disposición del Administrador (sobre una aplicación web), un amplio conjunto de herramientas que le permiten realizar tareas de administración, supervisión, control, seguimiento, actualización y consulta de información a nivel administrativo; con efectos asociados e intrínsecos a la lógica de operación, los casos, los permisos y las transacciones.</p>
+<h2 id="breve-descripcion-de-la-funcionalidad">Breve descripción de la Funcionalidad.</h2>
+<hr />
+<p>El portal de servicios es la aplicación web que permite la administración operativa, del Sistema Informático de Gestión, la organización estructural institucional debe ser proporcionada por el cliente, sin embargo básicamente cada usuario del sistema pertenece a una región en particular en la cual tiene un puesto y una plaza asignada dentro de la institución.</p>
+<p>La Administración General del sistema contempla 5 tipos de Administradores, los cuales pueden ser usuarios genericos o usuarios funcionales dentro del sistema.</p>
+<p>Los usuarios administradores genericos son:</p>
+<pre><code>AGE (Administración General de Estructuras)
+AGU (Administración General de Usuarios)
+AGR (Administración General de Roles)
+AOC (Administración Operativa de Casos)
+AOR (Administración Operativa de Roles)
+</code></pre>
+<p><img alt="organigrama" src="../img/organigrama.jpg" /></p>
+<pre><code>Imagen 1 Organigrama territorial
+</code></pre>
+<p>Se visualiza la organización territorial al cual pertenecen los puestos, plazas, roles y usuarios.</p>
+<p><img alt="territorial" src="../img/territorial.jpg" /></p>
+<pre><code>Imagen 2 Organigrama Territorial
+</code></pre>
+<p>Es la manera en la que se organizan los diferentes niveles jerarquicos de puestos y plazas a las cuales pertenecen los usuarios.</p>
+<p>Las múltiples herramientas del Portal de Servicios nos ofrecen las siguientes funcionalidades:</p>
+<h3 id="administracion-general-de-estructura">Administración General de Estructura</h3>
+<p>Define los Puestos, Plazas y horarios que se crearán de manera general para generar la estructura jerarquica de la institución donde se asignará el operador que corresponda según sea el caso, hasta completar la estructura organizacional institucional. Dentro de esta administración es posible Crear, Editar y Eliminar cualquiera de estos elementos estructurales.</p>
+<h3 id="administracion-general-de-dominios">Administracion General de Dominios</h3>
+<p>Delimita los permisos de las aplicaciones que cosumen el motor de la herramienta (API), es decir determina el acceso de las aplicaciones como el Escritorio de trabajo y el portal de servicios a los distintos recursos de la aplicacion como procedimientos y usuarios entre otros.</p>
+<h3 id="administracion-general-de-roles">Administración General de Roles</h3>
+<p>Define la función de los usuarios respecto a cada procedimiento del sistema, los privilegios y facultades de consulta y ejecución de los mismos. Constituidos únicamente por procedimientos adscritos al mismo operador para el cual fueron creados.</p>
+<p>Es la funcionalidad encargada de asignar el conjunto de procedimientos a los operadores funcionales.</p>
+<p>Es aqui donde se generan, editan y eliminan dichos roles por su puesto basado en la regla de negocio de la institución.</p>
+<h3 id="administracion-general-de-usuarios">Administración General de Usuarios</h3>
+<p>Define los usuarios de la organización, las estructuras orgánicas a las que pertenecen y captura los atributos de identidad de las personas. Las estructuras orgánicas pertenecen a una institución y sus puestos pertenecen a sólo un operador. Los usuarios deben pertenecer cuando menos a una estructura orgánica.
+Es la funcionalidad con atributos para crear, eliminar y modificar usuarios, los cuales se detallan a continuación: </p>
+<pre><code>Usuarios funcionales:
+
+    Es aquel que posee los privilegios para ejecutar y visualizar casos en el escritorio de trabajo y agendar audiencias en su caso en el portal de servicios.
+
+Usuarios No funcionales:
+
+    Es aquel que posee los privilegios para la administración del sistema, estos usuarios no interactúan directamente con el Escritorio de Trabajo.
+</code></pre>
+<h3 id="administracion-de-operaciones">Administración de Operaciones</h3>
+<p>La siguiente funcionalidad asigna usuarios a los roles que pertenecen al mismo operador y asigna a los usuarios privilegios específicos en su asignación de roles. </p>
+<p>Esta función la realizan dos tipos de operadores que tienen como finalidad la organización de los roles, casos, y horarios:</p>
+<pre><code>Administrador Operativo de Roles (AOR):
+
+    Este operador es el encargado de asignar los horarios y     relaciona las plazas con los usuarios funcionales de operación  a los usuarios funcionales.
+
+Administración Operativa de Casos (AOC):
+
+    Este operador permite realizar cambios de titularidad,  restringir facultades, bloquear procesos de gestión,    enmascarar, reservar y cerrar casos.
+</code></pre>
+<h3 id="administracion-general-de-casos">Administración General de Casos</h3>
+<p>Permite manejar la asignación de un caso particular a ser ejecutado con un procedimiento específico, indicado selectivamente el usuario o usuarios comisionados. Esta operación es Acotada por el rol al que pertenece el usuario que accede a esta funcionalidad.</p>
+<h3 id="reportes">Reportes</h3>
+<p>Ofrece un catálogo de reportes relativos a los procesos ejecutados por los distintos operadores, organizados por tipos de caso, estructuras orgánicas, usuarios y roles; permite medir tiempos de ejecución, sesgos de tiempo y actuación, entre otros.
+Reportes de Servicio</p>
+<p>Ofrece un catálogo de reportes relativos al desempeño tanto del sistema como de los usuarios, organizados por tipos de caso, estructuras orgánicas y roles; permite medir niveles de servicio, tiempos de atención y tiempos de ejecución, entre otros.</p>
+<h3 id="indicadores">Indicadores</h3>
+<p>Ofrece un catálogo de reportes relativos a los indicadores que permitan una mejor gestión de la procuración de justicia y persecución del delito, generando un conjunto normalizado de datos que se extraen en diversos formatos para su remisión a los solicitantes.</p>
+<h3 id="consola">Consola</h3>
+<p>Es el módulo para monitorear las aplicaciones y usuarios conectados al motor de la herramienta y llevar un registro y control de que y quien tiene actividad en la aplicación.</p>
+<h1 id="manual">Manual:</h1>
+<h1 id="administrador-portal-de-servicios">Administrador Portal de Servicios</h1>
+<hr />
+<p>En este manual detallaremos el uso y manejo de cada módulo y elemento del denominado Portal de Servicios, que en lo sucesivo llamaremos PS, Donde el administrador podrá gestionar creación de usuarios, roles, operación y estructura de la herramienta.</p>
+<h2 id="modo-de-acceso-al-portal-de-servicios-ps">Modo de acceso al Portal de Servicios (PS)</h2>
+<hr />
+<p>Para firmarnos en este modo basta con abrir cualquier navegador, en caso de la elaboración de este manual se utilizó Google Chrome, mismo que se recomienda para el uso del Sistema Informático de Gestión.</p>
+<p><img alt="googlechrome" src="../img/googlechrome.jpg" /></p>
+<pre><code>Imagen 1 (Google Chrome)
+</code></pre>
+<p>Una vez abierto el navegador deberemos teclear una dirección URL del tipo http://midominio o bien del tipo XXXX.XXXX.XXXX.XXXX:3004, donde 3004 es el puerto por donde nos comunicamos con el Portal de Servicios.</p>
+<p><img alt="barraurl" src="../img/barraurl.png" /></p>
+<pre><code>Imagen 2 (URL)
+</code></pre>
+<h1 id="administracion-general-de-estructura_1">Administración General de Estructura</h1>
+<hr />
+<p>Es el módulo donde se crea la plataforma de trabajo para el usuario, es decir puesto y plaza que ocupara el usuario.
+Como primer paso a la Administración de General de Estructura, debemos firmarnos con  un usuario con estos privilegios, para este casos nos firmamos con un usuario generico creado para este fin, pero puede usarse un usuario funcional asignando los mismo permisos, para este caso: </p>
+<pre><code>    User: AGE, pass:1111.
+</code></pre>
+<p>y pulsamos Entrar.</p>
+<p><img alt="loginportal" src="../img/loginportal.png" /></p>
+<pre><code>Imagen 3 (Login)
+</code></pre>
+<p>Al firmarnos podremos seleccionar un operador siempre y cuando contemos con los privilegios necesarios, desplegarán todos los operadores disponibles para la institución.</p>
+<p><img alt="seleccionoperador" src="../img/seleccionoperador.png" /></p>
+<pre><code>Imagen 4 (Selección de Operador)
+</code></pre>
+<h2 id="administracion-de-puestos-y-plazas">Administración de puestos y plazas</h2>
+<hr />
+<p>Las opción habilitada para este usuario en el menú contextual es: "Administración" y a su vez al desplegar este submenú nos mostrará la opción "Administración de Puestos y Plazas", es aquí donde podran crearse y editarse dichos elementos de la estructura de la organización.</p>
+<p><img alt="seleccionmenu1" src="../img/seleccionmenu1.png" /></p>
+<pre><code>Imagen 5 (Selección Administración de Puestos y Plazas)
+</code></pre>
+<h2 id="agregar-un-nuevo-puesto">Agregar un Nuevo Puesto</h2>
+<hr />
+<p>Para agregar un nuevo puesto, es necesario dar clic en el botón (+) como se muestra a continuación.</p>
+<p><img alt="nuevopuesto1" src="../img/nuevopuesto1.png" /></p>
+<pre><code>Imagen 6 (Nuevo puesto1)
+</code></pre>
+<p>Al agregar un nuevo puesto podemos ver a continuación se listan los campos que deben llenarse, en el campo llamado "Superior" se llena de manera automatica cuando hay un puesto superior inmediato en este caso es el puesto más alto en la jerarquía.</p>
+<pre><code>-   Nombre
+-   Nombre en femenino
+</code></pre>
+<p>Donde se deberá capturar el nombre del puesto correspondiente, en el campo "Nombre" y confirmarlo en el campo "Nombre en femenino". 
+Una vez capturados los datos, es necesario dar clic en el botón "Guardar" para poder continuar con el proceso.</p>
+<p><img alt="nuevopuesto2" src="../img/nuevopuesto2.png" /></p>
+<pre><code>Imagen 6 (Nuevo puesto2)
+</code></pre>
+<h2 id="editar-el-puesto">Editar el puesto</h2>
+<hr />
+<p>Una vez que creamos un puesto nuevo es posible editarlo presionando el boton con el símbolo de "Edición"con los permisos correctos.</p>
+<p><img alt="edicionpuesto1" src="../img/edicionpuesto1.png" /> </p>
+<pre><code>Imagen 7 (Edición de Puesto1)
+</code></pre>
+<p>Al presionar el botón de "Edición" veremos la siguiente pantalla. Como apreciamos en la iimagen aterior son solo dos campos los que se pueden editar:</p>
+<pre><code>-   Nombre
+-   Nombre en femenino
+</code></pre>
+<p>Podemos editar el nombre y corregimos algún campo que así lo precise y selccionamos "Guardar".</p>
+<p><img alt="edicionpuesto2" src="../img/edicionpuesto2.png" /> </p>
+<pre><code>Imagen 7 (Edición de Puesto1)
+</code></pre>
+<h2 id="despliega-los-puestos-subalternos-de-manera-jerarquica-organigrama">Despliega los puestos subalternos de manera jerárquica (organigrama)</h2>
+<hr />
+<p>Para desplegar los puestos subalternos relacionados con el puesto principal que buscamos, seleccionamos el símbolo (Flecha hacia abajo) y observaremos un nivel descendente en el  organigrama como se muestra en la imagen que continua.</p>
+<p><img alt="jerarquia1" src="../img/jerarquia1.png" /></p>
+<pre><code>Imagen 8 (Jerarquia de puestos 1)
+</code></pre>
+<p>Una vez seleccionado el botón de (Flecha hacia abajo), veremos como se despliegan los subalternos del puesto principal.</p>
+<p><img alt="jerarquia2" src="../img/jerarquia2.png" /></p>
+<pre><code>Imagen 9 (Jerarquia de puestos 2)
+</code></pre>
+<p>Nótese que en el siguiente nivel del organigrama es el puesto de Director de Asuntos Regionales PM  resaltado en color verde y aprecie que se sigue mostrando el nivel superior inmediato al puesto mostrado (en este caso Director Gral. de la Policía Ministerial),  el resaltado en rojo corresponde a las diferentes plazas con el mismo nombramiento del puesto enmarcado en amarillo.</p>
+<h2 id="eliminar-puesto">Eliminar puesto</h2>
+<hr />
+<p>Al seleccionar el botón "Borrar" con el símbolo siguiente (Cesto de básura) nos abre una ventana emergente  que nos cuestiona si realmente queremos borrar el elemento para estar completamente seguros del proceso que se está realizando como se muestra en la siguiente figura.</p>
+<p><img alt="deletepuesto1" src="../img/deletepuesto1.png" /></p>
+<pre><code>Imagen 10 (Eliminar puesto1)
+</code></pre>
+<p>Confirmamos con el botón de "Eliminar"</p>
+<p><img alt="deletepuesto2" src="../img/deletepuesto2.png" /></p>
+<pre><code>Imagen 11 (Eliminar puesto2)
+</code></pre>
+<p>Nos confirmará que se ha eliminado el puesto de manera exitosa.</p>
+<h2 id="agregar-plaza">Agregar plaza</h2>
+<hr />
+<p>Una Plaza es una posición de alguno de los puestos disponibles, para agregar una plaza nueva debemos seleccionar el puesto al cual deseamos agregar nuevas plazas y después seleccionamos el símbolo (+) en el panel de Plazas nos desplegará las plazas que tiene actualmente el puesto o en blanco sino cuenta con plazas dicho puesto.</p>
+<p><img alt="nuevaplaza1" src="../img/nuevaplaza1.png" /></p>
+<pre><code>Imagen 12 (Nueva Plaza1)
+</code></pre>
+<p>Nos mostrará la siguiente panatalla con los siguientes campos para capturar:</p>
+<pre><code>* Puesto: es el nombre de la posición en la organización.
+* Nombre: es el nombre de la plaza a donde se asiganará el usuario
+* Oficina territorial: Oficina a la cual pertenece la plaza
+* Unidad Territorial 
+* Superior: Es el puesto inmediato superior
+* Horario: es el horario de la jornada laboral
+* Dominio:
+* Facultades del usuario: nos permite asignarlo como "Aspirante a titular"
+</code></pre>
+<p>Al finalizar pulsamos "Guardar".</p>
+<p><img alt="nuevaplaza2" src="../img/nuevaplaza2.png" /></p>
+<pre><code>Imagen 12 (Nueva Plaza1)
+</code></pre>
+<h2 id="editar-la-plaza">Editar la plaza</h2>
+<hr />
+<p>La edición del elemento Plaza nos es muy útil para correcciones y es muy sencillo de usar, para usar este atributo es necesario seleccionar el mismo botón con el símbolo de "edición", al presionar el boton nos mostrará la siguiente pantalla:</p>
+<p><img alt="edicionplaza1" src="../img/edicionplaza1.png" /></p>
+<pre><code>Imagen 13 (Edición de Plaza1)
+</code></pre>
+<p>Donde se podrán editar los campos:</p>
+<pre><code>    * Nombre: es el nombre de la plaza a donde se asiganará el usuario
+* Oficina territorial: Oficina a la cual pertenece la plaza
+* Unidad Territorial 
+* Superior: Es el puesto inmediato superior
+* Horario: es el horario de la jornada laboral
+* Dominio:
+* Facultades del usuario: nos permite asignarlo como "Aspirante a titular"
+</code></pre>
+<p>Una vez corregido el campo que nos es preciso entonces se procede a "Guardar".</p>
+<p><img alt="edicionplaza2" src="../img/edicionplaza2.png" /></p>
+<pre><code>Imagen 14 (Edición de Plaza2)
+</code></pre>
+<h2 id="eliminar-plaza">Eliminar plaza.</h2>
+<hr />
+<p>Es posible eliminar la plaza seleccionando el botón "Eliminar", lo presionamos se abre la ventana emergente para pedirnos confirmación de eliminar dicho elemento como se muestra en la siguiente figura: </p>
+<p><img alt="deleteplaza1" src="../img/deleteplaza1.png" /></p>
+<pre><code>Imagen 15 (Eliminar Plaza)
+</code></pre>
+<h2 id="administracion-de-horarios">Administración de Horarios</h2>
+<hr />
+<p>El Administrador General de Estructura puede gestionar los horarios, es decir crear, eliminar y editar, Este elemento de la Estructura organizacional indica los horarios de la jornada laboral, estos horarios deben ser forzosos aunque la aplicación puede arreglarselas sin ellos, se definen como forzosos para llevar control sobre los recuros de la herramienta </p>
+<p>En la figura que sigue seleccionaremos "Administración de Horarios".</p>
+<p><img alt="selecciónhorario" src="../img/seleccionhorario.png" /></p>
+<pre><code>Imagen 16 (Seleccion de Administración de horarios)
+</code></pre>
+<p>Una vez seleccionada esta opción veremos una pantalla con las horarios disponibles si existiera uno o bien en blanco con la con opción de crear un nuevo horario. </p>
+<p><img alt="horario1" src="../img/horario1.png" /></p>
+<pre><code>Imagen 17 (Administración de horarios)
+</code></pre>
+<h2 id="creando-un-nuevo-horario">Creando un nuevo horario</h2>
+<hr />
+<p>Para crear un horario, es preciso seleccionar el botón identificado con el signo (+) que por supuesto significa agregar un nuevo elemento, al presionarlo tendremos la siguiente pantalla.</p>
+<p><img alt="horario2" src="../img/horario2.png" /></p>
+<pre><code>Imagen 18 (Creano un nuevo horario)
+</code></pre>
+<p>Donde:</p>
+<pre><code>-   Nombre: corresponde al nombre del horario.
+
+-   Archivo (.ica, .ics) es un archivo que se exporta desde una herramienta de calendario normalmente asociada a una aplicación de correo electronico como    gmail o outlook para tal caso procedemos de la siguiente manera.
+
+        * Exportarlos de una cuenta de Google
+
+                Si tienes varias cuentas de Google, puedes exportar tus calendarios de una cuenta e importarlos a otra.
+
+                En un ordenador, inicia sesión en la cuenta de Google cuyos calendarios quieras exportar. Solo puedes exportar calendarios con un ordenador, pero no con un teléfono o tablet.
+
+                Sigue las instrucciones para exportar tu calendario. Tendrás que descargar un archivo ICS en tu ordenador.
+
+                Exportar los eventos de todos los calendarios de tu lista "Mis calendarios"
+
+                1.- Abre Google Calendar en un ordenador. Solo puedes exportar calendarios con un ordenador, pero no con un teléfono o tablet.
+
+                2.- Arriba a la derecha, haz clic en Configuración settings gear button &gt; Configuración.
+
+                3.- Abre la pestaña Calendarios.
+
+                4.- Haz clic en Exportar calendarios (entre los apartados "Mis calendarios" y "Otros calendarios").
+
+                Se descargará un archivo ZIP en tu ordenador. Si abres el archivo .ZIP, verás los archivos .ICS de todos tus calendarios, mismo que usaremos para crear el horario en la herramienta
+
+                ó
+
+                Exportar los eventos de un calendario
+
+                1.- Abre Google Calendar en un ordenador. Solo puedes exportar calendarios con un ordenador, pero no con un teléfono o tablet.
+
+                2.- Ve al apartado Mis calendarios del lateral izquierdo.
+
+                3.- A la derecha del calendario que vas a exportar, haz clic en el menú desplegable  &gt; Configuración del calendario.
+
+                4.- Haz clic en Exportar este calendario.
+
+                Se empezará a descargar un archivo ICS de tus eventos y podremos usar el archivo para el horario de nuestra herramienta.
+
+        * En Outlook
+
+                1.- Ejecuta Outlook y haz clic en el módulo "Calendario" en la barra de herramientas de la parte superior de la ventana.
+
+                2.- Selecciona el calendario deseado en el cuadro del lado izquierda, si corresponde, y escoge "Guardar como" desde "Archivo" en la barra de menú superior.
+
+                3.- Escribe el nombre del archivo y selecciona "Formato iCalendar (*.ics)" desde el menú desplegable que está al lado de "Guardar como tipo".
+
+                4.- Presiona el botón "Más opciones" y selecciona "Especificar fechas" desde el menú desplegable que está al lado de "Rango de fecha".
+
+                5.- Ingresa la fecha inicial y la final para el calendario en los campos correspondientes y después haz clic en el botón "Aceptar".
+
+                6.- Presiona el botón "Guardar"
+</code></pre>
+<p>Una vez que hemos seleccionado el archivo .ical o .ics seleccionamos el botón "Guardar" como se muestra en la siguienet figura.</p>
+<p><img alt="horario3" src="../img/horario3.png" /></p>
+<pre><code>Imagen 19 (Creano un nuevo horario)
+</code></pre>
+<p>Una vez que guardamos le horario podremos ver el horario generado recientemente y el horario en formato ".ics" con posibilidad de descargar</p>
+<p><img alt="horario4" src="../img/horario4.png" /></p>
+<pre><code>Imagen 20 (Creano un nuevo horario)
+</code></pre>
+<h2 id="editando-un-horario">Editando un Horario</h2>
+<hr />
+<p>Es posible editar un horario en varias circunstancias, tales como, cambio de horario de verano entre otras, para editar un horario en la herramienta, ubicamos el horario que deseamos editar y seleccionamos el botón "Editar" , enseguida obtendremos la siguiente pantalla en el panel de la derecha.</p>
+<p><img alt="horario5" src="../img/horario5.png" /></p>
+<pre><code>Imagen 21 (Editando un horario)
+</code></pre>
+<p>Donde podremos editar el "Nombre del horario" y el horario se edita por fuera con la herramienta que usamos para descargar el archivo ".ics o .ical" y lo cargamos nuevamente como en la imagen 19.</p>
+<h1 id="administracion-de-dominios">Administración de dominios</h1>
+<hr />
+<p>Como lo mencionamos en la funcionalidad del Portal de Servicios,  controlar los permisos de las aplicaciones que consumen el API es decir el Escritorio de Trabajo, el Portal de Servicios entre otros.</p>
+<h1 id="administracion-general-de-roles_1">Administración general de roles</h1>
+<hr />
+<p>Es el módulo donde se asignan los atributos, privilegios, permisos, unidades territoriales, es decir los "Roles" de la plataforma de trabajo para el usuario, es decir la plaza que ocupara este.</p>
+<p>En el Módulo anterior "Administración General de Estructura" se crean los Puestos y Plazas donde el Puesto es el perfil de la posición que ocupara y la Plaza es el Puesto asignado a alguna Unidad Territorial y puede haber varias plazas del mismo Puesto.</p>
+<p>Escibimos la dirección URL del Portal de Servicios, una vez escrita la dirección damos "Enter" y veremos una ventana que nos indicará el inicio de sesión (Login), nos pedirá el usuario y contraseña  mismo que le será asignado atreves de la Mesa de Servicio definida por el cliente; tecleamos el Usuario y Contraseña y presionamos el botón de entrar.</p>
+<p>Recuerda que para Gestionar los roles debemos contar con una cuenta con esta funcionalidad en este caso usaremos una cuenta generica:</p>
+<pre><code> User: AGR Pass:1111.
+</code></pre>
+<p><img alt="roles1" src="../img/roles1.png" /></p>
+<pre><code>    Imagen 22 (login Administración de Roles)
+</code></pre>
+<p>Nos solicitará seleccionar un operador desde el cual debemos trabajar, se desplegarán todos los operadores disponibles para la institución.</p>
+<p><img alt="roles2" src="../img/roles2.png" /></p>
+<pre><code>Imagen 23 (Selección de operador)
+</code></pre>
+<h2 id="operacion-de-roles">Operación de roles</h2>
+<hr />
+<p>Una vez que nos firmamos y seleccionamos un operador; para el caso de nuestro manual seleccionaremos como Ministerio Público - Enlace con Poder Judicial : Estatal</p>
+<p><img alt="roles3" src="../img/roles3.png" /></p>
+<pre><code>Imagen 24 (Selecció de la operación a realizar)
+</code></pre>
+<p>Una vez seleccionada la opción de "Administración de roles" podemos ver que estamos firmados como MP y veremos también la siguiente pantalla.</p>
+<p><img alt="roles4" src="../img/roles4.png" /></p>
+<pre><code>Imagen 25 (Administración de roles)
+</code></pre>
+<h2 id="nuevo-rol">Nuevo Rol</h2>
+<hr />
+<p>Recordemos que al firmarnos seleccionamos un Operador que en este caso fue Ministerio Público y al agregar un nuevo rol veremos solo los procedimientos o pantallas asignados a dicho operador; para agregar un nuevo rol es necesario seleccionar el botón con el símbolo (+) y posteriormente nos mandará la siguiente pantalla.</p>
+<p><img alt="roles5" src="../img/roles5.png" /></p>
+<pre><code>Imagen 26 (Nuevo rol)
+</code></pre>
+<p>Dentro de la pantalla nos aparecen dos campos: Nombre y Permisos por procedimiento.</p>
+<pre><code>•   En el campo de Nombre, el sistema nos solicita el nombre del nuevo rol que se desea agregar.
+
+•   Los siguientes atributos pueden ser dados a cada procedimiento o pantalla ya sea en un pull completo o bien seleccionar solos los atributos que así         convenga asignar a estos procedimientos, mismos que son asignados al nuevo rol; estos procedimientos  están enumerados con un número clave a manera de      identificador y como una mejor práctica.
+</code></pre>
+<p>Los atributos que se pueden asignar a los procedimientos que el operador con el cual el usuario se firmo son:</p>
+<pre><code>o   Ejecución
+o   Eliminación
+o   Eliminación documentos
+o   Sustitución 
+o   Lectura
+</code></pre>
+<p>Una vez que seleccionamos atributos y le asignamos un nombre al nuevo rol, entonces guardamos la información. </p>
+<h2 id="editando-el-rol">Editando el Rol</h2>
+<hr />
+<p>Para editar la información de un rol existente que bien puede ser para corregir un dato, un atributo o privilegio, seleccionamos el símbolo de (Edición) del rol que deseamos editar como lo muestra la siguiente figura siguiente:</p>
+<p><img alt="roles6" src="../img/roles6.png" /></p>
+<pre><code>Imagen 27 (Editando roles)
+</code></pre>
+<p>Lo que veremos como resultado será el siguiente:</p>
+<p><img alt="roles7" src="../img/roles7.png" /></p>
+<pre><code>Imagen 28 (Editando roles)
+</code></pre>
+<p>La información que se puede editar es:</p>
+<pre><code> - Nombre 
+ - Atributos
+</code></pre>
+<p>Podemos quitar o agregar más atributos sobre los procedimientos o pantallas sobre los cuales estamos trabjando, según sea el caso.
+Una vez realizado los cambios, salvamos los cambios con el botón "Guardar".</p>
+<h1 id="administrador-general-de-usuarios">Administrador General de Usuarios</h1>
+<hr />
+<p>Para gestionar el recurso "Administración General de Usuarios" es necesario contar con los permisos suficientes, en este caso usaremos la cuenta generica con los siguientes datos:</p>
+<pre><code>USER: AGU
+PASS: 1111
+</code></pre>
+<p>Una vez que nos firmamos en el "Portal de Servicios", recordemos que nos pedirá seleccionar un operador para efectos de la guía continuaremos usando el de Ministerio Público, pero puede ser el de su elección.</p>
+<p>Seleccionamos en el menú contextual "Administración" y una vez que nos despliega las opciones seleccionamos "Administración de Usuarios" como se muestra en la siguiente figura. </p>
+<p><img alt="usuarios1" src="../img/usuarios1.png" /></p>
+<pre><code>Imagen 29 (login y seleccion de menú)
+</code></pre>
+<p>Cuando seleccionamos dicha opción obtenemos este resultado:</p>
+<p><img alt="usuarios2" src="../img/usuarios2.png" /></p>
+<pre><code>Imagen 30 (login y seleccion de menú)
+</code></pre>
+<h2 id="creando-un-usuario">Creando un Usuario</h2>
+<hr />
+<p>Para generar un nuevo usuario es muy simple sin embargo no basta con crear un usuario para poder usar la cuenta, es necesario seguir una serie de pasos que iremos enumerando hasta dejarlo funcional y que el usuario quede con los privilegios, unidad territorial y roles apropiados a su perfil.</p>
+<p>Como primer paso deberemos presionar el botón con el símbolo (+) podremos ver la siguiente pantalla:</p>
+<p><img alt="usuarios3" src="../img/usuarios3.png" /></p>
+<pre><code>Imagen 31 (Administración de usuarios)
+</code></pre>
+<p>Estos son los campos que deben llenarse, solo explicaremos los pertinentes, el resto por obviedad se complementa.</p>
+<pre><code>-   *Nombre 
+-   *Apellido Paterno
+-   *Apellido Materno
+-   *Usuario: Se asigna un nombre de usuario de acuerdo a la nomenclatura indicada por la organización.
+-   *Autenticación: Es una medida para validar que realmente se trata del usuario correcto, las opciones son las siguientes:
+
+      * Huella digital, contraseña,          huella digital con contraseña.
+
+-    Prefijo: Como muestra en la imagen puede ser del tipo Lic.
+-    Acceso: si se marca la casilla indica que el usuario esta activo
+</code></pre>
+<p>Los marcados con * son obligatorios.</p>
+<p>Al terminar de llenar de los campos, se tiene que dar clic en el botón "Guardar".</p>
+<h2 id="editando-un-usuario">Editando un Usuario</h2>
+<hr />
+<p>Para editar un Usuario, es muy simple, seleccionamos el usuario que deseamos corregir o editar y damos clic en el siguiente botón (Edición) como se muestra en la siguiente figura.</p>
+<p><img alt="usuarios4" src="../img/usuarios4.png" /></p>
+<pre><code>Imagen 31 (seleccion edicion usuarios)
+</code></pre>
+<p>Cuando seleccionamos el usuario y presionamos el botón (Edición), aparecerá la pantalla de "Administración de usuarios" con los mismos datos que se mencionaron anteriormente y que ya hemos explicado, recordemos que los marcados con * son mandatorios.</p>
+<p><img alt="usuarios5" src="../img/usuarios5.png" /></p>
+<pre><code>Imagen 32 (Administración de usaurios)
+</code></pre>
+<p>Ya hemos explicado cada campo pertinente, editamos lo que nos sea preciso y presionamos el botón "Guardar".</p>
+<h2 id="eliminando-un-usuario">Eliminando un Usuario</h2>
+<hr />
+<p>Para "Eliminar" un usuario es más sencillo que crearlo, seleccionamos el botón con el símbolo (bote de básura) </p>
+<p><img alt="usuarios6" src="../img/usuarios6.png" /></p>
+<pre><code>Imagen 33 (Eliminación de usuarios)
+</code></pre>
+<p>Al seleccionarlo nos pedirá confirmación de la eliminación del usuario y confirmamos con el botón de "Aceptar".</p>
+<h1 id="indicadores_1">Indicadores</h1>
+<hr />
+<p>El módulo de "Indicadores" es aquel que nos ofrecerá los informes de como se comporta la operación del día a día, para saber acerca de estos Reportes favor de referirse al anexo con esta información. En este manual solo se mostrará como desplegar en pantalla un "Indicador".</p>
+<p>Una vez que nos firmamos en el Portal de Servicios, seleccionamos en el menú principal "Indicadores" y nos mostrará la siguiente pantalla</p>
+<pre><code>Imagen 34 (Selección de indicadores)
+</code></pre>
+<p>En la pantalla de "Indicadores"  seleccionamos la persiana y nos mostrará todos los indicadores disponibles para ejecutar; una vez seleccionado el reporte que deseamos visualizar debemos seleccionar el rango de tiempo en el cual queremos generar el reporte, para ello seleccionamos el calendario de "Fecha de inicio" que es la fecha de la que partirá para comenzar la busqueda de las coinicidencias de nuestro reporte; después de ello seleccionaremos la "Fecha de término", es decir cierra el rango de tiempo en la cual el sistema realizará la búsqueda; cuando estemos seguros de estos datos que se nos solicita, entonces seleccionamos "Preparar datos".</p>
+<pre><code>Imagen 35 (Indicadores)
+
+****preguntar del módulo de reportes****
+</code></pre>
+<p>Una vez generado el reporte podemos exportarlo a Excel y de esta manera hacerlo portable y visualizarlo en culaquier ambiente que no tenga la aplicación disponible</p>
+<h1 id="reportes_1">Reportes.</h1>
+<hr />
+<h1 id="consola_1">Consola</h1>
+<hr />
+<h1 id="administracion-de-salas">Administración de salas.</h1>
+<hr />
+<p>La "Agenda" de audiencias es un mecanismo para programar las audiencias en fecha, hora y sitio, es decir las audiencias se pueden programar en un horario valido en una fecha valida y en una sala de audiencia valida sin que se empalmen estas audiencias es una herramienta confiable segura y eficaz para el administrador de las salas de audiencia.</p>
+<p>Seleccionamos dentro del menú principal "Administración" la opción "Administración de Salas". </p>
+<p><img alt="salas1" src="../img/salas1.png" /></p>
+<pre><code>Imagen 36 (Administración de salas)
+</code></pre>
+<p>Una vez hecho esto, nos mostrará  los casos que están listos para audiencia  y que deben agendarse. Debemos ver una pantalla como la que se muestra a continuación, dividida en dos paneles mismos que se definen más adelante.</p>
+<p><img alt="salas2" src="../img/salas2.png" /></p>
+<pre><code>Imagen 36 (Administración de salas)
+</code></pre>
+<p>Panel Izquierdo corresponde a  la paleta de las audiencias y el panel derecho a la paleta del calendario mismos que describiremos a continuación</p>
+<h2 id="el-panel-izquierdo-audiencias">El Panel Izquierdo (audiencias)</h2>
+<hr />
+<p>Lo  describimos  a continuación.</p>
+<p><img alt="salas3" src="../img/salas3.png" /></p>
+<pre><code>Imagen 37 (Panel de audiencias)
+</code></pre>
+<h3 id="filtro">Filtro</h3>
+<p>Nos ayuda a acotar criterios  de búsqueda por los siguientes parámetros:</p>
+<pre><code>•   Estado:
+
+    o   Sin agendar
+    o   Reservados
+    o   Confirmados
+
+•   Salas:
+
+    o   Cerezo
+    o   Constitución        
+    o   Federación
+    o   Independencia
+    o   Nación
+    o   República
+    o   Revolución
+
+•   Jueces:
+
+    o   Muestra los jueces disponibles. ( En este caso Ana Concepción Gutiérrez Pereyra)
+
+•   Ordenar por Fechas:
+
+    o   Fecha de solicitud
+    o   No. de procedimiento
+    o   Fecha de Audiencia
+</code></pre>
+<p>Definimos los criterios de búsqueda y al final seleccionamos el botón  "Aplicar Filtros" como se muestra en la siguiente ilustracón.</p>
+<p><img alt="filtrosalas" src="../img/filtrosalas.png" /></p>
+<pre><code>Imagen 38 (Criterios de filtrado)
+</code></pre>
+<h3 id="barra-de-busqueda">Barra de Búsqueda</h3>
+<hr />
+<p>La barra de búsqueda es aquella donde se podrán buscar casos que se pueden agendar o casos agendados el criterio de búsqueda de los casos es:</p>
+<pre><code> NIC
+ NAC
+ NUC.
+</code></pre>
+<p>Como vemos en la siguiente imagen, se puede apreciar que </p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../editor/" class="btn btn-neutral float-right" title="Editor">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../desk/" class="btn btn-neutral" title="Escritorio"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../desk/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../editor/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+
+</body>
+</html>
