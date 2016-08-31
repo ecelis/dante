@@ -189,16 +189,16 @@ _$LEXUSR-$OS-$LEXDB.run_ descomprime los componentes de LexSys en el
 directorio del usuario dueño del sistema.
 
 
-	curl -o bootstrap.sh http://descarga.lexsys.net/bootstrap.sh
+	curl -o bootstrap.sh https://descarga.lexsys.net/bootstrap.sh
 	chmod +x bootstrap.sh
-    ./bootstrap.sh
+  ./bootstrap.sh
 
 
 Como _$LEXUSR_ ejecuta el archivo de instalación de LexSys.
 
 
 	curl -o _$LEXUSR-$OS-$LEXDB.run_ \
-    	http://descarga.lexsys.net/_$LEXUSR-$OS-$LEXDB.run_
+    	https://descarga.lexsys.net/_$LEXUSR-$OS-$LEXDB.run_
         chmod +x _$LEXUSR-$OS-$LEXDB.run_
         ./_$LEXUSR-$OS-$LEXDB.run_
 
@@ -362,7 +362,7 @@ Instala Oracle Database de acuerdo a la _Database Installation Guide_
 Se sugiere utilizar discos SSD en RAID1.
 
 
-Deshabilita noatime en el sistema de archivos donde viven los archivos de
+Deshabilita **noatime** en el sistema de archivos donde viven los archivos de
 MongoDB.
 
 
@@ -374,9 +374,9 @@ Los límites para proces (**ulimit -u**) y descriptores de archivo
 
 
 	*    soft    nproc 65000
-     *    hard    nproc 65365
-     *    soft    nofile 65000
-     *    soft    nofile 65365
+  *    hard    nproc 65365
+  *    soft    nofile 65000
+  *    soft    nofile 65365
 
 
 
@@ -411,8 +411,8 @@ Habilita e inicia el servicio MongoDB.
 
 1. Instala las dependencias necesarias desde los repositorios de
    RHEL/CentOS
-  2. Instala virtualenv y uwsgi
-  3. Instala nodejs 4 y los módulos de nodejs necesarios para compilar las
+2. Instala virtualenv y uwsgi
+3. Instala nodejs 4 y los módulos de nodejs necesarios para compilar las
    aplicaciones
 4. Habilita e inicia el servicio MongoDB
 5. Crea un usario administrador de MongoDB y las bases de datos para log
@@ -516,11 +516,9 @@ Genera la documentación del API.
 
 En el directorio **wrath/config** están los archivos globales de configuración
 y los sub-directorios contienen archivos de configuración exclusivos para
-cada entorno que se desee ejecutar del API. Es posible ejecutar más de una instancia del API con el mismo código creando nuevos directorios en **wrath/config**.
-
-
-
-
+cada entorno que se desee ejecutar del API. Es posible ejecutar más de
+una instancia del API con el mismo código creando nuevos directorios en
+**wrath/config**.
 
 
 ##### Configuración de Carga Masiva
@@ -699,6 +697,70 @@ guía de instalación.
 	    grunt assets
 	    pm2 start $LEXHOME/deployment/pm2.json
 	    pm2 status
+
+
+#### Configuración Editor de Contenidos
+
+Una copia del código del Editor de Contenidos puede servir 1 o más
+instancias escuchando en diferentes puertos TCP. El puerto
+predeterminado es 3001, este y otros parámetros se configuran en el
+archivo **config.json**.
+
+
+	{
+     "entornos": {
+        "<entorno>": {
+          "app": {
+            "puerto": 3000,
+            "ip": "localhost",
+            "API_URL": "<https://wrath.url>",
+            "privateSubfolder": "<entorno>",
+            "pythonPath": "/home/lexusr/EDITOR/ENV/bin/python"
+          },
+          "DB": {
+            "uri": "mongodb://<usuario_mongo>:<password>@<host>[:27017]/base_de_datos"
+          }
+        }
+      }
+    }
+
+
+* **<entorno>** es una etiqueta que identifica el entorno que se
+  iniciará, también debe existir un directorio llamado **entorno** en la
+ruta **$LEXEDITOR/views/plantillas**, en este directorio se encuentran
+las plantillas HTML que se incluyen a los formatos PDF generados por el
+sistema.
+
+* **puerto** PM2 el servidor de aplicaciones JavaScript escucha en este
+  puerto.
+
+* **API__URL** URL del API
+
+* **DB uri** Cadena de conexión para MongoDB
+
+
+#### Configuración PM2
+
+PM2 es el servidor de aplicaciones JavaScript que mueve al Editor de
+Contenidos. PM2 es capáz de servir 1 o más instancias del editor se
+configura normalmente en el archivo **$LEXHOME/deployment/pm2.json**
+
+
+    {
+      "apps": [
+        {
+          "name": "campeche",
+          "cwd": "/home/lexusr/EDITOR",
+          "args": [
+            "campeche"
+          ],
+          "script": "app.coffee",
+          "exec_interpreter": "coffee",
+          "out_file": "/home/lexusr/log/pm2-out.log",
+          "error_file": "/home/lexusr/log/pm2-error.log"
+        }
+      ]
+    }
 
 
 ### Portal de Servicios
