@@ -20,27 +20,27 @@ _itálicas_ indican variables reemplazables por el usuario, texto en itálicas *
 Las siguientes variables de entorno son utilizadas en el texto y los valores sugeridos que además están pre-configurados en los scripts de instalación. Esto valores se pueden modificar en tiempo de ejecución de los scripts o en una instalación manual.
 
 
-_$LEXUSR_ el usuario del sistema operativo con el que se ejecuta LexSys. **lexusr**
+**$LEXUSR** el usuario del sistema operativo con el que se ejecuta LexSys. **lexusr**
 
-_$LEXHOME_ directorio base de instalación de LexSys. **/home/$LEXUSR**
+**$LEXHOME** directorio base de instalación de LexSys. **/home/$LEXUSR**
 
-_$LEXDB_ motor de base de datos puede ser **oracle** o **postgresql**
+**$LEXDB** motor de base de datos puede ser **oracle** o **postgresql**
 
-_$LEXAPI_ ruta de instalación del API. **$LEXHOME/wrath**.
+**$LEXAPI** ruta de instalación del API. **$LEXHOME/wrath**.
 
-_$LEXEDITOR_ ruta de instalación del Editor de Contenidos **$LEXHOME/EDITOR**
+**$LEXEDITOR** ruta de instalación del Editor de Contenidos **$LEXHOME/EDITOR**
 
-_$LEXDESK_ ruta de instalación del Escritorio de Trabajo **$LEXHOME/wrpide**
+**$LEXDESK** ruta de instalación del Escritorio de Trabajo **$LEXHOME/wrpide**
 
-_$LEXPORTAL_ ruta de instalación del Portal de Servicios **$LEXPORTAL/sloth**
+**$LEXPORTAL** ruta de instalación del Portal de Servicios **$LEXPORTAL/sloth**
 
-_$OS_ sistema operativo de la instalación. Solo los sistemas operativos Red Hat
+**$OS__VERSION** sistema operativo de la instalación. Solo los sistemas operativos Red Hat
 Enterprise Linux versiones 6 y 7 y CentOS 6 y 7 están soportados.
 
-_$TMPDIR_ directorio para archivos temporales **/tmp**
+**$TMPDIR** directorio para archivos temporales **/tmp**
 
 
-### Notas para el lector
+### Notas para el administrador
 
 * LexSys se desarrolla y prueba en sistemas de 64 bit, las instalaciones
 en sistemas operativos de 32 bit no están soportadas.
@@ -194,7 +194,7 @@ directorio del usuario dueño del sistema.
   ./bootstrap.sh
 
 
-Como _$LEXUSR_ ejecuta el archivo de instalación de LexSys.
+Como usuario **$LEXUSR** ejecuta el archivo de instalación de LexSys.
 
 
 	curl -o _$LEXUSR-$OS-$LEXDB.run_ \
