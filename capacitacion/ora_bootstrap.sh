@@ -35,7 +35,7 @@ libXi \
 libXi.i686 \
 make \
 sysstat \
-unixODBC.i686
-unixODBC
-unixODBC-devel.i686
+unixODBC.i686 \
+unixODBC \
+unixODBC-devel.i686 \
 unixODBC-devel
