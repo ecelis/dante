@@ -3,7 +3,7 @@
 CWD=$(pwd)
 OUTDIR=$CWD/out
 FORMATS="odt pdf"
-DOCS="desk editor faq instalacion portal"
+DOCS="api desk editor faq instalacion portal"
 
 if [ -d $OUTDIR ]; then
   rm -rf $OUTDIR

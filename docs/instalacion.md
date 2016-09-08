@@ -189,7 +189,7 @@ _$LEXUSR-$OS-$LEXDB.run_ descomprime los componentes de LexSys en el
 directorio del usuario dueño del sistema.
 
 
-	curl -o bootstrap.sh https://descarga.lexsys.net/bootstrap.sh
+	curl -LO https://github.com/ecelis/acedia/releases/download/v1.0rc1/bootstrap.sh
 	chmod +x bootstrap.sh
   ./bootstrap.sh
 
@@ -333,27 +333,27 @@ Instala Oracle Database de acuerdo a la _Database Installation Guide_
 
 
 
-        -- DDL para generar el esquema y usuario. Los datafiles se crearan en el
-				-- path default a menos que se indique el path dedicado...
-        CREATE TABLESPACE LEXSYS_DAT DATAFILE 'LEXSYS_DATA.DBF' SIZE 200M
-	        AUTOEXTEND ON NEXT 50M MAXSIZE UNLIMITED LOGGING
-	        EXTENT MANAGEMENT LOCAL AUTOALLOCATE BLOCKSIZE 8K
-	        SEGMENT SPACE MANAGEMENT AUTO FLASHBACK ON;
+      -- DDL para generar el esquema y usuario. Los datafiles se crearan en el
+      -- path default a menos que se indique el path dedicado...
+      CREATE TABLESPACE LEXSYS_DAT DATAFILE 'LEXSYS_DATA.DBF' SIZE 200M
+        AUTOEXTEND ON NEXT 50M MAXSIZE UNLIMITED LOGGING
+        EXTENT MANAGEMENT LOCAL AUTOALLOCATE BLOCKSIZE 8K
+        SEGMENT SPACE MANAGEMENT AUTO FLASHBACK ON;
 
-        CREATE TABLESPACE LEXSYS_INX DATAFILE 'LEXSYS_INX.DBF' SIZE 100M
-	        AUTOEXTEND ON NEXT 50M MAXSIZE UNLIMITED LOGGING
-	        EXTENT MANAGEMENT LOCAL AUTOALLOCATE BLOCKSIZE 8K
-	        SEGMENT SPACE MANAGEMENT AUTO FLASHBACK ON;
+      CREATE TABLESPACE LEXSYS_INX DATAFILE 'LEXSYS_INX.DBF' SIZE 100M
+        AUTOEXTEND ON NEXT 50M MAXSIZE UNLIMITED LOGGING
+        EXTENT MANAGEMENT LOCAL AUTOALLOCATE BLOCKSIZE 8K
+        SEGMENT SPACE MANAGEMENT AUTO FLASHBACK ON;
 
-        CREATE USER <DBUSER> IDENTIFIED BY <DBPASS> DEFAULT TABLESPACE "LEXSYS_DAT"
-	        QUOTA UNLIMITED ON "LEXSYS_DAT";
+      CREATE USER <DBUSER> IDENTIFIED BY <DBPASS> DEFAULT TABLESPACE "LEXSYS_DAT"
+        QUOTA UNLIMITED ON "LEXSYS_DAT";
 
-        GRANT "CONNECT" TO <DBUSER>;
-        GRANT RESOURCE TO <DBUSER>;
+      GRANT "CONNECT" TO <DBUSER>;
+      GRANT RESOURCE TO <DBUSER>;
 
-        ALTER USER <DBUSER> QUOTA UNLIMITED ON "LEXSYS_INX";
+      ALTER USER <DBUSER> QUOTA UNLIMITED ON "LEXSYS_INX";
 
-        COMMIT;
+      COMMIT;
 
 
 #### Servidor MongoDB
@@ -394,7 +394,7 @@ Habilita e inicia el servicio MongoDB.
 **CentOS/RHEL 6**
 
 
-	chkconfig rh-mongodb26-mongod on
+    chkconfig rh-mongodb26-mongod on
     service rh-mongodb26-mongod start
 
 
@@ -402,7 +402,7 @@ Habilita e inicia el servicio MongoDB.
 **CentOS/RHEL 7**
 
 
-	systemctl enable rh-mongodb26-mongod
+    systemctl enable rh-mongodb26-mongod
     systemctl start rh-mongodb26-mongod
 
 
@@ -422,14 +422,17 @@ Habilita e inicia el servicio MongoDB.
 ##### Dependencias de LexSys en RHEL/CentOS 6
 
 
-    yum -y install tar gzip gcc gcc-c++ git \
+    yum -y install tar gzip gcc gcc-c++ git xz \
       openssl-devel pcre-devel zlib-devel \
+      rh-mongodb26 rh-mongodb26-mongodb-server \
+      rh-mongodb26-runtime rh-mongodb26-devel \
       python27 python27-python-devel \
+      python27-python-pip python27-python-virtualenv sudo
       mongodb mongodb-server mongodb-devel
     easy_install-2.7 -U setuptools pip
     pip2.7 install uwsgi virtualenv
     cd /tmp
-    wget https://nodejs.org/dist/v4.2.6/node-v4.2.6-linux-x64.tar.gz
+    curl -LO https://nodejs.org/dist/v4.2.6/node-v4.2.6-linux-x64.tar.gz
     cd /usr/local
     tar --strip-components=1 -xvzf
       /tmp/node-v4.2.6-linux-x64.tar.gz
@@ -439,7 +442,7 @@ Habilita e inicia el servicio MongoDB.
 ##### Dependencias de LexSys en RHEL/CentOS 7
 
 
-    yum -y install tar gzip gcc gcc-c++ git \
+    yum -y install tar gzip gcc gcc-c++ git xz \
       openssl-devel pcre-devel zlib-devel \
       python-pip python-devel python-virtualenv \
       mongodb mongodb-server mongodb-devel
@@ -711,7 +714,7 @@ archivo **config.json**.
      "entornos": {
         "<entorno>": {
           "app": {
-            "puerto": 3000,
+            "puerto": 3001,
             "ip": "localhost",
             "API_URL": "<https://wrath.url>",
             "privateSubfolder": "<entorno>",
@@ -749,10 +752,10 @@ configura normalmente en el archivo **$LEXHOME/deployment/pm2.json**
     {
       "apps": [
         {
-          "name": "campeche",
+          "name": "<entorno>",
           "cwd": "/home/lexusr/EDITOR",
           "args": [
-            "campeche"
+            "<entorno>"
           ],
           "script": "app.coffee",
           "exec_interpreter": "coffee",
@@ -766,7 +769,7 @@ configura normalmente en el archivo **$LEXHOME/deployment/pm2.json**
 ### Portal de Servicios
 
 1. Instala los módulos de nodejs y bower
-2. Edita `config-<nombre_de_ambiente>.js` de acuerdo a tu ambiente de instalación
+2. Edita `config-<ambiente>.js` de acuerdo a tu ambiente de instalación
 apunte a la instalación del API
 3. Compila la aplicación
 

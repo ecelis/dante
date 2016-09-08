@@ -7,4 +7,6 @@ pages:
 - Editor: editor.md
 - Instalación: instalacion.md
 - FAQ: faq.md
+
 theme: readthedocs
+copyright: Tecno Informática Coproceso S.C.
