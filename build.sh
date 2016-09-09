@@ -2,7 +2,7 @@
 
 CWD=$(pwd)
 OUTDIR=$CWD/out
-FORMATS="odt pdf"
+FORMATS="docx odt pdf"
 DOCS="api desk editor faq instalacion portal"
 
 if [ -d $OUTDIR ]; then
