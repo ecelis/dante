@@ -2,7 +2,7 @@
 
 CWD=$(pwd)
 OUTDIR=$CWD/out
-FORMATS="docx odt pdf"
+FORMATS="odt pdf"
 DOCS="api desk editor faq instalacion portal"
 
 if [ -d $OUTDIR ]; then
@@ -24,3 +24,5 @@ for d in $DOCS; do
     process_document $d lexsys_${d}_manual $format
   done
 done
+
+mkdocs gh-deploy
