@@ -159,85 +159,111 @@
               
                 <h1 id="preguntas-frecuentes">Preguntas Frecuentes</h1>
 <h3 id="api">API</h3>
-<h4 id="bad-request-timestamp-header-required-with-utc-datetime-in-iso-8601-format">BAD REQUEST - Timestamp header required with UTC datetime in ISO 8601 format?</h4>
+<h4 id="bad-request-timestamp-header-required-with-utc-datetime-in-iso-8601-format">¿BAD REQUEST - Timestamp header required with UTC datetime in ISO 8601 format?</h4>
 <p>TODO</p>
 <h3 id="docker">Docker</h3>
-<h4 id="como-inicio-un-contenedor-ya-existente">Como inicio un contenedor ya existente?</h4>
+<h4 id="como-inicio-un-contenedor-ya-existente">¿Como inicio un contenedor ya existente?</h4>
 <pre><code>docker start &lt;uuid|name&gt;
 </code></pre>
 <p>o</p>
 <pre><code>docker start -ai &lt;uuid|name&gt;
 </code></pre>
 <h3 id="mongodb">MongoDB</h3>
-<h4 id="como-creo-un-usuario-administrador-de-mongodb">Como creo un usuario administrador de MongoDB?</h4>
+<h4 id="como-creo-un-usuario-administrador-de-mongodb">¿Como creo un usuario administrador de MongoDB?</h4>
 <pre><code>mongo
 use admin
 db.createUser({ user:"admin", pwd:"&lt;s3cr3t&gt;", roles:[{rol:"userAdminAnyDatabase", db:"admin"}] });
 &lt;CTRL+D&gt;
 </code></pre>
-<h4 id="como-creo-un-usuario-de-mongodb">Como creo un usuario de MongoDB?</h4>
+<h4 id="como-creo-un-usuario-de-mongodb">¿Como creo un usuario de MongoDB?</h4>
 <pre><code>mongo
 use &lt;new_collection&gt;
 db.createUser({ user:"&lt;newuser&gt;", pwd:"&lt;s3cr3t&gt;", roles:[{rol:"readWrite", db:"&lt;new_collection&gt;"}] });
 &lt;CTRL+D&gt;
 </code></pre>
-<h4 id="como-asigno-otros-roles-a-un-usuario-existente">Como asigno otros roles a un usuario existente?</h4>
+<h4 id="como-asigno-otros-roles-a-un-usuario-existente">¿Como asigno otros roles a un usuario existente?</h4>
 <pre><code>use &lt;colección&gt;
-db.grantRolesToUser(
-"&lt;usuario&gt;", [{ role: "readWrite", db: "&lt;base_de_datos&gt;" }])
+  db.grantRolesToUser(
+  "&lt;usuario&gt;", [{ role: "readWrite", db: "&lt;base_de_datos&gt;" }])
 </code></pre>
-<h4 id="como-creo-un-usuario-para-una-colecion">Como creo un usuario para una coleción?</h4>
+<h4 id="como-creo-un-usuario-para-una-coleccion">¿Como creo un usuario para una colección?</h4>
 <pre><code>mongo
+use &lt;collection&gt;
+db.createUser({ user:"&lt;user&gt;",
+  pwd:"&lt;s3kr33t&gt;", roles: [
+    {role: "readWrite", db: "&lt;db&gt;"}]});
 </code></pre>
+<h4 id="como-importar-un-archivo-de-json">¿Como importar un archivo de JSON?</h4>
+<pre><code>mongoimport -d &lt;database&gt; -c &lt;colletion&gt; --jsonArray &lt; &lt;file.json&gt;
+</code></pre>
+<p>El archivo debe tener un formato:</p>
+<pre><code>{ key:value, nestedvalues: { anarray: [firts, secon, third] } }
+</code></pre>
+<h4 id="como-hacer-busquedas-en-el-log-de-eventos">¿Como hacer búsquedas en el log de eventos?</h4>
+<p>La siguiente sentencia busca todos los eventos que fuerón exitosos:
+<em>OK</em>, <em>ERROR</em> también se puede usar.</p>
+<pre><code>db.&lt;collection&gt;.find({level:'INFO', status:'OK'})
+</code></pre>
+<h4 id="como-busco-por-fechas">¿Como busco por fechas?</h4>
+<h4 id="como-inicio-mongodb-en-docker">¿Como inicio MongoDB en Docker?</h4>
+<p>Para ejecutar una instancia de MongoDB en Docker con seguridad
+habilitada.</p>
+<pre><code>docker run --name mongodb -d -P -p 27017:27017 mongo --auth
+</code></pre>
+<p>Si no se desea seguridad puede omitirse el parámetro <code>--auth</code>
+db.createUser({user:"admin",pwd:"Qwzx!",roles:[{role:"userAdminAnyDatabase",db:"admin"}]});</p>
 <h3 id="nginx">Nginx</h3>
-<h4 id="como-instalo-nginx-para-lexsys">Como instalo Nginx para LexSys?</h4>
+<h4 id="como-instalo-nginx-para-lexsys">¿Como instalo Nginx para LexSys?</h4>
 <p>Agrega la siguiente línea en <code>/etc/yum.repos.d/epel.repo</code> y <code>/etc/yum.repos.d/nginx.repo</code></p>
 <pre><code>exclude=nginx
 </code></pre>
 <h3 id="oracledb">OracleDB</h3>
-<h4 id="como-inicio-una-instancia-de-la-base-de-datos">Como inicio una instancia de la base de datos?</h4>
+<h4 id="como-inicio-una-instancia-de-la-base-de-datos">¿Como inicio una instancia de la base de datos?</h4>
 <pre><code>sqlplus /nolog
 connect / as sysdba
 startup
 &lt;CTRL+D&gt;
 lsnrctl start
 </code></pre>
-<h4 id="como-me-conecto-a-una-instancia-de-oracledb-en-linea-de-comandos-sqlplus">Como me conecto a una instancia de OracleDB en línea de comandos? (sqlplus)</h4>
+<h4 id="como-me-conecto-a-una-instancia-de-oracledb-en-linea-de-comandos-sqlplus">¿Como me conecto a una instancia de OracleDB en línea de comandos? (sqlplus)</h4>
 <pre><code>sqlplus &lt;user&gt;/&lt;pass&gt;@&lt;host&gt;[:1521]/&lt;SID&gt;
 </code></pre>
 <p><strong>Examples:</strong></p>
 <pre><code>## Conect as DB administrator
-sqlplus / as sysdba
+  sqlplus / as sysdba
 
 
 ## Connect as lexsys' schema user on default port to LEXDB oracle
-## instance
-sqlplus lexusr/s3cr3t@127.0.0.1/LEXDB
+  ## instance
+  sqlplus lexusr/s3cr3t@127.0.0.1/LEXDB
 </code></pre>
 <h4 id="sqlplus-usrliboracle121client64binsqlplus-error-while-loading-shared-libraries-libsqlplusso-cannot-open-shared-object-file-no-such-file-or-director">sqlplus: /usr/lib/oracle/12.1/client64/bin/sqlplus: error while loading shared libraries: libsqlplus.so: cannot open shared object file: No such file or director</h4>
 <pre><code>echo 'export ORACLE_HOME=/lib/oracle/11.2' &gt;&gt; ~/.bashrc
 echo 'export LD_LIBRARY_PATH=$ORACLE_HOME/lib' &gt;&gt; ~/.bashrc
 </code></pre>
-<h4 id="como-hago-un-volcado-de-la-base-de-datos">Como hago un volcado de la base de datos?</h4>
+<h4 id="como-hago-un-volcado-de-la-base-de-datos">¿Como hago un volcado de la base de datos?</h4>
 <pre><code>expdp &lt;user&gt;/&lt;pass&gt;@&lt;SID&gt; schemas=&lt;schema&gt; directory=&lt;dump_path&gt;
   dumpfile=&lt;dump_file&gt; logfile=&lt;log_file&gt;
 </code></pre>
 <h4 id="ora-12162-tnsnet-service-name-is-incorrectly-specified">ORA-12162: TNS:net service name is incorrectly specified</h4>
 <pre><code>export ORACLE_SID=&lt;INSTANCIA&gt;
-export ORACLE_HOME=/u01/app/oracle/product/11.2.0/xe
-export PATH=$ORACLE_HOME/bin:$PATH
+  export ORACLE_HOME=/u01/app/oracle/product/11.2.0/xe
+  export PATH=$ORACLE_HOME/bin:$PATH
 </code></pre>
 <h4 id="ora-01078-failure-in-processing-system-parameters-lrm-00109-could-not-open-parameter-file">ORA-01078: failure in processing system parameters. LRM-00109: could not open parameter file</h4>
 <p>Copiar init.ora a init\<INSTANCIA>.ora</p>
 <pre><code>cp
 </code></pre>
-<h4 id="como-saber-el-tablespace-del-esquema">Como saber el tablespace del esquema?</h4>
+<h4 id="como-saber-el-tablespace-del-esquema">¿Como saber el tablespace del esquema?</h4>
 <pre><code> select owner, table_name, tablespace_name
  from dba_tables
  where table_name='&lt;SOME_TABLE&gt;'
 </code></pre>
+<h4 id="como-instalo-oracle-db-en-docker">¿Como instalo oracle DB en Docker?</h4>
+<pre><code>docker run -dit -p 1521:1521 -p 2222:22 -v /home/oracle:/mnt -v /home/oracle/u01:/u01 --name oracledb centos:7 /bin/bash
+</code></pre>
 <h3 id="postgresql">PostgreSQL</h3>
-<h4 id="como-crear-una-base-de-datos">Como crear una base de datos?</h4>
+<h4 id="como-crear-una-base-de-datos">¿Como crear una base de datos?</h4>
 <p><strong>SQL</strong></p>
 <pre><code>CREATE DATABASE &lt;dbname&gt; WITH ENCODING 'UTF8'
 TEMPLATE=template0 OWNER '&lt;owner&gt;'
@@ -245,12 +271,16 @@ TEMPLATE=template0 OWNER '&lt;owner&gt;'
 <p><strong>Sistema Operativo</strong></p>
 <pre><code>createdb -O &lt;owner&gt;
 </code></pre>
-<h4 id="como-busco-por-coincidencia-parcial-ignorando-mayusculas-o-minusculas">Como busco por coincidencia parcial ignorando mayúsculas o minúsculas?</h4>
+<h4 id="como-busco-por-coincidencia-parcial-ignorando-mayusculas-o-minusculas">¿Como busco por coincidencia parcial ignorando mayúsculas o minúsculas?</h4>
 <pre><code>select case_id, summary from cases
 where summary ilike any (array ['prueba%','Prueba%']);
 </code></pre>
+<h4 id="como-inicio-postgresql-en-un-contenedor-docker">¿Como inicio PostgreSQL en un contenedor Docker?</h4>
+<pre><code>docker run -d -P -p &lt;host-ip&gt;:5432:5432 -e POSTGres_PASsword=&lt;pass&gt;
+</code></pre>
+<p>--name <some-name> postgres</p>
 <h3 id="python">Python</h3>
-<h4 id="como-instalo-python-27-en-red-hat-enterprise-linux-y-centos-6">Como instalo Python 2.7. en Red Hat Enterprise Linux y CentOS 6?</h4>
+<h4 id="como-instalo-python-27-en-red-hat-enterprise-linux-y-centos-6">¿Como instalo Python 2.7. en Red Hat Enterprise Linux y CentOS 6?</h4>
 <p>RHEL/CentOS 6 no incluyen python 2.7, para instalarlo es necesario
 habilitar el repositorio SCL.</p>
 <p>Instala el repositorio correspondiente desde aquí
@@ -260,25 +290,25 @@ Instala python27 ejecutando el comando</p>
 <p>Agrega el script que habilita python 2.7 en <code>~/.bash_profile</code></p>
 <pre><code>echo '. /opt/rh/python27/enable' &gt;&gt; ~/.bash_profile
 </code></pre>
-<h4 id="que-es-uwsgi">Que es uWSGI?</h4>
+<h4 id="que-es-uwsgi">¿Que es uWSGI?</h4>
 <p>uWSGI es un servidor de aplicaciones python que implementa la Web
 Server Gateway Interface</p>
 <h3 id="api_1">API</h3>
-<h4 id="como-inicio-el-api-en-modo-manual-o-de-desarrollo">Como inicio el API en modo manual o de desarrollo?</h4>
+<h4 id="como-inicio-el-api-en-modo-manual-o-de-desarrollo">¿Como inicio el API en modo manual o de desarrollo?</h4>
 <pre><code>cd ~/wrath
 ENV/bin/python dev_server.py &lt;nombre_de_ambiente&gt;
 </code></pre>
-<h4 id="como-consulto-los-eventos-del-api-en-mongodb">Como consulto los eventos del API en MongoDB?</h4>
+<h4 id="como-consulto-los-eventos-del-api-en-mongodb">¿Como consulto los eventos del API en MongoDB?</h4>
 <pre><code>db.getCollection('&lt;ambiente&gt;').find({}).sort({datetime:-1})
 </code></pre>
 <h3 id="editor-de-contenidos">Editor de Contenidos</h3>
-<h4 id="que-hago-si-el-editor-no-exporta-con-mensaje-de-error-typeerror-cannot-read-property-meta-of-undefined">Que hago si el editor no exporta con mensaje de error <code>TypeError: Cannot read property 'meta' of undefined</code>?</h4>
+<h4 id="que-hago-si-el-editor-no-exporta-con-mensaje-de-error-typeerror-cannot-read-property-meta-of-undefined">¿Que hago si el editor no exporta con mensaje de error <code>TypeError: Cannot read property 'meta' of undefined</code>?</h4>
 <pre><code>exportToAPI true boolean
  Rendereando cuerpo formato
  Uniendo cuerpo de formato con su plantilla
  /home/SIGIPPEM/EDITOR/models/procedimiento.coffee:246
-           if (body.meta &amp;&amp; body.meta) {
-                   ^
+           if (body.meta &amp;&amp; body.meta)
+
  TypeError: Cannot read property 'meta' of undefined
 </code></pre>
 <p>El editor no encuentra el API, revisar la URL del API en <code>config.json</code></p>
@@ -301,6 +331,8 @@ ENV/bin/python dev_server.py &lt;nombre_de_ambiente&gt;
 
   <div role="contentinfo">
     <!-- Copyright etc -->
+    
+      <p>Tecno Informática Coproceso S.C.</p>
     
   </div>
 
