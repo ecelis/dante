@@ -289,6 +289,7 @@ Paquetes de PostgreSQL requeridos tanto en el servidor de Base de Datos como en 
 
     CREATE DATABASE lexsys WITH TEMPLATE=template0 ENCODING 'UTF8'
       OWNER lexusr;
+    GRANT ALL PRIVILEGS ON DATABASE lexsys TO lexusr;
 
 
 
@@ -328,12 +329,12 @@ Instala Oracle Database de acuerdo a la _Database Installation Guide_
       -- DDL para generar el esquema y usuario. Los datafiles se crearan en el
       -- path default a menos que se indique el path dedicado...
       CREATE TABLESPACE LEXSYS_DAT DATAFILE 'LEXSYS_DATA.DBF' SIZE 200M
-        AUTOEXTEND ON NEXT 50M MAXSIZE UNLIMITED LOGGING
+        AUTOEXTEND ON NEXT 500M MAXSIZE UNLIMITED LOGGING
         EXTENT MANAGEMENT LOCAL AUTOALLOCATE BLOCKSIZE 8K
         SEGMENT SPACE MANAGEMENT AUTO FLASHBACK ON;
 
       CREATE TABLESPACE LEXSYS_INX DATAFILE 'LEXSYS_INX.DBF' SIZE 100M
-        AUTOEXTEND ON NEXT 50M MAXSIZE UNLIMITED LOGGING
+        AUTOEXTEND ON NEXT 500M MAXSIZE UNLIMITED LOGGING
         EXTENT MANAGEMENT LOCAL AUTOALLOCATE BLOCKSIZE 8K
         SEGMENT SPACE MANAGEMENT AUTO FLASHBACK ON;
 

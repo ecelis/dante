@@ -46,17 +46,21 @@ o
 #### ¿Como asigno otros roles a un usuario existente?
 
 
-	use <colección>
-    db.grantRolesToUser(
-    "<usuario>", [{ role: "readWrite", db: "<base_de_datos>" }])
+    use <colección>
+      db.grantRolesToUser(
+      "<usuario>", [{ role: "readWrite", db: "<base_de_datos>" }])
 
 
 
 #### ¿Como creo un usuario para una colección?
 
 
-	mongo
-  use <collection>
+    mongo
+    use <collection>
+    db.createUser({ user:"<user>",
+      pwd:"<s3kr33t>", roles: [
+        {role: "readWrite", db: "<db>"}]});
+
 
 
 #### ¿Como importar un archivo de JSON?
@@ -65,10 +69,11 @@ o
     mongoimport -d <database> -c <colletion> --jsonArray < <file.json>
 
 
-El archivo deve tener un formato:
+El archivo debe tener un formato:
 
 
     { key:value, nestedvalues: { anarray: [firts, secon, third] } }
+
 
 
 #### ¿Como hacer búsquedas en el log de eventos?
@@ -78,6 +83,9 @@ _OK_, _ERROR_ también se puede usar.
 
 
     db.<collection>.find({level:'INFO', status:'OK'})
+
+
+#### ¿Como busco por fechas?
 
 
 #### ¿Como inicio MongoDB en Docker?
@@ -92,6 +100,7 @@ habilitada.
 Si no se desea seguridad puede omitirse el parámetro `--auth`
 db.createUser({user:"admin",pwd:"Qwzx!",roles:[{role:"userAdminAnyDatabase",db:"admin"}]});
 
+
 ### Nginx
 
 #### ¿Como instalo Nginx para LexSys?
@@ -99,7 +108,7 @@ db.createUser({user:"admin",pwd:"Qwzx!",roles:[{role:"userAdminAnyDatabase",db:"
 Agrega la siguiente línea en `/etc/yum.repos.d/epel.repo` y `/etc/yum.repos.d/nginx.repo`
 
 
-	exclude=nginx
+    exclude=nginx
 
 
 ### OracleDB
@@ -107,7 +116,7 @@ Agrega la siguiente línea en `/etc/yum.repos.d/epel.repo` y `/etc/yum.repos.d/n
 #### ¿Como inicio una instancia de la base de datos?
 
 
-	sqlplus /nolog
+    sqlplus /nolog
     connect / as sysdba
     startup
     <CTRL+D>
@@ -117,26 +126,26 @@ Agrega la siguiente línea en `/etc/yum.repos.d/epel.repo` y `/etc/yum.repos.d/n
 #### ¿Como me conecto a una instancia de OracleDB en línea de comandos? (sqlplus)
 
 
-	sqlplus <user>/<pass>@<host>[:1521]/<SID>
+    sqlplus <user>/<pass>@<host>[:1521]/<SID>
 
 
 **Examples:**
 
 
-	## Conect as DB administrator
-    sqlplus / as sysdba
+    ## Conect as DB administrator
+      sqlplus / as sysdba
 
 
-	## Connect as lexsys' schema user on default port to LEXDB oracle
-    ## instance
-    sqlplus lexusr/s3cr3t@127.0.0.1/LEXDB
+    ## Connect as lexsys' schema user on default port to LEXDB oracle
+      ## instance
+      sqlplus lexusr/s3cr3t@127.0.0.1/LEXDB
 
 
 #### sqlplus: /usr/lib/oracle/12.1/client64/bin/sqlplus: error while loading shared libraries: libsqlplus.so: cannot open shared object file: No such file or director
 
 
-	echo 'export ORACLE_HOME=/lib/oracle/11.2' >> ~/.bashrc
-	echo 'export LD_LIBRARY_PATH=$ORACLE_HOME/lib' >> ~/.bashrc
+    echo 'export ORACLE_HOME=/lib/oracle/11.2' >> ~/.bashrc
+    echo 'export LD_LIBRARY_PATH=$ORACLE_HOME/lib' >> ~/.bashrc
 
 
 
@@ -151,9 +160,9 @@ Agrega la siguiente línea en `/etc/yum.repos.d/epel.repo` y `/etc/yum.repos.d/n
 #### ORA-12162: TNS:net service name is incorrectly specified
 
 
-	export ORACLE_SID=<INSTANCIA>
-    export ORACLE_HOME=/u01/app/oracle/product/11.2.0/xe
-    export PATH=$ORACLE_HOME/bin:$PATH
+    export ORACLE_SID=<INSTANCIA>
+      export ORACLE_HOME=/u01/app/oracle/product/11.2.0/xe
+      export PATH=$ORACLE_HOME/bin:$PATH
 
 
 #### ORA-01078: failure in processing system parameters. LRM-00109: could not open parameter file
@@ -161,7 +170,7 @@ Agrega la siguiente línea en `/etc/yum.repos.d/epel.repo` y `/etc/yum.repos.d/n
 Copiar init.ora a init\<INSTANCIA>.ora
 
 
-	cp
+    cp
 
 
 #### ¿Como saber el tablespace del esquema?
@@ -170,6 +179,12 @@ Copiar init.ora a init\<INSTANCIA>.ora
 	 select owner, table_name, tablespace_name
      from dba_tables
      where table_name='<SOME_TABLE>'
+
+
+#### ¿Como instalo oracle DB en Docker?
+
+
+    docker run -dit -p 1521:1521 -p 2222:22 -v /home/oracle:/mnt -v /home/oracle/u01:/u01 --name oracledb centos:7 /bin/bash
 
 
 
