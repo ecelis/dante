@@ -291,4 +291,14 @@ El editor no encuentra el API, revisar la URL del API en `config.json`
 
 
 
+### Unix/Linux
 
+#### ¿Como sincronizo la hora de los servidores?
+
+
+    ntpdate -s time.nist.gov
+
+#### ¿Como genero el digest para las peticiones al API en el shell?
+
+
+    echo -n "value" | openssl dgst -sha1 -hmac "key" | cut -d ' ' -f 2

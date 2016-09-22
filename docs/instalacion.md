@@ -325,26 +325,23 @@ Instala Oracle Database de acuerdo a la _Database Installation Guide_
    http://docs.oracle.com/database/121/LADBI/toc.htm
 
 
+    CREATE TABLESPACE <LEXUSR>_DAT DATAFILE '<LEXUSR>_DAT.DBF' SIZE 2000M
+      AUTOEXTEND ON NEXT 1000M MAXSIZE UNLIMITED LOGGING
+      EXTENT MANAGEMENT LOCAL AUTOALLOCATE BLOCKSIZE 8K
+      SEGMENT SPACE MANAGEMENT AUTO FLASHBACK ON;
 
-      -- DDL para generar el esquema y usuario. Los datafiles se crearan en el
-      -- path default a menos que se indique el path dedicado...
-      CREATE TABLESPACE LEXSYS_DAT DATAFILE 'LEXSYS_DATA.DBF' SIZE 200M
-        AUTOEXTEND ON NEXT 500M MAXSIZE UNLIMITED LOGGING
-        EXTENT MANAGEMENT LOCAL AUTOALLOCATE BLOCKSIZE 8K
-        SEGMENT SPACE MANAGEMENT AUTO FLASHBACK ON;
+    CREATE TABLESPACE <LEXUSR>_INX DATAFILE '<LEXUSR>_INX.DBF' SIZE 1000M
+      AUTOEXTEND ON NEXT 500M MAXSIZE UNLIMITED LOGGING
+      EXTENT MANAGEMENT LOCAL AUTOALLOCATE BLOCKSIZE 8K
+      SEGMENT SPACE MANAGEMENT AUTO FLASHBACK ON;
 
-      CREATE TABLESPACE LEXSYS_INX DATAFILE 'LEXSYS_INX.DBF' SIZE 100M
-        AUTOEXTEND ON NEXT 500M MAXSIZE UNLIMITED LOGGING
-        EXTENT MANAGEMENT LOCAL AUTOALLOCATE BLOCKSIZE 8K
-        SEGMENT SPACE MANAGEMENT AUTO FLASHBACK ON;
+      CREATE USER <DBUSER> IDENTIFIED BY <DBPASS> DEFAULT TABLESPACE LEXSYS_DAT
+        QUOTA UNLIMITED ON LEXSYS_DAT;
 
-      CREATE USER <DBUSER> IDENTIFIED BY <DBPASS> DEFAULT TABLESPACE "LEXSYS_DAT"
-        QUOTA UNLIMITED ON "LEXSYS_DAT";
-
-      GRANT "CONNECT" TO <DBUSER>;
+      GRANT CONNECT TO <DBUSER>;
       GRANT RESOURCE TO <DBUSER>;
 
-      ALTER USER <DBUSER> QUOTA UNLIMITED ON "LEXSYS_INX";
+      ALTER USER <DBUSER> QUOTA UNLIMITED ON LEXSYS_INX;
 
       COMMIT;
 
@@ -352,7 +349,55 @@ Instala Oracle Database de acuerdo a la _Database Installation Guide_
 #### Servidor MongoDB
 
 
-Se sugiere utilizar discos SSD en RAID1.
+##### Notas de producción
+
+
+* Hardware o máquina Virtual de 64 bit.
+
+* 8 Cores o 4 CPU reales
+
+* 16 GB RAM
+
+* Sistema operativo RHEL / CentOS 6.2 o más reciente de 64 bit.
+
+* En RHEL/CentOS Linux kernel 2.6.18-194 o más receinte.
+
+* Subscripción de RHEL para poder actualizar el sistema.
+  * Acceso a internet a diferentes repositorios de RHEL/CentOS y EPEL
+
+* Acceso a Internet durante la instalación de MongoDB.
+  * https://repo.mongodb.org/
+
+* En maquinas virtuales _vmware tools_ debe estar instalado o el
+  equivalente dependiendo de la plataforma de virtualización.
+
+* En vmware mapear y reservar la RAM necesaria para MongoDB, evitar la
+  característica _overcommit_ y el _baloon driver_.
+
+* En vmware asegurarse de no excederse más de 2 CPU virtuales por cada
+  core físico.
+
+* Se sugiere utilizar discos SSD en RAID1.
+
+* En caso de usar discos RAID este debe ser RAID-10 que ofrece mejor
+  desempeño para MongoDB que RAID-5 o RAID-6. Evitar RAID-0
+
+* Discos separados para albergar los archivos de data, journal, log y
+  swap
+  * 1 TB o más para data
+  * 10 GB para journal
+  * 10 GB para log
+  * SWAP igual o el doble de RAM
+
+* En caso de máquinas virtuales, los discos deben tener el espacio
+  previamente asignado, NO discos de crecimiento dinámico.
+
+* Configurar Linux scheduler dependiendo del servidor:
+  * *nohop* scheduler en máquinas virtuales
+  * *deadline* scheduler en hardware físico
+
+* Sistema de archivos *XFS* que generalmente se desempeña mejor con
+  MongoDB.
 
 
 Deshabilita **noatime** en el sistema de archivos donde viven los archivos de
@@ -1212,8 +1257,10 @@ respaldo y la ruta donde se encuentra el respaldo.
 * [HTTP sobre TLS](https://tools.ietf.org/html/rfc2818)
 * [TLS 1.2](https://tools.ietf.org/html/rfc5246)
 * [SHA-1 Hash Algorithm Migration for SSL & Code Signing Certificates](http://www.symantec.com/page.jsp?id=sha2-transition)
-* https://access.redhat.com/documentation/en-US/Red_Hat_Software_Collections/2/html/2.0_Release_Notes/chap-RHSCL.html
-* https://docs.mongodb.com/manual/release-notes/2.6/
+* [Red Hat Software Collections](https://access.redhat.com/documentation/en-US/Red_Hat_Software_Collections/2/html/2.0_Release_Notes/chap-RHSCL.html)
+* [MongoDB Release Notes](https://docs.mongodb.com/manual/release-notes/2.6/)
+* [MongoDB Production Notes](https://docs.mongodb.com/manual/administration/production-notes/)
+
 
 ---
 
