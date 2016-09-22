@@ -1,0 +1,132 @@
+# LexSys Cloud
+
+
+## Ambientes estables:
+
+- Puebla (Oracle)
+
+- Edomex (Oracle)
+
+- Campeche PJE (PostgreSQL)
+
+- Campeche IDAJUCAM (PostgreSQL)
+
+- Campeche SSP (PostgreSQL)
+
+- Demo (PostgreSQL) - Para demostraciones a clientes y promoción comercial
+
+- Laboratorio (PostgreSQL) - Para acceso de partners integraciones y
+  practicantes en general (público)
+
+
+## Características de los ambientes
+
+- Editor
+
+- Portal
+
+- Esquema de BD individual
+
+- Monitoreo
+
+
+## Reglas de utilización y acceso
+
+- Las BD no deberán restaurarse nunca con respaldos de producción del cliente.
+  Las pruebas con carga o de reproducibilidad deberán realizar en ambientes
+externos a este.
+
+- Prohibido aplicar y probar cambios en los ambientes estables, para desarrollo
+  deben generarse ambientes de prueba a partir de alguna versión de ambiente
+estable existente (incluyendo sus datos o carga cero/inicial).
+
+- Los propietarios de los ambientes serán los únicos que podrán autorizar su
+  baja/recuperación, cambios de versión/migración, cambios en configuraciones y
+datos.
+
+- Para pruebas de concepto se generará un ambiente nuevo y dedicado, a partir
+  de alguno estable y se nombrará  un propietario quien establecerá el tiempo
+de  duración de la prueba, su fecha de activación (alta) y fecha de cierre
+(baja).
+
+
+## Jerarquía de directorios
+
+* [acedia](https://github.com/ecelis/acedia/) LexSys Docker base image
+* [azrael](https://github.com/ecelis/azrael/) LexSys Docker main image
+  * [deployment](https://github.com/ecelis/vainglory/) LexSys deployment
+    files
+  * **src** LexSys modules source seed for Docker main image
+* **cm** Directorio de cargas masivas
+
+* **deployment** Configuración PM2 y uwsgi para ambiente de desarrollo
+  vive aquí.
+
+* **_stableenvironment_** Configuración de ambiente estable, puede haber
+  varios de estos directorios, cada uno corre 1 o mas contenedores docker.
+
+* **EDITOR** ambiente para desarrolladores. Prácticamente lo mismo que
+  en la nube de DO.
+
+* **Sins** ambiente para desarrolladores. Prácticamente lo mismo que
+  en la nube de DO.
+
+* **local** NodeJS y compañía viven aquí, la ruta ya está en `$PATH`.
+
+    /home/lexusr/
+    ├── acedia/
+    ├── azrael/
+    │   ├── deployment/
+    │   └── src/
+    │       ├── EDITOR/
+    │       ├── sloth/
+    │       ├── wpride/
+    │       └── wrath/
+    ├── stableenvironment
+    │   ├── cm
+    │   │   ├── 20160712000/
+    │   │   ├── apps.xlsx
+    │   │   ├── crimes.xlsx
+    │   │   ├── indicators.xlsx
+    │   │   ├── series.xlsx
+    │   │   └── ssp.xlsx
+    │   ├── deployment
+    │   │   └── log
+    │   ├── run
+    │   │   └── wrath.sock
+    │   └── VERSION
+    ├── deployment
+    │   ├── build.sh
+    │   ├── config
+    │   │   ├── config.json
+    │   │   ├── config-sap3.json
+    │   │   ├── config-target.js
+    │   │   ├── config-target.json
+    │   │   └── lexbuild
+    │   ├── config.sh
+    │   ├── limits.conf
+    │   ├── nginx.conf
+    │   ├── pm2.json
+    │   ├── README.md
+    │   ├── run.sh
+    │   ├── util
+    │   └── uwsgi
+    ├── EDITOR
+    ├── local
+    │   ├── bin
+    │   │   ├── bower -> ../lib/node_modules/bower/bin/bower
+    │   │   ├── cake -> ../lib/node_modules/coffee-script/bin/cake
+    │   │   ├── coffee -> ../lib/node_modules/coffee-script/bin/coffee
+    │   │   ├── grunt -> ../lib/node_modules/grunt-cli/bin/grunt
+    │   │   ├── gulp -> ../lib/node_modules/gulp/bin/gulp.js
+    │   │   ├── node
+    │   │   ├── npm -> ../lib/node_modules/npm/bin/npm-cli.js
+    │   │   ├── pm2 -> ../lib/node_modules/pm2/bin/pm2
+    │   │   └── pm2-dev -> ../lib/node_modules/pm2/bin/pm2-dev
+    │   ├── etc
+    │   ├── include
+    │   ├── lib
+    │   └── share
+    ├── log
+    ├── Sins
+    └── tmp
