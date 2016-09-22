@@ -73,6 +73,10 @@ de  duración de la prueba, su fecha de activación (alta) y fecha de cierre
 
 * **local** NodeJS y compañía viven aquí, la ruta ya está en `$PATH`.
 
+
+#### Arbol
+
+
     /home/lexusr/
     ├── acedia/
     ├── azrael/
