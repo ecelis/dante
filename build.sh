@@ -15,9 +15,6 @@ function process_document {
   pandoc $1.md --toc -f markdown -s -o $OUTDIR/$2.$3
 }
 
-cd $CWD
-rm -rf site
-mkdocs build --clean
 cd $CWD/docs
 for d in $DOCS; do
   for format in $FORMATS; do
@@ -25,4 +22,8 @@ for d in $DOCS; do
   done
 done
 
-mkdocs gh-deploy
+# Publish to github pages
+cd $CWD 
+#rm -rf site
+#mkdocs build --clean
+mkdocs gh-deploy --clean
