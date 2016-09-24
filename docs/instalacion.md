@@ -1,7 +1,6 @@
-# LexSys
+## Introducción
 
-## Guia de Instalación
-Revisión 3
+Revisión 4
 Ernesto Celis <ernesto@tic.uno>
 
 
@@ -20,24 +19,24 @@ Las siguientes convenciones tipográficas ocurren durante este texto:
 Las siguientes variables de entorno son utilizadas en el texto y los valores sugeridos que además están pre-configurados en los scripts de instalación. Esto valores se pueden modificar en tiempo de ejecución de los scripts o en una instalación manual.
 
 
-* **$LEXUSR** el usuario del sistema operativo con el que se ejecuta LexSys. **lexusr**
+* **LEXUSR** el usuario del sistema operativo con el que se ejecuta LexSys. **lexusr**
 
-* **\$LEXHOME** directorio base de instalación de LexSys. **/home/$LEXUSR**
+* **LEXHOME** directorio base de instalación de LexSys. **/home/LEXUSR**
 
-* **\$LEXDB** motor de base de datos puede ser **oracle** o **postgresql**
+* **LEXDB** motor de base de datos puede ser **oracle** o **postgresql**
 
-* **\$LEXAPI** ruta de instalación del API. **LEXHOME/wrath**.
+* **LEXAPI** ruta de instalación del API. **LEXHOME/wrath**.
 
-* **\$LEXEDITOR** ruta de instalación del Editor de Contenidos **LEXHOME/EDITOR**
+* **LEXEDITOR** ruta de instalación del Editor de Contenidos **LEXHOME/EDITOR**
 
-* **\$LEXDESK** ruta de instalación del Escritorio de Trabajo **$LEXHOME/wrpide**
+* **LEXDESK** ruta de instalación del Escritorio de Trabajo **LEXHOME/wrpide**
 
-* **\$LEXPORTAL** ruta de instalación del Portal de Servicios **$LEXPORTAL/sloth**
+* **LEXPORTAL** ruta de instalación del Portal de Servicios **LEXPORTAL/sloth**
 
-* **\$OS\_VERSION** sistema operativo de la instalación. Solo los sistemas operativos Red Hat
+* **OS\_VERSION** sistema operativo de la instalación. Solo los sistemas operativos Red Hat
 Enterprise Linux versiones 6 y 7 y CentOS 6 y 7 están soportados.
 
-* **\$TMPDIR** directorio para archivos temporales **/tmp**
+* **TMPDIR** directorio para archivos temporales **/tmp**
 
 
 ### Notas para el administrador
@@ -57,11 +56,11 @@ instalar los paquetes requeridos y actualizacones del sistema.
 ### Requisitos del Sistema
 
 * [Red Hat Enterprise Linux 6 o 7 / CentOS 6 o 7][rhel]
-* [PostgreSQL 9.4][psql] / [Oracle Database][oracle]
-* [MongoDB 2.6][mongodb]
+* [PostgreSQL 9.5][psql] / [Oracle Database][oracle]
+* [MongoDB 3.2][mongodb]
 * [Python 2.7][python]
-* [setuptools 19.x.x][setuptools]
-* [pypi 8.x.x][pypi]
+* [setuptools 19.x][setuptools]
+* [pip 8.x][pip]
 * [Virtualenv][virtualenv]
 * [uWSGI 2.0][uwsgi]
 * [NodeJS 4.2][nodejs]
@@ -124,18 +123,18 @@ base de datos a usar, Oracle Database o PostgreSQL.
 * oracle-instantclient12.1-devel
 
 
-Oracle Instant Client debe descargarse directamente del sitio web
-http://www.oracle.com/technetwork/database/features/instant-client/index.html
-los archivos se deben descargar en el directorio **$TEMPDIR**
+Oracle Instant Client debe descargarse directamente del [sitio
+web](http://www.oracle.com/technetwork/database/features/instant-client/index.html)
+de Oracle, coloca los archivos `.rpm` en **TEMPDIR**.
 
 
 #### PostgreSQL
 
 * libpqxx
 * libpqxx-devel
-* postgresql94
-* postgresql94-contrib
-* postgresql94-devel
+* postgresql95
+* postgresql95-contrib
+* postgresql95-devel
 
 
 #### MongoDB
@@ -152,14 +151,14 @@ Collections** y **EPEL** para instalar todas las dependencias requeridas.
 ##### Repositorio EPEL RHEL 6/7
 
 Agrega el paquete del repositorio correspondiente desde
-https://fedoraproject.org/wiki/EPEL
+[EPEL][epel]
 
 
 ##### Repositorios Optional y Software Collections en RHEL 6
 
 
-		subscription-manager repos --enable rhel-server-rhscl-6-rpms
-		subscription-manager repos --enable rhel-6-server-optional-rpms
+    subscription-manager repos --enable rhel-server-rhscl-6-rpms
+    subscription-manager repos --enable rhel-6-server-optional-rpms
 
 
 ##### Repositorios Optional y Software Collections en RHEL 7
@@ -187,14 +186,14 @@ El script `bootstrap.sh` configura una instalación mínima del sistema
 operativo preparándolo para la instalación de los componentes de LexSys.
 
 
-	curl -LO https://github.com/ecelis/acedia/releases/download/v1.0rc1/bootstrap.sh
-	chmod +x bootstrap.sh
-  ./bootstrap.sh
+    curl -LO https://github.com/ecelis/acedia/releases/download/v1.0rc1/bootstrap.sh
+    chmod +x bootstrap.sh
+    ./bootstrap.sh
 
 
 Este script automatiza los pasos referidos en la sección siguiente:
-**Preparativos para la instalación**, si ejecutaste `bootstrap.sh`
-puedes ir al punto **Instalacion de Módulos LexSys**
+[Preparativos para la instalación](#preparativos-para-la-instalacion), si ejecutaste `bootstrap.sh`
+puedes ir a la sección [Instalacion de Módulos LexSys](#instalacion-de-modulos-lexsys)
 
 
 ### Preparativos para la instalación
@@ -211,7 +210,7 @@ LexSys puede ejecutarse como cualquier usuario sin privilegios.
     chmod 755 $LEXHOME
 
 
-Los archivos de log se almacenan en _$LEXHOME/log_ es necesario crear
+Los archivos de log se almacenan en **LEXHOME/log** es necesario crear
 este directorio.
 
 
@@ -321,8 +320,11 @@ comentada y PostgreSQL solo escucha en **localhost**.
 
 #### Servidor Oracle Database
 
-Instala Oracle Database de acuerdo a la _Database Installation Guide_
-   http://docs.oracle.com/database/121/LADBI/toc.htm
+Instala Oracle Database de acuerdo a la [Database Installation
+Guide][oradb_install_guide]
+
+
+Crea el tablespace y usuario de Oracle.
 
 
     CREATE TABLESPACE <LEXUSR>_DAT DATAFILE '<LEXUSR>_DAT.DBF' SIZE 2000M
@@ -715,9 +717,10 @@ guía de instalación.
 1. Crea un entorno virtual de python
 2. Instala los módulos de nodejs y bower
 3. Edita `config.json`
-3. Compila la aplicación
-4. Inicia el servidor de aplicaciones NodeJS pm2
+4. Compila la aplicación
+5. Inicia el servidor de aplicaciones NodeJS pm2
 
+TODO
 
     su - LEXUSR
     cd LEXHOME/EDITOR
@@ -759,7 +762,7 @@ archivo **config.json**.
 
 * **entorno** es una etiqueta que identifica el entorno que se
   iniciará, también debe existir un directorio llamado **entorno** en la
-ruta **$LEXEDITOR/views/plantillas**, en este directorio se encuentran
+ruta **LEXEDITOR/views/plantillas**, en este directorio se encuentran
 las plantillas HTML que se incluyen a los formatos PDF generados por el
 sistema.
 
@@ -775,7 +778,7 @@ sistema.
 
 PM2 es el servidor de aplicaciones JavaScript que mueve al Editor de
 Contenidos. PM2 es capáz de servir 1 o más instancias del editor se
-configura normalmente en el archivo **$LEXHOME/deployment/pm2.json**
+configura normalmente en el archivo **LEXHOME/deployment/pm2.json**
 
 
     {
@@ -1265,11 +1268,15 @@ respaldo y la ruta donde se encuentra el respaldo.
 ---
 
 [rhel]: https://access.redhat.com/documentation/en/red-hat-enterprise-linux/
-[psql]: http://www.postgresql.org/docs/9.4/static/index.html
-[mongodb]: https://docs.mongodb.org/v2.6/
+[psql]: http://www.postgresql.org/docs/9.5/static/index.html
+[mongodb]: https://docs.mongodb.org/v3.2/
 [python]: https://python.org/
 [virtualenv]: https://virtualenv.pypa.io/en/latest/
 [uwsgi]: http://uwsgi-docs.readthedocs.org/en/latest/
 [nodejs]: https://nodejs.org/en/docs/
 [nginx]: http://nginx.org/en/docs/
 [oracle]: http://www.oracle.com
+[setuptools]: https://pypi.python.org/pypi/setuptools
+[pip]: https://pypi.python.org/pypi/pip
+[epel]: https://fedoraproject.org/wiki/EPEL#How_can_I_use_these_extra_packages.3F
+[oradb_install_guide]: http://docs.oracle.com/database/121/LADBI/toc.htm
