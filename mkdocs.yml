@@ -1,12 +1,13 @@
 site_name: LexSys Docs
 
 pages:
-- Home: index.md
+- Inicio: index.md
 - Escritorio: desk.md
 - Portal: portal.md
 - Editor: editor.md
 - Instalación: instalacion.md
-- FAQ: faq.md
+- Preguntas Frecuentes: faq.md
 
 theme: readthedocs
-copyright: Tecno Informática Coproceso S.C.
+copyright: FDL &copy; line here
+

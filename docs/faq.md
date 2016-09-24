@@ -1,7 +1,32 @@
-# Preguntas Frecuentes
+## LexSys - Preguntas Frecuentes
 
 
 ### API
+
+#### ¿Como inicio el API en modo manual o de desarrollo?
+
+
+	cd ~/wrath
+    ENV/bin/python dev_server.py <nombre_de_ambiente>
+
+
+#### ¿Como consulto los eventos del API en MongoDB?
+
+
+	db.getCollection('<ambiente>').find({}).sort({datetime:-1})
+
+
+La siguiente sentencia busca todos los eventos que fuerón exitosos:
+_OK_, _ERROR_ también se puede usar.
+
+
+    db.<collection>.find({level:'INFO', status:'OK'})
+
+
+#### ¿Como busco por fechas?
+
+
+    db.collection.find({ ... spec ... }).sort({ key: 1 })
 
 
 #### ¿BAD REQUEST - Timestamp header required with UTC datetime in ISO 8601 format?
@@ -21,6 +46,28 @@ o
 
 
 	docker start -ai <uuid|name>
+
+
+### Editor de Contenidos
+
+
+#### ¿Que hago si el editor no exporta con mensaje de error `TypeError: Cannot read property 'meta' of undefined`?
+
+
+	exportToAPI true boolean
+     Rendereando cuerpo formato
+     Uniendo cuerpo de formato con su plantilla
+     /home/SIGIPPEM/EDITOR/models/procedimiento.coffee:246
+               if (body.meta && body.meta)
+
+     TypeError: Cannot read property 'meta' of undefined
+
+
+El editor no encuentra el API, revisar la URL del API en `config.json`
+
+
+### Escritorio de Trabajo
+
 
 
 ### MongoDB
@@ -51,18 +98,6 @@ o
       "<usuario>", [{ role: "readWrite", db: "<base_de_datos>" }])
 
 
-
-#### ¿Como creo un usuario para una colección?
-
-
-    mongo
-    use <collection>
-    db.createUser({ user:"<user>",
-      pwd:"<s3kr33t>", roles: [
-        {role: "readWrite", db: "<db>"}]});
-
-
-
 #### ¿Como importar un archivo de JSON?
 
 
@@ -78,17 +113,6 @@ El archivo debe tener un formato:
 
 #### ¿Como hacer búsquedas en el log de eventos?
 
-La siguiente sentencia busca todos los eventos que fuerón exitosos:
-_OK_, _ERROR_ también se puede usar.
-
-
-    db.<collection>.find({level:'INFO', status:'OK'})
-
-
-#### ¿Como busco por fechas?
-
-
-    db.collection.find({ ... spec ... }).sort({ key: 1 })
 
 #### Runner error: Overflow sort stage buffered data usage of 33598393 bytes exceeds internal limit of 33554432 bytes
 
@@ -194,6 +218,10 @@ Copiar init.ora a init\<INSTANCIA>.ora
     docker run -dit -p 1521:1521 -p 2222:22 -v /home/oracle:/mnt -v /home/oracle/u01:/u01 --name oracledb centos:7 /bin/bash
 
 
+### Portal de Servicios
+
+TODO
+
 
 ### PostgreSQL
 
@@ -253,49 +281,6 @@ Agrega el script que habilita python 2.7 en `~/.bash_profile`
 
 uWSGI es un servidor de aplicaciones python que implementa la Web
 Server Gateway Interface
-
-
-### API
-
-
-#### ¿Como inicio el API en modo manual o de desarrollo?
-
-
-	cd ~/wrath
-    ENV/bin/python dev_server.py <nombre_de_ambiente>
-
-
-#### ¿Como consulto los eventos del API en MongoDB?
-
-
-	db.getCollection('<ambiente>').find({}).sort({datetime:-1})
-
-
-
-### Editor de Contenidos
-
-
-#### ¿Que hago si el editor no exporta con mensaje de error `TypeError: Cannot read property 'meta' of undefined`?
-
-
-	exportToAPI true boolean
-     Rendereando cuerpo formato
-     Uniendo cuerpo de formato con su plantilla
-     /home/SIGIPPEM/EDITOR/models/procedimiento.coffee:246
-               if (body.meta && body.meta)
-
-     TypeError: Cannot read property 'meta' of undefined
-
-
-El editor no encuentra el API, revisar la URL del API en `config.json`
-
-
-### Escritorio de Trabajo
-
-
-
-### Portal de Servicios
-
 
 
 ### Unix/Linux
