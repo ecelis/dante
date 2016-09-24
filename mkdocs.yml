@@ -2,10 +2,10 @@ site_name: LexSys Docs
 
 pages:
 - Inicio: index.md
-- Manual de Escritorio de Trabajo: desk.md
-- Manual de Portal de Servicios: portal.md
-- Manual de Editor de Contenidos: editor.md
 - Manual de Instalación: instalacion.md
+- Manual de Editor de Contenidos: editor.md
+- Manual de Portal de Servicios: portal.md
+- Manual de Escritorio de Trabajo: desk.md
 - Preguntas Frecuentes: faq.md
 
 theme: readthedocs
