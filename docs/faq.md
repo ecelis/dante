@@ -88,6 +88,13 @@ _OK_, _ERROR_ también se puede usar.
 #### ¿Como busco por fechas?
 
 
+    db.collection.find({ ... spec ... }).sort({ key: 1 })
+
+#### Runner error: Overflow sort stage buffered data usage of 33598393 bytes exceeds internal limit of 33554432 bytes
+
+
+    db.collection.ensureIndex( { "rank" : 1 } )  // ascending
+
 #### ¿Como inicio MongoDB en Docker?
 
 Para ejecutar una instancia de MongoDB en Docker con seguridad
