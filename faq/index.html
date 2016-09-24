@@ -8,7 +8,7 @@
   
   
   
-  <title>FAQ - LexSys Docs</title>
+  <title>Preguntas Frecuentes - LexSys Docs</title>
   
 
   <link rel="shortcut icon" href="../img/favicon.ico">
@@ -23,7 +23,7 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "FAQ";
+    var mkdocs_page_name = "Preguntas Frecuentes";
     var mkdocs_page_input_path = "faq.md";
     var mkdocs_page_url = "/faq/";
   </script>
@@ -56,50 +56,54 @@
           
             <li>
     <li class="toctree-l1 ">
-        <a class="" href="..">Home</a>
+        <a class="" href="..">Inicio</a>
         
     </li>
 <li>
           
             <li>
     <li class="toctree-l1 ">
-        <a class="" href="../desk/">Escritorio</a>
+        <a class="" href="../instalacion/">Manual de Instalación</a>
         
     </li>
 <li>
           
             <li>
     <li class="toctree-l1 ">
-        <a class="" href="../portal/">Portal</a>
+        <a class="" href="../editor/">Manual de Editor de Contenidos</a>
         
     </li>
 <li>
           
             <li>
     <li class="toctree-l1 ">
-        <a class="" href="../editor/">Editor</a>
+        <a class="" href="../portal/">Manual de Portal de Servicios</a>
         
     </li>
 <li>
           
             <li>
     <li class="toctree-l1 ">
-        <a class="" href="../instalacion/">Instalación</a>
+        <a class="" href="../desk/">Manual de Escritorio de Trabajo</a>
         
     </li>
 <li>
           
             <li>
     <li class="toctree-l1 current">
-        <a class="current" href="./">FAQ</a>
+        <a class="current" href="./">Preguntas Frecuentes</a>
         
             <ul>
             
-                <li class="toctree-l3"><a href="#preguntas-frecuentes">Preguntas Frecuentes</a></li>
+                <li class="toctree-l3"><a href="#lexsys-preguntas-frecuentes">LexSys - Preguntas Frecuentes</a></li>
                 
                     <li><a class="toctree-l4" href="#api">API</a></li>
                 
                     <li><a class="toctree-l4" href="#docker">Docker</a></li>
+                
+                    <li><a class="toctree-l4" href="#editor-de-contenidos">Editor de Contenidos</a></li>
+                
+                    <li><a class="toctree-l4" href="#escritorio-de-trabajo">Escritorio de Trabajo</a></li>
                 
                     <li><a class="toctree-l4" href="#mongodb">MongoDB</a></li>
                 
@@ -107,17 +111,13 @@
                 
                     <li><a class="toctree-l4" href="#oracledb">OracleDB</a></li>
                 
+                    <li><a class="toctree-l4" href="#portal-de-servicios">Portal de Servicios</a></li>
+                
                     <li><a class="toctree-l4" href="#postgresql">PostgreSQL</a></li>
                 
                     <li><a class="toctree-l4" href="#python">Python</a></li>
                 
-                    <li><a class="toctree-l4" href="#api_1">API</a></li>
-                
-                    <li><a class="toctree-l4" href="#editor-de-contenidos">Editor de Contenidos</a></li>
-                
-                    <li><a class="toctree-l4" href="#escritorio-de-trabajo">Escritorio de Trabajo</a></li>
-                
-                    <li><a class="toctree-l4" href="#portal-de-servicios">Portal de Servicios</a></li>
+                    <li><a class="toctree-l4" href="#unixlinux">Unix/Linux</a></li>
                 
             
             </ul>
@@ -147,7 +147,7 @@
     
       
     
-    <li>FAQ</li>
+    <li>Preguntas Frecuentes</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -157,8 +157,22 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="preguntas-frecuentes">Preguntas Frecuentes</h1>
+                <h2 id="lexsys-preguntas-frecuentes">LexSys - Preguntas Frecuentes</h2>
 <h3 id="api">API</h3>
+<h4 id="como-inicio-el-api-en-modo-manual-o-de-desarrollo">¿Como inicio el API en modo manual o de desarrollo?</h4>
+<pre><code>cd ~/wrath
+ENV/bin/python dev_server.py &lt;nombre_de_ambiente&gt;
+</code></pre>
+<h4 id="como-consulto-los-eventos-del-api-en-mongodb">¿Como consulto los eventos del API en MongoDB?</h4>
+<pre><code>db.getCollection('&lt;ambiente&gt;').find({}).sort({datetime:-1})
+</code></pre>
+<p>La siguiente sentencia busca todos los eventos que fuerón exitosos:
+<em>OK</em>, <em>ERROR</em> también se puede usar.</p>
+<pre><code>db.&lt;collection&gt;.find({level:'INFO', status:'OK'})
+</code></pre>
+<h4 id="como-busco-por-fechas">¿Como busco por fechas?</h4>
+<pre><code>db.collection.find({ ... spec ... }).sort({ key: 1 })
+</code></pre>
 <h4 id="bad-request-timestamp-header-required-with-utc-datetime-in-iso-8601-format">¿BAD REQUEST - Timestamp header required with UTC datetime in ISO 8601 format?</h4>
 <p>TODO</p>
 <h3 id="docker">Docker</h3>
@@ -168,6 +182,18 @@
 <p>o</p>
 <pre><code>docker start -ai &lt;uuid|name&gt;
 </code></pre>
+<h3 id="editor-de-contenidos">Editor de Contenidos</h3>
+<h4 id="que-hago-si-el-editor-no-exporta-con-mensaje-de-error-typeerror-cannot-read-property-meta-of-undefined">¿Que hago si el editor no exporta con mensaje de error <code>TypeError: Cannot read property 'meta' of undefined</code>?</h4>
+<pre><code>exportToAPI true boolean
+ Rendereando cuerpo formato
+ Uniendo cuerpo de formato con su plantilla
+ /home/SIGIPPEM/EDITOR/models/procedimiento.coffee:246
+           if (body.meta &amp;&amp; body.meta)
+
+ TypeError: Cannot read property 'meta' of undefined
+</code></pre>
+<p>El editor no encuentra el API, revisar la URL del API en <code>config.json</code></p>
+<h3 id="escritorio-de-trabajo">Escritorio de Trabajo</h3>
 <h3 id="mongodb">MongoDB</h3>
 <h4 id="como-creo-un-usuario-administrador-de-mongodb">¿Como creo un usuario administrador de MongoDB?</h4>
 <pre><code>mongo
@@ -186,13 +212,6 @@ db.createUser({ user:"&lt;newuser&gt;", pwd:"&lt;s3cr3t&gt;", roles:[{rol:"readW
   db.grantRolesToUser(
   "&lt;usuario&gt;", [{ role: "readWrite", db: "&lt;base_de_datos&gt;" }])
 </code></pre>
-<h4 id="como-creo-un-usuario-para-una-coleccion">¿Como creo un usuario para una colección?</h4>
-<pre><code>mongo
-use &lt;collection&gt;
-db.createUser({ user:"&lt;user&gt;",
-  pwd:"&lt;s3kr33t&gt;", roles: [
-    {role: "readWrite", db: "&lt;db&gt;"}]});
-</code></pre>
 <h4 id="como-importar-un-archivo-de-json">¿Como importar un archivo de JSON?</h4>
 <pre><code>mongoimport -d &lt;database&gt; -c &lt;colletion&gt; --jsonArray &lt; &lt;file.json&gt;
 </code></pre>
@@ -200,11 +219,9 @@ db.createUser({ user:"&lt;user&gt;",
 <pre><code>{ key:value, nestedvalues: { anarray: [firts, secon, third] } }
 </code></pre>
 <h4 id="como-hacer-busquedas-en-el-log-de-eventos">¿Como hacer búsquedas en el log de eventos?</h4>
-<p>La siguiente sentencia busca todos los eventos que fuerón exitosos:
-<em>OK</em>, <em>ERROR</em> también se puede usar.</p>
-<pre><code>db.&lt;collection&gt;.find({level:'INFO', status:'OK'})
+<h4 id="runner-error-overflow-sort-stage-buffered-data-usage-of-33598393-bytes-exceeds-internal-limit-of-33554432-bytes">Runner error: Overflow sort stage buffered data usage of 33598393 bytes exceeds internal limit of 33554432 bytes</h4>
+<pre><code>db.collection.ensureIndex( { "rank" : 1 } )  // ascending
 </code></pre>
-<h4 id="como-busco-por-fechas">¿Como busco por fechas?</h4>
 <h4 id="como-inicio-mongodb-en-docker">¿Como inicio MongoDB en Docker?</h4>
 <p>Para ejecutar una instancia de MongoDB en Docker con seguridad
 habilitada.</p>
@@ -262,6 +279,8 @@ echo 'export LD_LIBRARY_PATH=$ORACLE_HOME/lib' &gt;&gt; ~/.bashrc
 <h4 id="como-instalo-oracle-db-en-docker">¿Como instalo oracle DB en Docker?</h4>
 <pre><code>docker run -dit -p 1521:1521 -p 2222:22 -v /home/oracle:/mnt -v /home/oracle/u01:/u01 --name oracledb centos:7 /bin/bash
 </code></pre>
+<h3 id="portal-de-servicios">Portal de Servicios</h3>
+<p>TODO</p>
 <h3 id="postgresql">PostgreSQL</h3>
 <h4 id="como-crear-una-base-de-datos">¿Como crear una base de datos?</h4>
 <p><strong>SQL</strong></p>
@@ -293,27 +312,13 @@ Instala python27 ejecutando el comando</p>
 <h4 id="que-es-uwsgi">¿Que es uWSGI?</h4>
 <p>uWSGI es un servidor de aplicaciones python que implementa la Web
 Server Gateway Interface</p>
-<h3 id="api_1">API</h3>
-<h4 id="como-inicio-el-api-en-modo-manual-o-de-desarrollo">¿Como inicio el API en modo manual o de desarrollo?</h4>
-<pre><code>cd ~/wrath
-ENV/bin/python dev_server.py &lt;nombre_de_ambiente&gt;
+<h3 id="unixlinux">Unix/Linux</h3>
+<h4 id="como-sincronizo-la-hora-de-los-servidores">¿Como sincronizo la hora de los servidores?</h4>
+<pre><code>ntpdate -s time.nist.gov
 </code></pre>
-<h4 id="como-consulto-los-eventos-del-api-en-mongodb">¿Como consulto los eventos del API en MongoDB?</h4>
-<pre><code>db.getCollection('&lt;ambiente&gt;').find({}).sort({datetime:-1})
+<h4 id="como-genero-el-digest-para-las-peticiones-al-api-en-el-shell">¿Como genero el digest para las peticiones al API en el shell?</h4>
+<pre><code>echo -n "value" | openssl dgst -sha1 -hmac "key" | cut -d ' ' -f 2
 </code></pre>
-<h3 id="editor-de-contenidos">Editor de Contenidos</h3>
-<h4 id="que-hago-si-el-editor-no-exporta-con-mensaje-de-error-typeerror-cannot-read-property-meta-of-undefined">¿Que hago si el editor no exporta con mensaje de error <code>TypeError: Cannot read property 'meta' of undefined</code>?</h4>
-<pre><code>exportToAPI true boolean
- Rendereando cuerpo formato
- Uniendo cuerpo de formato con su plantilla
- /home/SIGIPPEM/EDITOR/models/procedimiento.coffee:246
-           if (body.meta &amp;&amp; body.meta)
-
- TypeError: Cannot read property 'meta' of undefined
-</code></pre>
-<p>El editor no encuentra el API, revisar la URL del API en <code>config.json</code></p>
-<h3 id="escritorio-de-trabajo">Escritorio de Trabajo</h3>
-<h3 id="portal-de-servicios">Portal de Servicios</h3>
               
             </div>
           </div>
@@ -322,7 +327,7 @@ ENV/bin/python dev_server.py &lt;nombre_de_ambiente&gt;
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
       
-        <a href="../instalacion/" class="btn btn-neutral" title="Instalación"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../desk/" class="btn btn-neutral" title="Manual de Escritorio de Trabajo"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -332,7 +337,7 @@ ENV/bin/python dev_server.py &lt;nombre_de_ambiente&gt;
   <div role="contentinfo">
     <!-- Copyright etc -->
     
-      <p>Tecno Informática Coproceso S.C.</p>
+      <p>FDL &copy; line here</p>
     
   </div>
 
@@ -350,7 +355,7 @@ ENV/bin/python dev_server.py &lt;nombre_de_ambiente&gt;
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../instalacion/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../desk/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
     </span>

@@ -8,7 +8,7 @@
   
   
   
-  <title>Instalación - LexSys Docs</title>
+  <title>Manual de Instalación - LexSys Docs</title>
   
 
   <link rel="shortcut icon" href="../img/favicon.ico">
@@ -23,7 +23,7 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Instalación";
+    var mkdocs_page_name = "Manual de Instalación";
     var mkdocs_page_input_path = "instalacion.md";
     var mkdocs_page_url = "/instalacion/";
   </script>
@@ -56,41 +56,52 @@
           
             <li>
     <li class="toctree-l1 ">
-        <a class="" href="..">Home</a>
-        
-    </li>
-<li>
-          
-            <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../desk/">Escritorio</a>
-        
-    </li>
-<li>
-          
-            <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../portal/">Portal</a>
-        
-    </li>
-<li>
-          
-            <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../editor/">Editor</a>
+        <a class="" href="..">Inicio</a>
         
     </li>
 <li>
           
             <li>
     <li class="toctree-l1 current">
-        <a class="current" href="./">Instalación</a>
+        <a class="current" href="./">Manual de Instalación</a>
         
             <ul>
             
-                <li class="toctree-l3"><a href="#lexsys">LexSys</a></li>
+                <li class="toctree-l3"><a href="#introduccion">Introducción</a></li>
                 
-                    <li><a class="toctree-l4" href="#guia-de-instalacion">Guia de Instalación</a></li>
+                    <li><a class="toctree-l4" href="#convenciones-usadas-en-el-documento">Convenciones usadas en el documento</a></li>
+                
+                    <li><a class="toctree-l4" href="#notas-para-el-administrador">Notas para el administrador</a></li>
+                
+                    <li><a class="toctree-l4" href="#requisitos-del-sistema">Requisitos del Sistema</a></li>
+                
+                    <li><a class="toctree-l4" href="#dependencias">Dependencias</a></li>
+                
+                    <li><a class="toctree-l4" href="#instalacion-manual">Instalación Manual</a></li>
+                
+                    <li><a class="toctree-l4" href="#preparativos-para-la-instalacion">Preparativos para la instalación</a></li>
+                
+                    <li><a class="toctree-l4" href="#bases-de-datos">Bases de Datos</a></li>
+                
+                    <li><a class="toctree-l4" href="#instalacion-de-modulos-lexsys">Instalacion de Módulos LexSys</a></li>
+                
+                    <li><a class="toctree-l4" href="#instalacion-api">Instalación API</a></li>
+                
+                    <li><a class="toctree-l4" href="#editor-de-contenidos">Editor de Contenidos</a></li>
+                
+                    <li><a class="toctree-l4" href="#portal-de-servicios">Portal de Servicios</a></li>
+                
+                    <li><a class="toctree-l4" href="#escritorio-de-trabajo">Escritorio de Trabajo</a></li>
+                
+                    <li><a class="toctree-l4" href="#proxy-http">Proxy HTTP</a></li>
+                
+                    <li><a class="toctree-l4" href="#instalacion-distribuida">Instalacion distribuida</a></li>
+                
+                    <li><a class="toctree-l4" href="#seguridad">Seguridad</a></li>
+                
+                    <li><a class="toctree-l4" href="#respaldos">Respaldos</a></li>
+                
+                    <li><a class="toctree-l4" href="#referencias">Referencias</a></li>
                 
             
             </ul>
@@ -100,7 +111,28 @@
           
             <li>
     <li class="toctree-l1 ">
-        <a class="" href="../faq/">FAQ</a>
+        <a class="" href="../editor/">Manual de Editor de Contenidos</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../portal/">Manual de Portal de Servicios</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../desk/">Manual de Escritorio de Trabajo</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../faq/">Preguntas Frecuentes</a>
         
     </li>
 <li>
@@ -127,7 +159,7 @@
     
       
     
-    <li>Instalación</li>
+    <li>Manual de Instalación</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -137,9 +169,8 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="lexsys">LexSys</h1>
-<h2 id="guia-de-instalacion">Guia de Instalación</h2>
-<p>Revisión 3
+                <h2 id="introduccion">Introducción</h2>
+<p>Revisión 4
 Ernesto Celis <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#101;&#114;&#110;&#101;&#115;&#116;&#111;&#64;&#116;&#105;&#99;&#46;&#117;&#110;&#111;">&#101;&#114;&#110;&#101;&#115;&#116;&#111;&#64;&#116;&#105;&#99;&#46;&#117;&#110;&#111;</a></p>
 <h3 id="convenciones-usadas-en-el-documento">Convenciones usadas en el documento</h3>
 <p>Las siguientes convenciones tipográficas ocurren durante este texto:</p>
@@ -160,32 +191,32 @@ Ernesto Celis <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#101;&#114;&#110
 <p>Las siguientes variables de entorno son utilizadas en el texto y los valores sugeridos que además están pre-configurados en los scripts de instalación. Esto valores se pueden modificar en tiempo de ejecución de los scripts o en una instalación manual.</p>
 <ul>
 <li>
-<p><strong>$LEXUSR</strong> el usuario del sistema operativo con el que se ejecuta LexSys. <strong>lexusr</strong></p>
+<p><strong>LEXUSR</strong> el usuario del sistema operativo con el que se ejecuta LexSys. <strong>lexusr</strong></p>
 </li>
 <li>
-<p><strong>\$LEXHOME</strong> directorio base de instalación de LexSys. <strong>/home/$LEXUSR</strong></p>
+<p><strong>LEXHOME</strong> directorio base de instalación de LexSys. <strong>/home/LEXUSR</strong></p>
 </li>
 <li>
-<p><strong>\$LEXDB</strong> motor de base de datos puede ser <strong>oracle</strong> o <strong>postgresql</strong></p>
+<p><strong>LEXDB</strong> motor de base de datos puede ser <strong>oracle</strong> o <strong>postgresql</strong></p>
 </li>
 <li>
-<p><strong>\$LEXAPI</strong> ruta de instalación del API. <strong>LEXHOME/wrath</strong>.</p>
+<p><strong>LEXAPI</strong> ruta de instalación del API. <strong>LEXHOME/wrath</strong>.</p>
 </li>
 <li>
-<p><strong>\$LEXEDITOR</strong> ruta de instalación del Editor de Contenidos <strong>LEXHOME/EDITOR</strong></p>
+<p><strong>LEXEDITOR</strong> ruta de instalación del Editor de Contenidos <strong>LEXHOME/EDITOR</strong></p>
 </li>
 <li>
-<p><strong>\$LEXDESK</strong> ruta de instalación del Escritorio de Trabajo <strong>$LEXHOME/wrpide</strong></p>
+<p><strong>LEXDESK</strong> ruta de instalación del Escritorio de Trabajo <strong>LEXHOME/wrpide</strong></p>
 </li>
 <li>
-<p><strong>\$LEXPORTAL</strong> ruta de instalación del Portal de Servicios <strong>$LEXPORTAL/sloth</strong></p>
+<p><strong>LEXPORTAL</strong> ruta de instalación del Portal de Servicios <strong>LEXPORTAL/sloth</strong></p>
 </li>
 <li>
-<p><strong>\$OS_VERSION</strong> sistema operativo de la instalación. Solo los sistemas operativos Red Hat
+<p><strong>OS_VERSION</strong> sistema operativo de la instalación. Solo los sistemas operativos Red Hat
 Enterprise Linux versiones 6 y 7 y CentOS 6 y 7 están soportados.</p>
 </li>
 <li>
-<p><strong>\$TMPDIR</strong> directorio para archivos temporales <strong>/tmp</strong></p>
+<p><strong>TMPDIR</strong> directorio para archivos temporales <strong>/tmp</strong></p>
 </li>
 </ul>
 <h3 id="notas-para-el-administrador">Notas para el administrador</h3>
@@ -207,11 +238,11 @@ instalar los paquetes requeridos y actualizacones del sistema.</p>
 <h3 id="requisitos-del-sistema">Requisitos del Sistema</h3>
 <ul>
 <li><a href="https://access.redhat.com/documentation/en/red-hat-enterprise-linux/">Red Hat Enterprise Linux 6 o 7 / CentOS 6 o 7</a></li>
-<li><a href="http://www.postgresql.org/docs/9.4/static/index.html">PostgreSQL 9.4</a> / <a href="http://www.oracle.com">Oracle Database</a></li>
-<li><a href="https://docs.mongodb.org/v2.6/">MongoDB 2.6</a></li>
+<li><a href="http://www.postgresql.org/docs/9.5/static/index.html">PostgreSQL 9.5</a> / <a href="http://www.oracle.com">Oracle Database</a></li>
+<li><a href="https://docs.mongodb.org/v3.2/">MongoDB 3.2</a></li>
 <li><a href="https://python.org/">Python 2.7</a></li>
-<li>[setuptools 19.x.x][setuptools]</li>
-<li>[pypi 8.x.x][pypi]</li>
+<li><a href="https://pypi.python.org/pypi/setuptools">setuptools 19.x</a></li>
+<li><a href="https://pypi.python.org/pypi/pip">pip 8.x</a></li>
 <li><a href="https://virtualenv.pypa.io/en/latest/">Virtualenv</a></li>
 <li><a href="http://uwsgi-docs.readthedocs.org/en/latest/">uWSGI 2.0</a></li>
 <li><a href="https://nodejs.org/en/docs/">NodeJS 4.2</a></li>
@@ -267,16 +298,16 @@ base de datos a usar, Oracle Database o PostgreSQL.</p>
 <li>oracle-instantclient12.1-basic</li>
 <li>oracle-instantclient12.1-devel</li>
 </ul>
-<p>Oracle Instant Client debe descargarse directamente del sitio web
-http://www.oracle.com/technetwork/database/features/instant-client/index.html
-los archivos se deben descargar en el directorio <strong>$TEMPDIR</strong></p>
+<p>Oracle Instant Client debe descargarse directamente del <a href="http://www.oracle.com/technetwork/database/features/instant-client/index.html">sitio
+web</a>
+de Oracle, coloca los archivos <code>.rpm</code> en <strong>TEMPDIR</strong>.</p>
 <h4 id="postgresql">PostgreSQL</h4>
 <ul>
 <li>libpqxx</li>
 <li>libpqxx-devel</li>
-<li>postgresql94</li>
-<li>postgresql94-contrib</li>
-<li>postgresql94-devel</li>
+<li>postgresql95</li>
+<li>postgresql95-contrib</li>
+<li>postgresql95-devel</li>
 </ul>
 <h4 id="mongodb">MongoDB</h4>
 <ul>
@@ -287,10 +318,10 @@ los archivos se deben descargar en el directorio <strong>$TEMPDIR</strong></p>
 Collections</strong> y <strong>EPEL</strong> para instalar todas las dependencias requeridas.</p>
 <h5 id="repositorio-epel-rhel-67">Repositorio EPEL RHEL 6/7</h5>
 <p>Agrega el paquete del repositorio correspondiente desde
-https://fedoraproject.org/wiki/EPEL</p>
+<a href="https://fedoraproject.org/wiki/EPEL#How_can_I_use_these_extra_packages.3F">EPEL</a></p>
 <h5 id="repositorios-optional-y-software-collections-en-rhel-6">Repositorios Optional y Software Collections en RHEL 6</h5>
-<pre><code>    subscription-manager repos --enable rhel-server-rhscl-6-rpms
-    subscription-manager repos --enable rhel-6-server-optional-rpms
+<pre><code>subscription-manager repos --enable rhel-server-rhscl-6-rpms
+subscription-manager repos --enable rhel-6-server-optional-rpms
 </code></pre>
 <h5 id="repositorios-optional-y-software-collections-en-rhel-7">Repositorios Optional y Software Collections en RHEL 7</h5>
 <pre><code>subscription-manager repos --enable rhel-server-rhscl-7-rpms
@@ -307,11 +338,11 @@ subscription-manager repos --enable rhel-7-server-optional-rpms
 operativo preparándolo para la instalación de los componentes de LexSys.</p>
 <pre><code>curl -LO https://github.com/ecelis/acedia/releases/download/v1.0rc1/bootstrap.sh
 chmod +x bootstrap.sh
+./bootstrap.sh
 </code></pre>
-<p>./bootstrap.sh</p>
 <p>Este script automatiza los pasos referidos en la sección siguiente:
-<strong>Preparativos para la instalación</strong>, si ejecutaste <code>bootstrap.sh</code>
-puedes ir al punto <strong>Instalacion de Módulos LexSys</strong></p>
+<a href="#preparativos-para-la-instalacion">Preparativos para la instalación</a>, si ejecutaste <code>bootstrap.sh</code>
+puedes ir a la sección <a href="#instalacion-de-modulos-lexsys">Instalacion de Módulos LexSys</a></p>
 <h3 id="preparativos-para-la-instalacion">Preparativos para la instalación</h3>
 <p>Para la instalación es necesario que los servidores puedan acceder a
 la Internet, este requisito es solo necesario durante la instalación o
@@ -321,7 +352,7 @@ actualización del sistema</p>
 passwd $LEXUSR
 chmod 755 $LEXHOME
 </code></pre>
-<p>Los archivos de log se almacenan en <em>$LEXHOME/log</em> es necesario crear
+<p>Los archivos de log se almacenan en <strong>LEXHOME/log</strong> es necesario crear
 este directorio.</p>
 <pre><code>mkdir -p $LEXHOME/log
 chown -R $LEXUSR:$LEXUSR $LEXHOME/log
@@ -396,32 +427,104 @@ el valor de <strong>listen_addresses</strong> con la IP donde el servidor
 debe escuchar por conexiones. Normalmente esta línea esta
 comentada y PostgreSQL solo escucha en <strong>localhost</strong>.</p>
 <h4 id="servidor-oracle-database">Servidor Oracle Database</h4>
-<p>Instala Oracle Database de acuerdo a la <em>Database Installation Guide</em>
-   http://docs.oracle.com/database/121/LADBI/toc.htm</p>
-<pre><code>  -- DDL para generar el esquema y usuario. Los datafiles se crearan en el
-  -- path default a menos que se indique el path dedicado...
-  CREATE TABLESPACE LEXSYS_DAT DATAFILE 'LEXSYS_DATA.DBF' SIZE 200M
-    AUTOEXTEND ON NEXT 500M MAXSIZE UNLIMITED LOGGING
-    EXTENT MANAGEMENT LOCAL AUTOALLOCATE BLOCKSIZE 8K
-    SEGMENT SPACE MANAGEMENT AUTO FLASHBACK ON;
+<p>Instala Oracle Database de acuerdo a la <a href="http://docs.oracle.com/database/121/LADBI/toc.htm">Database Installation
+Guide</a></p>
+<p>Crea el tablespace y usuario de Oracle.</p>
+<pre><code>CREATE TABLESPACE &lt;LEXUSR&gt;_DAT DATAFILE '&lt;LEXUSR&gt;_DAT.DBF' SIZE 2000M
+  AUTOEXTEND ON NEXT 1000M MAXSIZE UNLIMITED LOGGING
+  EXTENT MANAGEMENT LOCAL AUTOALLOCATE BLOCKSIZE 8K
+  SEGMENT SPACE MANAGEMENT AUTO FLASHBACK ON;
 
-  CREATE TABLESPACE LEXSYS_INX DATAFILE 'LEXSYS_INX.DBF' SIZE 100M
-    AUTOEXTEND ON NEXT 500M MAXSIZE UNLIMITED LOGGING
-    EXTENT MANAGEMENT LOCAL AUTOALLOCATE BLOCKSIZE 8K
-    SEGMENT SPACE MANAGEMENT AUTO FLASHBACK ON;
+CREATE TABLESPACE &lt;LEXUSR&gt;_INX DATAFILE '&lt;LEXUSR&gt;_INX.DBF' SIZE 1000M
+  AUTOEXTEND ON NEXT 500M MAXSIZE UNLIMITED LOGGING
+  EXTENT MANAGEMENT LOCAL AUTOALLOCATE BLOCKSIZE 8K
+  SEGMENT SPACE MANAGEMENT AUTO FLASHBACK ON;
 
-  CREATE USER &lt;DBUSER&gt; IDENTIFIED BY &lt;DBPASS&gt; DEFAULT TABLESPACE "LEXSYS_DAT"
-    QUOTA UNLIMITED ON "LEXSYS_DAT";
+  CREATE USER &lt;DBUSER&gt; IDENTIFIED BY &lt;DBPASS&gt; DEFAULT TABLESPACE LEXSYS_DAT
+    QUOTA UNLIMITED ON LEXSYS_DAT;
 
-  GRANT "CONNECT" TO &lt;DBUSER&gt;;
+  GRANT CONNECT TO &lt;DBUSER&gt;;
   GRANT RESOURCE TO &lt;DBUSER&gt;;
 
-  ALTER USER &lt;DBUSER&gt; QUOTA UNLIMITED ON "LEXSYS_INX";
+  ALTER USER &lt;DBUSER&gt; QUOTA UNLIMITED ON LEXSYS_INX;
 
   COMMIT;
 </code></pre>
 <h4 id="servidor-mongodb">Servidor MongoDB</h4>
+<h5 id="notas-de-produccion">Notas de producción</h5>
+<ul>
+<li>
+<p>Hardware o máquina Virtual de 64 bit.</p>
+</li>
+<li>
+<p>8 Cores o 4 CPU reales</p>
+</li>
+<li>
+<p>16 GB RAM</p>
+</li>
+<li>
+<p>Sistema operativo RHEL / CentOS 6.2 o más reciente de 64 bit.</p>
+</li>
+<li>
+<p>En RHEL/CentOS Linux kernel 2.6.18-194 o más receinte.</p>
+</li>
+<li>
+<p>Subscripción de RHEL para poder actualizar el sistema.</p>
+</li>
+<li>
+<p>Acceso a internet a diferentes repositorios de RHEL/CentOS y EPEL</p>
+</li>
+<li>
+<p>Acceso a Internet durante la instalación de MongoDB.</p>
+</li>
+<li>
+<p>https://repo.mongodb.org/</p>
+</li>
+<li>
+<p>En maquinas virtuales <em>vmware tools</em> debe estar instalado o el
+  equivalente dependiendo de la plataforma de virtualización.</p>
+</li>
+<li>
+<p>En vmware mapear y reservar la RAM necesaria para MongoDB, evitar la
+  característica <em>overcommit</em> y el <em>baloon driver</em>.</p>
+</li>
+<li>
+<p>En vmware asegurarse de no excederse más de 2 CPU virtuales por cada
+  core físico.</p>
+</li>
+<li>
 <p>Se sugiere utilizar discos SSD en RAID1.</p>
+</li>
+<li>
+<p>En caso de usar discos RAID este debe ser RAID-10 que ofrece mejor
+  desempeño para MongoDB que RAID-5 o RAID-6. Evitar RAID-0</p>
+</li>
+<li>
+<p>Discos separados para albergar los archivos de data, journal, log y
+  swap</p>
+</li>
+<li>1 TB o más para data</li>
+<li>10 GB para journal</li>
+<li>10 GB para log</li>
+<li>
+<p>SWAP igual o el doble de RAM</p>
+</li>
+<li>
+<p>En caso de máquinas virtuales, los discos deben tener el espacio
+  previamente asignado, NO discos de crecimiento dinámico.</p>
+</li>
+<li>
+<p>Configurar Linux scheduler dependiendo del servidor:</p>
+</li>
+<li><em>nohop</em> scheduler en máquinas virtuales</li>
+<li>
+<p><em>deadline</em> scheduler en hardware físico</p>
+</li>
+<li>
+<p>Sistema de archivos <em>XFS</em> que generalmente se desempeña mejor con
+  MongoDB.</p>
+</li>
+</ul>
 <p>Deshabilita <strong>noatime</strong> en el sistema de archivos donde viven los archivos de
 MongoDB.</p>
 <pre><code>    LABEL=/var  /var    xfs     noatime,defaults    0 1
@@ -668,9 +771,10 @@ ENV/bin/python db_generator.py &lt;nombre_de_ambiente&gt;
 <li>Instala los módulos de nodejs y bower</li>
 <li>Edita <code>config.json</code></li>
 <li>Compila la aplicación</li>
-<li>
-<p>Inicia el servidor de aplicaciones NodeJS pm2</p>
-<p>su - LEXUSR
+<li>Inicia el servidor de aplicaciones NodeJS pm2</li>
+</ol>
+<p>TODO</p>
+<pre><code>su - LEXUSR
 cd LEXHOME/EDITOR
 virtualenv ENV
 npm install --loglevel info
@@ -679,9 +783,8 @@ vi config.json
 vi LEXHOME/deployment/pm2.json
 grunt assets
 pm2 start LEXHOME/deployment/pm2.json
-pm2 status</p>
-</li>
-</ol>
+pm2 status
+</code></pre>
 <h4 id="configuracion-editor-de-contenidos">Configuración Editor de Contenidos</h4>
 <p>Una copia del código del Editor de Contenidos puede servir 1 o más
 instancias escuchando en diferentes puertos TCP. El puerto
@@ -708,7 +811,7 @@ archivo <strong>config.json</strong>.</p>
 <li>
 <p><strong>entorno</strong> es una etiqueta que identifica el entorno que se
   iniciará, también debe existir un directorio llamado <strong>entorno</strong> en la
-ruta <strong>$LEXEDITOR/views/plantillas</strong>, en este directorio se encuentran
+ruta <strong>LEXEDITOR/views/plantillas</strong>, en este directorio se encuentran
 las plantillas HTML que se incluyen a los formatos PDF generados por el
 sistema.</p>
 </li>
@@ -726,7 +829,7 @@ sistema.</p>
 <h4 id="configuracion-pm2">Configuración PM2</h4>
 <p>PM2 es el servidor de aplicaciones JavaScript que mueve al Editor de
 Contenidos. PM2 es capáz de servir 1 o más instancias del editor se
-configura normalmente en el archivo <strong>$LEXHOME/deployment/pm2.json</strong></p>
+configura normalmente en el archivo <strong>LEXHOME/deployment/pm2.json</strong></p>
 <pre><code>{
   "apps": [
     {
@@ -1111,8 +1214,9 @@ respaldo y la ruta donde se encuentra el respaldo.</p>
 <li><a href="https://tools.ietf.org/html/rfc2818">HTTP sobre TLS</a></li>
 <li><a href="https://tools.ietf.org/html/rfc5246">TLS 1.2</a></li>
 <li><a href="http://www.symantec.com/page.jsp?id=sha2-transition">SHA-1 Hash Algorithm Migration for SSL &amp; Code Signing Certificates</a></li>
-<li>https://access.redhat.com/documentation/en-US/Red_Hat_Software_Collections/2/html/2.0_Release_Notes/chap-RHSCL.html</li>
-<li>https://docs.mongodb.com/manual/release-notes/2.6/</li>
+<li><a href="https://access.redhat.com/documentation/en-US/Red_Hat_Software_Collections/2/html/2.0_Release_Notes/chap-RHSCL.html">Red Hat Software Collections</a></li>
+<li><a href="https://docs.mongodb.com/manual/release-notes/2.6/">MongoDB Release Notes</a></li>
+<li><a href="https://docs.mongodb.com/manual/administration/production-notes/">MongoDB Production Notes</a></li>
 </ul>
 <hr />
               
@@ -1122,10 +1226,10 @@ respaldo y la ruta donde se encuentra el respaldo.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../faq/" class="btn btn-neutral float-right" title="FAQ">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../editor/" class="btn btn-neutral float-right" title="Manual de Editor de Contenidos">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../editor/" class="btn btn-neutral" title="Editor"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href=".." class="btn btn-neutral" title="Inicio"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -1135,7 +1239,7 @@ respaldo y la ruta donde se encuentra el respaldo.</p>
   <div role="contentinfo">
     <!-- Copyright etc -->
     
-      <p>Tecno Informática Coproceso S.C.</p>
+      <p>FDL &copy; line here</p>
     
   </div>
 
@@ -1153,10 +1257,10 @@ respaldo y la ruta donde se encuentra el respaldo.</p>
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../editor/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../faq/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../editor/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
